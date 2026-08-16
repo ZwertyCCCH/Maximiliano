@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matemáticas – Ejercicios: Lenguaje Algebraico, Reemplazo y Potencias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- KaTeX CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+<style>
+:root{
+  --primary:#1a2a4a;
+  --primary2:#1e3a6a;
+  --primary3:#1a4a7a;
+  --math-blue:#1a5a8a;
+  --math-blue2:#2a7aaa;
+  --gold:#d4a84a;
+  --gold2:#e8c86a;
+  --white:#ffffff;
+  --light:#f0f4f8;
+  --lighter:#f7f9fc;
+  --green:#1a7a4a;
+  --green2:#e8f7ef;
+  --green3:#0f5c37;
+  --red:#b02a2a;
+  --red2:#fde8e8;
+  --gray:#5a6a7a;
+  --border:#d0dce8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:linear-gradient(160deg,var(--primary) 0%,var(--primary2) 40%,var(--primary3) 100%);
+  min-height:100vh;color:#1a2a3a;
+}
+
+/* ── TOP BAR ── */
+#topbar{
+  position:sticky;top:0;z-index:200;
+  background:var(--primary);border-bottom:3px solid var(--gold);
+  padding:12px 24px;display:flex;align-items:center;gap:14px;
+}
+#topbar .logo{font-size:1.6rem;}
+#topbar h1{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.25rem;font-weight:700;flex:1;
+}
+#topbar h1 span{color:var(--gold);}
+#score-pill{
+  background:rgba(212,168,74,.15);border:1px solid var(--gold);
+  color:var(--gold2);font-family:'JetBrains Mono',monospace;
+  font-size:.8rem;padding:5px 14px;border-radius:20px;white-space:nowrap;
+}
+#section-indicator{
+  background:rgba(212,168,74,.1);border:1px solid var(--gold);
+  color:var(--gold2);font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;padding:4px 12px;border-radius:20px;white-space:nowrap;
+}
+
+/* ── PROGRESS BAR ── */
+#prog-wrap{background:rgba(255,255,255,.08);height:6px;}
+#prog-fill{height:100%;background:var(--gold);transition:width .4s;width:0%;}
+
+/* ── MAIN ── */
+#main{max-width:820px;margin:0 auto;padding:28px 20px 120px;}
+
+/* ── INTRO CARD ── */
+#intro-card{
+  background:var(--white);border-radius:20px;padding:36px 40px;
+  text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.25);
+  animation:fadeUp .5s ease forwards;
+}
+#intro-card .anchor{font-size:3rem;margin-bottom:12px;}
+#intro-card h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--primary);margin-bottom:10px;}
+#intro-card p{color:var(--gray);font-size:1rem;line-height:1.7;margin-bottom:24px;}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;}
+.tag{
+  background:var(--light);border:1px solid var(--border);border-radius:20px;
+  padding:4px 14px;font-size:.82rem;color:var(--primary);font-weight:600;
+}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  border:none;cursor:pointer;border-radius:10px;font-family:'Source Sans 3',sans-serif;
+  font-weight:700;font-size:.95rem;padding:11px 24px;transition:all .2s;
+}
+.btn-gold{background:var(--gold);color:var(--primary);}
+.btn-gold:hover{background:var(--gold2);transform:scale(1.03);}
+.btn-sky{background:var(--math-blue);color:var(--white);}
+.btn-sky:hover{background:var(--math-blue2);transform:scale(1.03);}
+.btn-green{background:var(--green);color:var(--white);}
+.btn-green:hover{background:var(--green3);transform:scale(1.03);}
+.btn-outline{background:transparent;border:2px solid var(--gold);color:var(--gold);}
+.btn-outline:hover{background:rgba(212,168,74,.12);}
+
+/* ── SECTION HEADERS ── */
+.section-header{
+  background:linear-gradient(135deg,var(--primary2),var(--math-blue));
+  border-radius:12px;padding:14px 20px;margin-bottom:18px;
+  display:flex;align-items:center;gap:12px;border-left:4px solid var(--gold);
+}
+.section-header .num{
+  font-family:'Playfair Display',serif;color:var(--gold);
+  font-size:1.8rem;font-weight:900;line-height:1;
+}
+.section-header .info{flex:1;}
+.section-header .info h3{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.1rem;font-weight:700;
+}
+.section-header .info p{
+  color:#a0b8d0;font-size:.8rem;margin-top:2px;
+}
+.section-header .count{
+  color:var(--gold2);font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;background:rgba(212,168,74,.15);
+  padding:4px 12px;border-radius:12px;border:1px solid rgba(212,168,74,.3);
+}
+
+/* ── VARIABLE DISPLAY ── */
+.var-chip{
+  background:var(--white);border-radius:6px;padding:2px 10px;
+  font-family:'JetBrains Mono',monospace;font-size:.82rem;
+  border:1px solid var(--border);
+}
+.var-chip .var-name{font-weight:700;color:var(--math-blue);}
+.var-chip .var-val{color:var(--primary);font-weight:600;}
+
+/* ── QUESTION CARDS ── */
+#questions-wrap{display:none;flex-direction:column;gap:20px;}
+.q-card{
+  background:var(--white);border-radius:16px;padding:22px 26px;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  border-left:5px solid var(--border);
+  transition:border-color .2s;
+  animation:fadeUp .4s ease both;
+}
+.q-card.answered-correct{border-left-color:var(--green);}
+.q-card.answered-wrong{border-left-color:var(--red);}
+.q-card.answered-skip{border-left-color:var(--gold);}
+
+.q-num{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  color:var(--gray);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase;
+}
+.q-text{
+  font-size:1rem;font-weight:600;color:var(--primary);line-height:1.8;margin-bottom:14px;
+}
+.q-text .katex{font-size:1.05rem;}
+
+/* options (sección 1) */
+.options{display:flex;flex-direction:column;gap:8px;}
+.opt{
+  display:flex;align-items:center;gap:12px;
+  border:2px solid var(--border);border-radius:10px;
+  padding:10px 14px;cursor:pointer;transition:all .18s;
+  background:var(--light);user-select:none;
+}
+.opt:hover:not(.locked){border-color:var(--math-blue);background:#e8f0fc;}
+.opt.selected{border-color:var(--math-blue);background:#dbe8ff;}
+.opt.correct{border-color:var(--green);background:var(--green2);}
+.opt.wrong{border-color:var(--red);background:var(--red2);}
+.opt.locked{cursor:default;}
+.opt-letter{
+  width:26px;height:26px;border-radius:50%;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;
+  color:var(--gray);flex-shrink:0;transition:all .18s;background:var(--white);
+}
+.opt.selected .opt-letter{border-color:var(--math-blue);color:var(--math-blue);background:#dbe8ff;}
+.opt.correct .opt-letter{border-color:var(--green);color:var(--green);background:var(--green2);}
+.opt.wrong .opt-letter{border-color:var(--red);color:var(--red);background:var(--red2);}
+.opt-text{font-size:.93rem;color:#1a2a3a;line-height:1.4;}
+.opt-text .katex{font-size:.95rem;}
+
+/* input (sección 2) */
+.input-group{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.input-group label{font-weight:600;color:var(--primary);font-size:.95rem;}
+.input-group input{
+  border:2px solid var(--border);border-radius:8px;
+  padding:8px 14px;font-size:.95rem;font-family:'JetBrains Mono',monospace;
+  width:120px;transition:border-color .2s;background:var(--lighter);
+}
+.input-group input:focus{outline:none;border-color:var(--math-blue);}
+.input-group input:disabled{background:var(--light);cursor:not-allowed;}
+.input-group .input-feedback{font-weight:700;font-size:.9rem;}
+
+/* V/F (sección 3) */
+.vf-group{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.vf-btn{
+  border:2px solid var(--border);border-radius:8px;
+  padding:8px 20px;cursor:pointer;font-weight:700;
+  font-size:.9rem;transition:all .18s;background:var(--light);
+  font-family:'Source Sans 3',sans-serif;
+}
+.vf-btn:hover:not(.locked){border-color:var(--math-blue);}
+.vf-btn.selected-true{border-color:var(--green);background:var(--green2);color:var(--green3);}
+.vf-btn.selected-false{border-color:var(--red);background:var(--red2);color:var(--red);}
+.vf-btn.correct{border-color:var(--green);background:var(--green2);color:var(--green3);}
+.vf-btn.wrong{border-color:var(--red);background:var(--red2);color:var(--red);}
+.vf-btn.locked{cursor:default;}
+.vf-correction{
+  display:none;margin-top:10px;padding:10px 14px;
+  border-radius:8px;background:var(--lighter);border:1px solid var(--border);
+}
+.vf-correction.show{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.vf-correction label{font-weight:600;color:var(--primary);font-size:.9rem;}
+.vf-correction input{
+  border:2px solid var(--border);border-radius:8px;
+  padding:6px 12px;font-size:.9rem;font-family:'JetBrains Mono',monospace;
+  width:100px;background:var(--white);
+}
+.vf-correction input:focus{outline:none;border-color:var(--math-blue);}
+.vf-correction input:disabled{background:var(--light);cursor:not-allowed;}
+
+/* feedback */
+.q-feedback{display:none;margin-top:10px;font-size:.88rem;font-weight:600;padding:7px 12px;border-radius:8px;}
+.q-feedback.correct{display:flex;align-items:center;gap:6px;color:var(--green);background:var(--green2);}
+.q-feedback.wrong{display:flex;align-items:center;gap:6px;color:var(--red);background:var(--red2);}
+.q-feedback.skip{display:flex;align-items:center;gap:6px;color:#7a6a00;background:#fff8e0;}
+
+/* ── SUBMIT BAR ── */
+#submit-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--primary);border-top:2px solid var(--gold);
+  padding:10px 24px;display:flex;align-items:center;gap:14px;
+  justify-content:space-between;
+}
+#answered-count{color:#a0b8d0;font-family:'JetBrains Mono',monospace;font-size:.8rem;}
+
+/* ── RESULTS ── */
+#results-wrap{display:none;animation:fadeUp .5s ease forwards;}
+#results-card{
+  background:var(--white);border-radius:20px;padding:36px 40px;
+  box-shadow:0 12px 40px rgba(0,0,0,.25);margin-bottom:28px;text-align:center;
+}
+.score-ring{
+  width:140px;height:140px;border-radius:50%;margin:0 auto 20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  border:8px solid var(--gold);background:var(--light);
+  transition:border-color .4s;
+}
+.score-ring .score-num{font-size:2.8rem;font-weight:900;color:var(--primary);line-height:1;}
+.score-ring .score-of{font-size:.9rem;color:var(--gray);}
+.score-ring .grade-num{font-size:1.4rem;font-weight:700;color:var(--primary);margin-top:4px;}
+#result-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--primary);margin-bottom:8px;}
+#result-msg{color:var(--gray);font-size:1rem;line-height:1.6;margin-bottom:24px;}
+.result-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+.stat-box{background:var(--light);border-radius:12px;padding:12px 22px;text-align:center;border:1px solid var(--border);}
+.stat-box .sv{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
+.stat-box .sl{font-size:.78rem;color:var(--gray);margin-top:2px;}
+.stat-box.ok .sv{color:var(--green);}
+.stat-box.err .sv{color:var(--red);}
+.stat-box.skip .sv{color:var(--gold);}
+.stat-box.grade .sv{color:var(--math-blue);}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+
+/* review section */
+#review-wrap{display:flex;flex-direction:column;gap:16px;}
+.review-title{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.3rem;font-weight:700;margin-bottom:6px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  #main{padding:16px 12px 100px;}
+  #intro-card,#results-card{padding:24px 18px;}
+  .result-actions{flex-direction:column;}
+  .btn{justify-content:center;}
+  #topbar h1{font-size:1rem;}
+  #score-pill{font-size:.65rem;padding:4px 10px;}
+  .input-group input{width:80px;}
+  .vf-correction input{width:80px;}
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="logo">📐</span>
+  <h1>Ejercicios — <span>Lenguaje Algebraico, Reemplazo y Potencias</span></h1>
+  <span id="section-indicator">Sección 1/3</span>
+  <div id="score-pill">45 preguntas · Sin límite de tiempo</div>
+</div>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+
+<div id="main">
+
+  <!-- INTRO -->
+  <div id="intro-card">
+    <div class="anchor">📝</div>
+    <h2>Lenguaje Algebraico, Reemplazo y Potencias — Práctica</h2>
+    <p>Este test consta de <strong>3 secciones</strong> con <strong>15 preguntas cada una</strong> (45 en total):</p>
+    <div class="tag-row">
+      <span class="tag">📝 Sección 1: Lenguaje Algebraico</span>
+      <span class="tag">🔄 Sección 2: Reemplazo de Variables</span>
+      <span class="tag">⚡ Sección 3: Potencias V/F</span>
+    </div>
+    <button class="btn btn-gold" onclick="startTest()">🚀 Iniciar Test</button>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div id="questions-wrap"></div>
+
+  <!-- RESULTS -->
+  <div id="results-wrap">
+    <div id="results-card">
+      <div class="score-ring" id="score-ring">
+        <div class="score-num" id="r-score">0</div>
+        <div class="score-of" id="r-of">/ 45</div>
+        <div class="grade-num" id="r-grade">0.0</div>
+      </div>
+      <div id="result-title"></div>
+      <div id="result-msg"></div>
+      <div class="result-stats">
+        <div class="stat-box ok"><div class="sv" id="r-correct">0</div><div class="sl">✅ Correctas</div></div>
+        <div class="stat-box err"><div class="sv" id="r-wrong">0</div><div class="sl">❌ Incorrectas</div></div>
+        <div class="stat-box skip"><div class="sv" id="r-skip">0</div><div class="sl">⚪ Sin responder</div></div>
+        <div class="stat-box grade"><div class="sv" id="r-grade-display">0.0</div><div class="sl">📊 Nota (1–7)</div></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-gold" onclick="restartTest()">🔄 Nuevo Test</button>
+        <button class="btn btn-sky" onclick="window.location.href='index.html'">📖 Curso</button>
+        <button class="btn btn-green" onclick="window.location.href='C3.html'">🎓 Volver a la Clase</button>
+      </div>
+    </div>
+    <div class="review-title">📋 Revisión de Respuestas</div>
+    <div id="review-wrap"></div>
+  </div>
+
+</div>
+
+<!-- SUBMIT BAR -->
+<div id="submit-bar" style="display:none">
+  <div id="answered-count">Respondidas: 0 / 45</div>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-outline" onclick="window.location.href='C3.html'">← Clase</button>
+    <button class="btn btn-gold" onclick="submitTest()">Finalizar Test ✓</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  POOLS
+// ═══════════════════════════════════════════════════════════════
+
+// ─── SECCIÓN 1: LENGUAJE ALGEBRAICO (70 preguntas) ───
+const POOL_MC = [
+  {q: 'El doble de un número $x$ se expresa como:', opts: ['$x + 2$', '$2x$', '$x^2$', '$\\frac{x}{2}$'], ans: 1},
+  {q: 'El triple de un número $x$ se expresa como:', opts: ['$x + 3$', '$3x$', '$x^3$', '$\\frac{x}{3}$'], ans: 1},
+  {q: 'La mitad de un número $x$ se expresa como:', opts: ['$2x$', '$x - 2$', '$\\frac{x}{2}$', '$x^2$'], ans: 2},
+  {q: 'El cuadrado de un número $x$ se expresa como:', opts: ['$2x$', '$x^2$', '$\\sqrt{x}$', '$x + x$'], ans: 1},
+  {q: 'El cubo de un número $x$ se expresa como:', opts: ['$3x$', '$x^3$', '$\\sqrt[3]{x}$', '$3^x$'], ans: 1},
+  {q: 'La suma de dos números $x$ e $y$ se expresa como:', opts: ['$xy$', '$x - y$', '$x + y$', '$\\frac{x}{y}$'], ans: 2},
+  {q: 'La diferencia entre $x$ e $y$ se expresa como:', opts: ['$x + y$', '$xy$', '$x - y$', '$\\frac{x}{y}$'], ans: 2},
+  {q: 'El producto de dos números $x$ e $y$ se expresa como:', opts: ['$x + y$', '$x - y$', '$xy$', '$\\frac{x}{y}$'], ans: 2},
+  {q: 'El cociente de $x$ e $y$ se expresa como:', opts: ['$x + y$', '$xy$', '$x - y$', '$\\frac{x}{y}$'], ans: 3},
+  {q: 'El doble de la suma de $x$ e $y$ se expresa como:', opts: ['$2x + y$', '$2(x + y)$', '$x + 2y$', '$2xy$'], ans: 1},
+  {q: 'La suma de los cuadrados de $x$ e $y$ se expresa como:', opts: ['$(x + y)^2$', '$x^2 + y^2$', '$(xy)^2$', '$x + y$'], ans: 1},
+  {q: 'El cuadrado de la suma de $x$ e $y$ se expresa como:', opts: ['$x^2 + y^2$', '$(x + y)^2$', '$x^2 + 2xy + y^2$', 'Ambas b) y c)'], ans: 3},
+  {q: 'El exceso de $x$ sobre $y$ se expresa como:', opts: ['$x + y$', '$x - y$', '$y - x$', '$xy$'], ans: 1},
+  {q: 'La semisuma de $x$ e $y$ se expresa como:', opts: ['$\\frac{x - y}{2}$', '$\\frac{x + y}{2}$', '$\\frac{xy}{2}$', '$2(x + y)$'], ans: 1},
+  {q: 'El sucesor de un número $x$ se expresa como:', opts: ['$x - 1$', '$x + 1$', '$2x$', '$x^2$'], ans: 1},
+  {q: 'El antecesor de un número $x$ se expresa como:', opts: ['$x + 1$', '$x - 1$', '$2x$', '$\\frac{x}{2}$'], ans: 1},
+  {q: 'Un número par se expresa como:', opts: ['$2x + 1$', '$2x$', '$x + 2$', '$2x - 1$'], ans: 1},
+  {q: 'Un número impar se expresa como:', opts: ['$2x$', '$2x + 1$', '$x + 2$', '$2x + 2$'], ans: 1},
+  {q: 'El triple de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$3x - y$', '$3(x - y)$', '$x - 3y$', '$3x - 3y$'], ans: 1},
+  {q: 'El cuadrado del doble de un número $x$ se expresa como:', opts: ['$2x^2$', '$(2x)^2$', '$4x^2$', 'Ambas b) y c)'], ans: 3},
+  {q: 'El doble de un número $x$ aumentado en 3 se expresa como:', opts: ['$2x + 3$', '$2(x + 3)$', '$2x - 3$', '$x^2 + 3$'], ans: 0},
+  {q: 'El triple de un número $x$ disminuido en 2 se expresa como:', opts: ['$3x - 2$', '$3(x - 2)$', '$3x + 2$', '$x^3 - 2$'], ans: 0},
+  {q: 'La quinta parte de un número $x$ se expresa como:', opts: ['$5x$', '$\\frac{x}{5}$', '$x - 5$', '$x^5$'], ans: 1},
+  {q: 'El doble del cuadrado de un número $x$ se expresa como:', opts: ['$2x^2$', '$(2x)^2$', '$4x^2$', '$2x^2$ y $(2x)^2$'], ans: 0},
+  {q: 'La suma de un número $x$ y su doble se expresa como:', opts: ['$x + 2$', '$x + 2x$', '$3x$', 'Ambas b) y c)'], ans: 3},
+  {q: 'La diferencia entre el doble de $x$ y la mitad de $y$ se expresa como:', opts: ['$2x - \\frac{y}{2}$', '$\\frac{2x}{y}$', '$2x - 2y$', '$\\frac{x}{2} - 2y$'], ans: 0},
+  {q: 'El cuadrado de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$x^2 - y^2$', '$(x - y)^2$', '$x^2 - 2xy - y^2$', '$x^2 - 2xy + y^2$'], ans: 1},
+  {q: 'El producto de la suma y la diferencia de dos números se expresa como:', opts: ['$x^2 + y^2$', '$(x + y)(x - y)$', '$x^2 - y^2$', 'Ambas b) y c)'], ans: 3},
+  {q: 'El cociente entre el cuadrado de un número y el triple de otro se expresa como:', opts: ['$\\frac{x^2}{3y}$', '$\\frac{3x}{y^2}$', '$\\frac{x^2}{y^3}$', '$\\frac{3x^2}{y}$'], ans: 0},
+  {q: 'La raíz cuadrada de la suma de dos números se expresa como:', opts: ['$\\sqrt{x + y}$', '$\\sqrt{x} + \\sqrt{y}$', '$\\sqrt{x^2 + y^2}$', '$(x + y)^2$'], ans: 0},
+  {q: 'El cubo de la diferencia de dos números se expresa como:', opts: ['$x^3 - y^3$', '$(x - y)^3$', '$x^3 - 3x^2y + 3xy^2 - y^3$', 'Ambas b) y c)'], ans: 3},
+  {q: 'La suma de tres números consecutivos se expresa como:', opts: ['$x + (x+1) + (x+2)$', '$3x + 3$', '$x + x + x$', 'Ambas a) y b)'], ans: 3},
+  {q: 'El doble de la suma de un número y su siguiente se expresa como:', opts: ['$2x + (x+1)$', '$2(x + x+1)$', '$2(2x+1)$', 'Ambas b) y c)'], ans: 3},
+  {q: 'La edad de Juan es el doble de la edad de Pedro. Si Pedro tiene $x$ años, la edad de Juan es:', opts: ['$x + 2$', '$2x$', '$x^2$', '$\\frac{x}{2}$'], ans: 1},
+  {q: 'Un número aumentado en su cuarta parte se expresa como:', opts: ['$x + \\frac{x}{4}$', '$\\frac{5x}{4}$', '$\\frac{x}{4}$', 'Ambas a) y b)'], ans: 3},
+  {q: 'El 20% de un número $x$ se expresa como:', opts: ['$\\frac{x}{20}$', '$\\frac{x}{5}$', '$0,2x$', 'Ambas b) y c)'], ans: 3},
+  {q: 'El área de un cuadrado de lado $x$ se expresa como:', opts: ['$4x$', '$x^2$', '$2x$', '$\\frac{x}{2}$'], ans: 1},
+  {q: 'El perímetro de un cuadrado de lado $x$ se expresa como:', opts: ['$x^2$', '$4x$', '$2x$', '$\\frac{x}{4}$'], ans: 1},
+  {q: 'El área de un rectángulo de base $x$ y altura $y$ se expresa como:', opts: ['$x + y$', '$xy$', '$2x + 2y$', '$\\frac{x}{y}$'], ans: 1},
+  {q: 'El perímetro de un rectángulo de base $x$ y altura $y$ se expresa como:', opts: ['$xy$', '$2x + 2y$', '$x + y$', '$2xy$'], ans: 1},
+  {q: 'La distancia recorrida a velocidad $v$ durante $t$ horas se expresa como:', opts: ['$v + t$', '$vt$', '$\\frac{v}{t}$', '$\\frac{t}{v}$'], ans: 1},
+  {q: 'El precio de $n$ artículos que cuestan $p$ cada uno se expresa como:', opts: ['$n + p$', '$np$', '$\\frac{n}{p}$', '$\\frac{p}{n}$'], ans: 1},
+  {q: 'El interés simple de un capital $C$ a una tasa $r$ durante $t$ años se expresa como:', opts: ['$Crt$', '$C + rt$', '$\\frac{Cr}{t}$', '$C(r + t)$'], ans: 0},
+  {q: 'El triple de un número, disminuido en el doble de otro se expresa como:', opts: ['$3x - 2y$', '$3(x - 2y)$', '$2x - 3y$', '$3x + 2y$'], ans: 0},
+  {q: 'La mitad de la diferencia de dos números se expresa como:', opts: ['$\\frac{x - y}{2}$', '$\\frac{x}{2} - y$', '$\\frac{y - x}{2}$', '$\\frac{x + y}{2}$'], ans: 0},
+  {q: 'El doble del cubo de un número se expresa como:', opts: ['$2x^3$', '$(2x)^3$', '$8x^3$', '$2x^3$ y $8x^3$'], ans: 0},
+  {q: 'El cubo del doble de un número se expresa como:', opts: ['$2x^3$', '$(2x)^3$', '$8x^3$', 'Ambas b) y c)'], ans: 3},
+  {q: 'La suma del doble de un número y el triple de otro se expresa como:', opts: ['$2x + 3y$', '$3x + 2y$', '$2(x + 3y)$', '$3(x + 2y)$'], ans: 0},
+  {q: 'El producto del doble de un número y el triple de otro se expresa como:', opts: ['$6xy$', '$2x + 3y$', '$5xy$', '$2x \\cdot 3y$'], ans: 0},
+  {q: 'La diferencia entre el cuadrado de un número y el doble de otro se expresa como:', opts: ['$x^2 - 2y$', '$2x - y^2$', '$(x - 2y)^2$', '$x^2 + 2y$'], ans: 0},
+  {q: 'La suma del cubo de un número y el cuadrado de otro se expresa como:', opts: ['$x^3 + y^2$', '$x^2 + y^3$', '$(x + y)^3$', '$(x + y)^2$'], ans: 0},
+  {q: 'El cociente entre el doble de un número y el triple de otro se expresa como:', opts: ['$\\frac{2x}{3y}$', '$\\frac{3x}{2y}$', '$\\frac{2x}{y^3}$', '$\\frac{3x}{y^2}$'], ans: 0},
+  {q: 'El doble del cuadrado de la suma de dos números se expresa como:', opts: ['$2(x + y)^2$', '$(2x + 2y)^2$', '$4(x + y)^2$', '$2x^2 + 2y^2$'], ans: 0},
+  {q: 'La mitad del cubo de un número se expresa como:', opts: ['$\\frac{x^3}{2}$', '$\\frac{x}{2}^3$', '$\\frac{x^3}{8}$', '$\\frac{x}{2}$'], ans: 0},
+  {q: 'El triple de la raíz cuadrada de un número se expresa como:', opts: ['$3\\sqrt{x}$', '$\\sqrt{3x}$', '$\\sqrt{x^3}$', '$3x$'], ans: 0},
+  {q: 'La raíz cuadrada del triple de un número se expresa como:', opts: ['$3\\sqrt{x}$', '$\\sqrt{3x}$', '$\\sqrt{x^3}$', '$\\sqrt{3}x$'], ans: 1},
+  {q: 'El cuadrado de la raíz cuadrada de un número se expresa como:', opts: ['$x$', '$\\sqrt{x^2}$', '$x^2$', '$\\sqrt{x}$'], ans: 0},
+  {q: 'La suma de tres números pares consecutivos se expresa como:', opts: ['$2x + (2x+2) + (2x+4)$', '$6x + 6$', '$2x + 2x + 2x$', 'Ambas a) y b)'], ans: 3},
+  {q: 'La diferencia entre el cuadrado de $x$ y el cuadrado de $y$ se expresa como:', opts: ['$(x - y)^2$', '$x^2 - y^2$', '$(x + y)(x - y)$', 'Ambas b) y c)'], ans: 3},
+  {q: 'El cuadrado de la suma de $x$ y el doble de $y$ se expresa como:', opts: ['$(x + 2y)^2$', '$x^2 + 4y^2$', '$x^2 + 4xy + 4y^2$', 'Ambas a) y c)'], ans: 3},
+  {q: 'El producto de $x$ por la suma de $y$ y $z$ se expresa como:', opts: ['$x(y + z)$', '$xy + xz$', '$x + y + z$', 'Ambas a) y b)'], ans: 3},
+  {q: 'La división de $x^2$ por $y$ se expresa como:', opts: ['$\\frac{x^2}{y}$', '$\\frac{x}{y^2}$', '$\\frac{2x}{y}$', '$\\frac{x^2}{2y}$'], ans: 0},
+  {q: 'El triple de $x$ más el cuádruple de $y$ se expresa como:', opts: ['$3x + 4y$', '$4x + 3y$', '$3(x + 4y)$', '$4(x + 3y)$'], ans: 0},
+  {q: 'La suma de $x$ con el producto de $y$ y $z$ se expresa como:', opts: ['$x + yz$', '$(x + y)z$', '$xy + z$', '$x(y + z)$'], ans: 0},
+  {q: 'El cociente entre $x^3$ y el doble de $y$ se expresa como:', opts: ['$\\frac{x^3}{2y}$', '$\\frac{2x^3}{y}$', '$\\frac{x^3}{y^2}$', '$\\frac{2y}{x^3}$'], ans: 0},
+  {q: 'El producto de $x$ y la diferencia entre $y$ y $z$ se expresa como:', opts: ['$x(y - z)$', '$xy - xz$', '$x + y - z$', 'Ambas a) y b)'], ans: 3},
+  {q: 'La raíz cúbica del doble de un número se expresa como:', opts: ['$\\sqrt[3]{2x}$', '$2\\sqrt[3]{x}$', '$\\sqrt[3]{2} \\cdot \\sqrt[3]{x}$', 'Ambas a) y c)'], ans: 3},
+  {q: 'El doble de la raíz cúbica de un número se expresa como:', opts: ['$\\sqrt[3]{2x}$', '$2\\sqrt[3]{x}$', '$\\sqrt[3]{2} \\cdot \\sqrt[3]{x}$', 'Ambas b) y c)'], ans: 1},
+  {q: 'La suma de $x$ y la raíz cuadrada de $y$ se expresa como:', opts: ['$x + \\sqrt{y}$', '$\\sqrt{x + y}$', '$\\sqrt{x} + y$', '$x^2 + y$'], ans: 0}
+];
+
+// ─── SECCIÓN 2: REEMPLAZO DE VARIABLES (70 preguntas) ───
+// Valores fijos: a=2, b=3, c=5, d=7, e=1, f=4, g=6
+
+const VAR_VALUES = {a:2, b:3, c:5, d:7, e:1, f:4, g:6};
+const VAR_NAMES = ['a','b','c','d','e','f','g'];
+
+function evalExpr(expr, vals) {
+  let e = expr;
+  for (const [k,v] of Object.entries(vals)) {
+    e = e.replace(new RegExp(k, 'g'), v);
+  }
+  try {
+    return Function('"use strict"; return (' + e + ')')();
+  } catch {
+    return null;
+  }
+}
+
+const POOL_REPLACE = [
+  {expr: '2*a - b', ans: 1},
+  {expr: 'a + 3*b - c', ans: 6},
+  {expr: 'a^2 + b^2', ans: 13},
+  {expr: 'c - a + d', ans: 10},
+  {expr: 'a*b + c', ans: 11},
+  {expr: 'd/a + e', ans: 4.5},
+  {expr: 'b^2 - a^2', ans: 5},
+  {expr: 'c + d - a', ans: 10},
+  {expr: 'a*b - c', ans: 1},
+  {expr: 'd + e - f', ans: 4},
+  {expr: 'g - b + a', ans: 5},
+  {expr: 'a^3 - b', ans: 5},
+  {expr: 'c^2 - d', ans: 18},
+  {expr: 'f^2 + g', ans: 22},
+  {expr: 'b^3 - c', ans: 22},
+  {expr: 'a^4 - f', ans: 12},
+  {expr: 'g/a + b', ans: 6},
+  {expr: 'd - c + a', ans: 4},
+  {expr: 'a*b*c', ans: 30},
+  {expr: 'f*g - d', ans: 17},
+  {expr: 'b^2 + c^2', ans: 34},
+  {expr: 'a + b + c + d', ans: 17},
+  {expr: 'f^3 - g', ans: 58},
+  {expr: 'g^2 - d', ans: 29},
+  {expr: 'a^b + c', ans: 13},
+  {expr: 'b^a + d', ans: 16},
+  {expr: 'c^e - f', ans: 1},
+  {expr: 'd^e - a', ans: 5},
+  {expr: 'f^a + g', ans: 22},
+  {expr: 'g^e - c', ans: 1},
+  {expr: 'a*b - d', ans: -1},
+  {expr: 'b*c - d', ans: 8},
+  {expr: 'c*d - g', ans: 29},
+  {expr: 'f*g - b', ans: 21},
+  {expr: 'a^2 + b^2 + c^2', ans: 38},
+  {expr: 'd^2 - e^2', ans: 48},
+  {expr: 'f^2 + g^2', ans: 52},
+  {expr: 'a^3 + b^3', ans: 35},
+  {expr: 'c^3 - d^2', ans: 76},
+  {expr: 'g^2 - f^2', ans: 20},
+  {expr: 'a*b + f', ans: 10},
+  {expr: 'c*d - e', ans: 34},
+  {expr: 'f*g + a', ans: 26},
+  {expr: 'b^3 - a^2', ans: 23},
+  {expr: 'c^2 + d', ans: 32},
+  {expr: 'g^2 + f', ans: 40},
+  {expr: 'a^b - c', ans: 3},
+  {expr: 'b^c - d', ans: 236},
+  {expr: 'c^a - f', ans: 21},
+  {expr: 'd^b - c', ans: 338},
+  {expr: 'f^e + g', ans: 10},
+  {expr: 'g^a - d', ans: 29},
+  {expr: 'a + b*c', ans: 17},
+  {expr: 'b + c*d', ans: 38},
+  {expr: 'c + d*f', ans: 33},
+  {expr: 'd + e*f', ans: 11},
+  {expr: 'f + g*e', ans: 10},
+  {expr: 'g + a*b', ans: 12},
+  {expr: 'a^2 - b^2', ans: -5},
+  {expr: 'c^2 - d^2', ans: -24},
+  {expr: 'f^2 - g^2', ans: -20},
+  {expr: 'a^3 + f', ans: 12},
+  {expr: 'b^3 - g', ans: 21},
+  {expr: 'c^2 - e', ans: 24},
+  {expr: 'd^2 + a', ans: 51},
+  {expr: 'f^2 - b', ans: 13},
+  {expr: 'g^2 + c', ans: 41},
+  {expr: 'a^b + b^a', ans: 17},
+  {expr: 'c^e + d^e', ans: 12},
+  {expr: 'f^a - g', ans: 10}
+];
+
+// ─── SECCIÓN 3: POTENCIAS V/F (70 preguntas) ───
+const POOL_VF = [
+  {q: '2^5 = 32', ans: true, correctVal: 32},
+  {q: '3^4 = 81', ans: true, correctVal: 81},
+  {q: '5^3 = 125', ans: true, correctVal: 125},
+  {q: '10^2 = 100', ans: true, correctVal: 100},
+  {q: '2^6 = 64', ans: true, correctVal: 64},
+  {q: '4^3 = 64', ans: true, correctVal: 64},
+  {q: '3^5 = 243', ans: true, correctVal: 243},
+  {q: '2^8 = 256', ans: true, correctVal: 256},
+  {q: '5^4 = 625', ans: true, correctVal: 625},
+  {q: '6^3 = 216', ans: true, correctVal: 216},
+  {q: '7^3 = 343', ans: true, correctVal: 343},
+  {q: '2^7 = 128', ans: true, correctVal: 128},
+  {q: '3^6 = 729', ans: true, correctVal: 729},
+  {q: '4^4 = 256', ans: true, correctVal: 256},
+  {q: '5^5 = 3125', ans: true, correctVal: 3125},
+  {q: '2^4 = 8', ans: false, correctVal: 16},
+  {q: '3^3 = 27', ans: true, correctVal: 27},
+  {q: '4^2 = 16', ans: true, correctVal: 16},
+  {q: '6^2 = 36', ans: true, correctVal: 36},
+  {q: '8^2 = 64', ans: true, correctVal: 64},
+  {q: '9^2 = 81', ans: true, correctVal: 81},
+  {q: '2^3 = 6', ans: false, correctVal: 8},
+  {q: '3^2 = 9', ans: true, correctVal: 9},
+  {q: '2^4 = 16', ans: true, correctVal: 16},
+  {q: '5^2 = 10', ans: false, correctVal: 25},
+  {q: '2^5 = 16', ans: false, correctVal: 32},
+  {q: '3^4 = 27', ans: false, correctVal: 81},
+  {q: '4^3 = 16', ans: false, correctVal: 64},
+  {q: '5^3 = 125', ans: true, correctVal: 125},
+  {q: '2^6 = 32', ans: false, correctVal: 64},
+  {q: '7^2 = 49', ans: true, correctVal: 49},
+  {q: '10^3 = 1000', ans: true, correctVal: 1000},
+  {q: '2^2 = 4', ans: true, correctVal: 4},
+  {q: '1^5 = 1', ans: true, correctVal: 1},
+  {q: '0^4 = 0', ans: true, correctVal: 0},
+  {q: '3^2 = 6', ans: false, correctVal: 9},
+  {q: '4^3 = 256', ans: false, correctVal: 64},
+  {q: '6^2 = 12', ans: false, correctVal: 36},
+  {q: '8^2 = 16', ans: false, correctVal: 64},
+  {q: '9^2 = 18', ans: false, correctVal: 81},
+  {q: '2^3 = 8', ans: true, correctVal: 8},
+  {q: '3^3 = 9', ans: false, correctVal: 27},
+  {q: '4^2 = 8', ans: false, correctVal: 16},
+  {q: '5^2 = 25', ans: true, correctVal: 25},
+  {q: '6^3 = 18', ans: false, correctVal: 216},
+  {q: '7^2 = 14', ans: false, correctVal: 49},
+  {q: '8^2 = 64', ans: true, correctVal: 64},
+  {q: '9^2 = 81', ans: true, correctVal: 81},
+  {q: '10^2 = 100', ans: true, correctVal: 100},
+  {q: '2^4 = 32', ans: false, correctVal: 16},
+  {q: '3^4 = 81', ans: true, correctVal: 81},
+  {q: '4^4 = 64', ans: false, correctVal: 256},
+  {q: '5^4 = 125', ans: false, correctVal: 625},
+  {q: '6^2 = 36', ans: true, correctVal: 36},
+  {q: '7^3 = 21', ans: false, correctVal: 343},
+  {q: '8^2 = 64', ans: true, correctVal: 64},
+  {q: '9^3 = 729', ans: true, correctVal: 729},
+  {q: '10^4 = 10000', ans: true, correctVal: 10000},
+  {q: '2^5 = 64', ans: false, correctVal: 32},
+  {q: '3^5 = 81', ans: false, correctVal: 243},
+  {q: '4^2 = 16', ans: true, correctVal: 16},
+  {q: '5^3 = 625', ans: false, correctVal: 125},
+  {q: '6^3 = 216', ans: true, correctVal: 216},
+  {q: '7^2 = 49', ans: true, correctVal: 49},
+  {q: '8^3 = 512', ans: true, correctVal: 512},
+  {q: '9^2 = 81', ans: true, correctVal: 81},
+  {q: '10^5 = 100000', ans: true, correctVal: 100000},
+  {q: '2^10 = 1024', ans: true, correctVal: 1024},
+  {q: '3^6 = 81', ans: false, correctVal: 729},
+  {q: '4^3 = 256', ans: false, correctVal: 64}
+];
+
+// ═══════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════
+
+const TOTAL = 45;
+const PER_SECTION = 15;
+
+let selectedMC = [];
+let selectedReplace = [];
+let selectedVF = [];
+let allQuestions = [];
+let userAns = [];
+let submitted = false;
+let correctVals = [];
+
+// ─── UTILS ───
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function sample(arr,n){return shuffle(arr).slice(0,n);}
+function letters(){return ['a','b','c','d'];}
+
+// ─── CALCULATE GRADE ───
+function calculateGrade(correctCount, total) {
+  const percentCorrect = correctCount / total;
+  if (percentCorrect <= 0.6) return 1 + (percentCorrect / 0.6) * 3;
+  else return 4 + ((percentCorrect - 0.6) / 0.4) * 3;
+}
+
+// ─── BUILD TEST ───
+function buildTest(){
+  const mcSample = sample(POOL_MC, PER_SECTION);
+  selectedMC = mcSample.map(q => {
+    const indices = [0,1,2,3];
+    const sIdx = shuffle(indices);
+    const newOpts = sIdx.map(i => q.opts[i]);
+    const newAns = sIdx.indexOf(q.ans);
+    return {type: 'mc', q: q.q, opts: newOpts, ansIdx: newAns};
+  });
+
+  const repSample = sample(POOL_REPLACE, PER_SECTION);
+  selectedReplace = repSample.map(q => {
+    return {type: 'replace', expr: q.expr, ans: q.ans};
+  });
+
+  const vfSample = sample(POOL_VF, PER_SECTION);
+  selectedVF = vfSample.map(q => {
+    return {type: 'vf', q: q.q, ans: q.ans, correctVal: q.correctVal};
+  });
+
+  allQuestions = [
+    ...selectedMC.map((q, i) => ({...q, section: 1, idx: i})),
+    ...selectedReplace.map((q, i) => ({...q, section: 2, idx: i})),
+    ...selectedVF.map((q, i) => ({...q, section: 3, idx: i}))
+  ];
+
+  userAns = Array(TOTAL).fill(null);
+  correctVals = Array(TOTAL).fill(null);
+  allQuestions.forEach((q, i) => {
+    if (q.type === 'mc') correctVals[i] = q.ansIdx;
+    else if (q.type === 'replace') correctVals[i] = q.ans;
+    else if (q.type === 'vf') correctVals[i] = q.ans;
+  });
+}
+
+// ─── START ───
+function startTest(){
+  buildTest();
+  submitted = false;
+  document.getElementById('intro-card').style.display='none';
+  document.getElementById('results-wrap').style.display='none';
+  renderQuestions();
+  document.getElementById('questions-wrap').style.display='flex';
+  document.getElementById('submit-bar').style.display='flex';
+  updateProgress();
+  updateSectionIndicator();
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(document.getElementById('questions-wrap'), {
+      delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]
+    });
+  }
+}
+
+// ─── UPDATE SECTION INDICATOR ───
+function updateSectionIndicator(){
+  const answered = userAns.filter(v=>v!==null).length;
+  let section = 1;
+  if (answered >= PER_SECTION) section = 2;
+  if (answered >= PER_SECTION*2) section = 3;
+  document.getElementById('section-indicator').textContent = `Sección ${section}/3`;
+}
+
+// ─── RENDER QUESTIONS ───
+function renderQuestions(){
+  const wrap = document.getElementById('questions-wrap');
+  wrap.innerHTML='';
+
+  const sections = [
+    {num: 1, title: 'Lenguaje Algebraico', desc: 'Selecciona la expresión correcta para cada enunciado.', start: 0, end: PER_SECTION},
+    {num: 2, title: 'Reemplazo de Variables', desc: 'Usa los valores de las variables para calcular el resultado.', start: PER_SECTION, end: PER_SECTION*2},
+    {num: 3, title: 'Potencias — Verdadero o Falso', desc: 'Determina si la igualdad es verdadera o falsa. Si es falsa, corrige.', start: PER_SECTION*2, end: PER_SECTION*3}
+  ];
+
+  let qIndex = 0;
+  sections.forEach(sec => {
+    const header = document.createElement('div');
+    header.className = 'section-header';
+    header.innerHTML = `
+      <div class="num">${sec.num}</div>
+      <div class="info">
+        <h3>${sec.title}</h3>
+        <p>${sec.desc}</p>
+      </div>
+      <div class="count">Preguntas ${sec.start+1} - ${sec.end}</div>
+    `;
+    wrap.appendChild(header);
+
+    for (let i = sec.start; i < sec.end; i++) {
+      const q = allQuestions[i];
+      const card = document.createElement('div');
+      card.className = 'q-card';
+      card.id = `qcard-${i}`;
+      card.style.animationDelay = (qIndex * 0.03) + 's';
+
+      let content = '';
+      const qNum = i + 1;
+
+      if (q.type === 'mc') {
+        let optsHtml = '';
+        q.opts.forEach((opt, oi) => {
+          optsHtml += `
+            <div class="opt" id="opt-${i}-${oi}" onclick="selectOpt(${i},${oi})">
+              <div class="opt-letter">${letters()[oi]}</div>
+              <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        content = `
+          <div class="q-num">Pregunta ${qNum} · Sección ${q.section}</div>
+          <div class="q-text">${q.q}</div>
+          <div class="options">${optsHtml}</div>
+          <div class="q-feedback" id="qfb-${i}"></div>`;
+      } else if (q.type === 'replace') {
+        // Mostrar valores de variables en cada pregunta de reemplazo
+        const varChips = Object.entries(VAR_VALUES).map(([k,v]) => 
+          `<span class="var-chip"><span class="var-name">${k}</span> = <span class="var-val">${v}</span></span>`
+        ).join('');
+        
+        content = `
+          <div class="q-num">Pregunta ${qNum} · Sección ${q.section}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;padding:8px 12px;background:var(--light);border-radius:8px;border:1px solid var(--border);">
+            <span style="font-weight:600;color:var(--gray);font-size:.8rem;margin-right:4px;">📌 Valores:</span>
+            ${varChips}
+          </div>
+          <div class="q-text">Calcular: $${q.expr}$</div>
+          <div class="input-group">
+            <label>Resultado:</label>
+            <input type="number" id="input-${i}" onchange="updateReplace(${i}, this.value)" step="any">
+            <span class="input-feedback" id="ifb-${i}"></span>
+          </div>
+          <div class="q-feedback" id="qfb-${i}"></div>`;
+      } else if (q.type === 'vf') {
+        content = `
+          <div class="q-num">Pregunta ${qNum} · Sección ${q.section}</div>
+          <div class="q-text">¿Es verdadero que $${q.q}$?</div>
+          <div class="vf-group">
+            <button class="vf-btn" id="vf-true-${i}" onclick="selectVF(${i}, true)">✅ Verdadero</button>
+            <button class="vf-btn" id="vf-false-${i}" onclick="selectVF(${i}, false)">❌ Falso</button>
+          </div>
+          <div class="vf-correction" id="vf-corr-${i}">
+            <label>Valor correcto:</label>
+            <input type="number" id="vf-input-${i}" onchange="updateVFCorrection(${i}, this.value)" step="any">
+          </div>
+          <div class="q-feedback" id="qfb-${i}"></div>`;
+      }
+
+      card.innerHTML = content;
+      wrap.appendChild(card);
+      qIndex++;
+    }
+  });
+
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(wrap, {
+      delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]
+    });
+  }
+}
+
+// ─── SELECT OPT (Sección 1) ───
+function selectOpt(qi, oi){
+  if(submitted) return;
+  if(userAns[qi] !== null){
+    const prev = userAns[qi];
+    document.getElementById(`opt-${qi}-${prev}`).classList.remove('selected');
+  }
+  userAns[qi] = oi;
+  document.getElementById(`opt-${qi}-${oi}`).classList.add('selected');
+  updateProgress();
+  updateSectionIndicator();
+}
+
+// ─── UPDATE REPLACE (Sección 2) ───
+function updateReplace(qi, val){
+  if(submitted) return;
+  const numVal = parseFloat(val);
+  if (!isNaN(numVal)) {
+    userAns[qi] = numVal;
+  } else {
+    userAns[qi] = null;
+  }
+  updateProgress();
+  updateSectionIndicator();
+}
+
+// ─── SELECT VF (Sección 3) ───
+function selectVF(qi, val){
+  if(submitted) return;
+  const trueBtn = document.getElementById(`vf-true-${qi}`);
+  const falseBtn = document.getElementById(`vf-false-${qi}`);
+  
+  trueBtn.classList.remove('selected-true', 'selected-false');
+  falseBtn.classList.remove('selected-true', 'selected-false');
+  
+  if (val === true) {
+    trueBtn.classList.add('selected-true');
+    userAns[qi] = true;
+  } else {
+    falseBtn.classList.add('selected-false');
+    userAns[qi] = false;
+  }
+  
+  const corr = document.getElementById(`vf-corr-${qi}`);
+  if (val === false) {
+    corr.classList.add('show');
+  } else {
+    corr.classList.remove('show');
+    document.getElementById(`vf-input-${qi}`).value = '';
+  }
+  updateProgress();
+  updateSectionIndicator();
+}
+
+// ─── UPDATE VF CORRECTION ───
+function updateVFCorrection(qi, val){
+  if(submitted) return;
+  const numVal = parseFloat(val);
+  if (!isNaN(numVal)) {
+    const current = userAns[qi];
+    if (typeof current === 'object' && current !== null) {
+      userAns[qi] = {vf: current.vf, correction: numVal};
+    } else {
+      userAns[qi] = {vf: false, correction: numVal};
+    }
+  }
+  updateProgress();
+  updateSectionIndicator();
+}
+
+// ─── PROGRESS ───
+function updateProgress(){
+  let answered = 0;
+  for (let i = 0; i < TOTAL; i++) {
+    const ans = userAns[i];
+    if (ans !== null) {
+      if (typeof ans === 'object' && ans !== null) {
+        if (ans.vf === false && ans.correction !== undefined) {
+          answered++;
+        } else if (ans.vf === true) {
+          answered++;
+        }
+      } else {
+        answered++;
+      }
+    }
+  }
+  document.getElementById('answered-count').textContent = `Respondidas: ${answered} / ${TOTAL}`;
+  document.getElementById('prog-fill').style.width = (answered/TOTAL*100)+'%';
+}
+
+// ─── SUBMIT ───
+function submitTest(){
+  submitted = true;
+  let answered = 0;
+  for (let i = 0; i < TOTAL; i++) {
+    const ans = userAns[i];
+    if (ans !== null) {
+      if (typeof ans === 'object' && ans !== null) {
+        if (ans.vf === false && ans.correction !== undefined) answered++;
+        else if (ans.vf === true) answered++;
+      } else {
+        answered++;
+      }
+    }
+  }
+  
+  if(answered < TOTAL){
+    const rem = TOTAL - answered;
+    if(!confirm(`Tienes ${rem} pregunta(s) sin responder. ¿Deseas finalizar igual?`)) return;
+  }
+
+  let correct = 0;
+  let wrong = 0;
+  let skipped = 0;
+
+  allQuestions.forEach((q, qi) => {
+    const card = document.getElementById(`qcard-${qi}`);
+    const fb = document.getElementById(`qfb-${qi}`);
+    const ans = userAns[qi];
+    
+    if (q.type === 'mc') {
+      const right = q.ansIdx;
+      q.opts.forEach((_, oi) => {
+        document.getElementById(`opt-${qi}-${oi}`).classList.add('locked');
+      });
+      
+      if (ans === null) {
+        skipped++;
+        document.getElementById(`opt-${qi}-${right}`).classList.add('correct');
+        card.classList.add('answered-skip');
+        fb.className = 'q-feedback skip';
+        fb.innerHTML = `⚪ Sin responder — la respuesta correcta era: <strong>${letters()[right]}) ${q.opts[right]}</strong>`;
+      } else if (ans === right) {
+        correct++;
+        document.getElementById(`opt-${qi}-${ans}`).classList.remove('selected');
+        document.getElementById(`opt-${qi}-${ans}`).classList.add('correct');
+        card.classList.add('answered-correct');
+        fb.className = 'q-feedback correct';
+        fb.innerHTML = `✅ ¡Correcto!`;
+      } else {
+        wrong++;
+        document.getElementById(`opt-${qi}-${ans}`).classList.remove('selected');
+        document.getElementById(`opt-${qi}-${ans}`).classList.add('wrong');
+        document.getElementById(`opt-${qi}-${right}`).classList.add('correct');
+        card.classList.add('answered-wrong');
+        fb.className = 'q-feedback wrong';
+        fb.innerHTML = `❌ Incorrecto — la respuesta correcta era: <strong>${letters()[right]}) ${q.opts[right]}</strong>`;
+      }
+    } else if (q.type === 'replace') {
+      const input = document.getElementById(`input-${qi}`);
+      input.disabled = true;
+      const right = q.ans;
+      
+      if (ans === null) {
+        skipped++;
+        card.classList.add('answered-skip');
+        fb.className = 'q-feedback skip';
+        fb.innerHTML = `⚪ Sin responder — la respuesta correcta era: <strong>${right}</strong>`;
+      } else if (Math.abs(ans - right) < 0.0001) {
+        correct++;
+        card.classList.add('answered-correct');
+        fb.className = 'q-feedback correct';
+        fb.innerHTML = `✅ ¡Correcto! (${right})`;
+      } else {
+        wrong++;
+        card.classList.add('answered-wrong');
+        fb.className = 'q-feedback wrong';
+        fb.innerHTML = `❌ Incorrecto — la respuesta correcta era: <strong>${right}</strong>`;
+      }
+    } else if (q.type === 'vf') {
+      const trueBtn = document.getElementById(`vf-true-${qi}`);
+      const falseBtn = document.getElementById(`vf-false-${qi}`);
+      trueBtn.classList.add('locked');
+      falseBtn.classList.add('locked');
+      
+      const corr = document.getElementById(`vf-corr-${qi}`);
+      const corrInput = document.getElementById(`vf-input-${qi}`);
+      corrInput.disabled = true;
+      
+      let vfAnswer = null;
+      let correction = null;
+      
+      if (ans !== null) {
+        if (typeof ans === 'object' && ans !== null) {
+          vfAnswer = ans.vf;
+          correction = ans.correction;
+        } else {
+          vfAnswer = ans;
+        }
+      }
+      
+      const right = q.ans;
+      const rightVal = q.correctVal;
+      
+      if (vfAnswer === null) {
+        skipped++;
+        card.classList.add('answered-skip');
+        fb.className = 'q-feedback skip';
+        fb.innerHTML = `⚪ Sin responder — la respuesta correcta era: <strong>${right ? 'Verdadero' : 'Falso'} (${rightVal})</strong>`;
+        if (!right) {
+          corr.classList.add('show');
+          corrInput.value = rightVal;
+        }
+      } else {
+        if (vfAnswer === right) {
+          if (right === true) {
+            correct++;
+            trueBtn.classList.add('correct');
+            card.classList.add('answered-correct');
+            fb.className = 'q-feedback correct';
+            fb.innerHTML = `✅ ¡Correcto!`;
+          } else {
+            const corrVal = parseFloat(correction);
+            if (corrVal !== undefined && !isNaN(corrVal) && Math.abs(corrVal - rightVal) < 0.0001) {
+              correct++;
+              falseBtn.classList.add('correct');
+              card.classList.add('answered-correct');
+              fb.className = 'q-feedback correct';
+              fb.innerHTML = `✅ ¡Correcto! (${rightVal})`;
+            } else {
+              wrong++;
+              falseBtn.classList.add('wrong');
+              card.classList.add('answered-wrong');
+              fb.className = 'q-feedback wrong';
+              fb.innerHTML = `❌ Incorrecto — la respuesta correcta era: <strong>Falso (${rightVal})</strong>`;
+              corr.classList.add('show');
+              corrInput.value = rightVal;
+            }
+          }
+        } else {
+          wrong++;
+          if (vfAnswer === true) {
+            trueBtn.classList.add('wrong');
+          } else {
+            falseBtn.classList.add('wrong');
+          }
+          card.classList.add('answered-wrong');
+          fb.className = 'q-feedback wrong';
+          fb.innerHTML = `❌ Incorrecto — la respuesta correcta era: <strong>${right ? 'Verdadero' : 'Falso'} (${rightVal})</strong>`;
+          if (!right) {
+            corr.classList.add('show');
+            corrInput.value = rightVal;
+          }
+        }
+      }
+    }
+  });
+
+  const grade = calculateGrade(correct, TOTAL);
+
+  document.getElementById('r-score').textContent = correct;
+  document.getElementById('r-of').textContent = '/ ' + TOTAL;
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent = wrong;
+  document.getElementById('r-skip').textContent = skipped;
+  document.getElementById('r-grade').textContent = grade.toFixed(1);
+  document.getElementById('r-grade-display').textContent = grade.toFixed(1);
+
+  let title, msg;
+  if(grade >= 6.0){title = '🏆 Excelente resultado!'; msg = 'Dominas el lenguaje algebraico, el reemplazo de variables y las potencias con solidez. ¡Sigue así!';}
+  else if(grade >= 5.0){title = '👍 ¡Buen trabajo!'; msg = 'Tienes una buena base. Repasa los temas donde fallaste para mejorar.';}
+  else if(grade >= 4.0){title = '📚 Aprobado'; msg = 'Vas por buen camino, pero necesitas repasar más la materia.';}
+  else{title = '💪 No te rindas'; msg = 'Revisa bien la clase C3 (Lenguaje Algebraico y Reemplazo) y vuelve a intentarlo. ¡Puedes mejorar!';}
+
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-msg').textContent = msg;
+
+  const ring = document.getElementById('score-ring');
+  ring.style.borderColor = grade >= 5.0 ? 'var(--green)' : grade >= 4.0 ? 'var(--gold)' : 'var(--red)';
+
+  document.getElementById('submit-bar').style.display = 'none';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('results-wrap').style.display = 'block';
+  document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
+}
+
+// ─── RESTART ───
+function restartTest(){
+  document.getElementById('results-wrap').style.display = 'none';
+  document.getElementById('questions-wrap').style.display = 'none';
+  startTest();
+}
+
+// ─── KEYBOARD NAV ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !submitted) {
+    let answered = 0;
+    for (let i = 0; i < TOTAL; i++) {
+      const ans = userAns[i];
+      if (ans !== null) {
+        if (typeof ans === 'object' && ans !== null) {
+          if (ans.vf === false && ans.correction !== undefined) answered++;
+          else if (ans.vf === true) answered++;
+        } else {
+          answered++;
+        }
+      }
+    }
+    if (answered > 0) submitTest();
+  }
+});
+</script>
+</body>
+</html>
