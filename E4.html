@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matemáticas – Ejercicios: Lenguaje Algebraico, Reemplazo y Potencias</title>
+<title>Matemáticas – Ejercicios: Lenguaje Algebraico, Reemplazo y Propiedades de Potencias</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <!-- KaTeX CDN -->
@@ -288,8 +288,8 @@ body{
 <body>
 
 <div id="topbar">
-  <span class="logo">📐</span>
-  <h1>Ejercicios — <span>Lenguaje Algebraico, Reemplazo y Potencias</span></h1>
+  <span class="logo">⚡</span>
+  <h1>Ejercicios — <span>Lenguaje Algebraico, Reemplazo y Propiedades de Potencias</span></h1>
   <span id="section-indicator">Sección 1/3</span>
   <div id="score-pill">45 preguntas · Sin límite de tiempo</div>
 </div>
@@ -299,11 +299,11 @@ body{
 
   <!-- INTRO -->
   <div id="intro-card">
-    <div class="anchor">📝</div>
-    <h2>Lenguaje Algebraico, Reemplazo y Potencias — Práctica</h2>
+    <div class="anchor">⚡</div>
+    <h2>Lenguaje Algebraico, Reemplazo y Propiedades de Potencias — Práctica</h2>
     <p>Este test consta de <strong>3 secciones</strong> con <strong>15 preguntas cada una</strong> (45 en total):</p>
     <div class="tag-row">
-      <span class="tag">📝 Sección 1: Lenguaje Algebraico</span>
+      <span class="tag">📝 Sección 1: Lenguaje Algebraico + Propiedades de Potencias</span>
       <span class="tag">🔄 Sección 2: Reemplazo de Variables</span>
       <span class="tag">⚡ Sección 3: Potencias V/F</span>
     </div>
@@ -332,7 +332,7 @@ body{
       <div class="result-actions">
         <button class="btn btn-gold" onclick="restartTest()">🔄 Nuevo Test</button>
         <button class="btn btn-sky" onclick="window.location.href='index.html'">📖 Curso</button>
-        <button class="btn btn-green" onclick="window.location.href='C3.html'">🎓 Volver a la Clase</button>
+        <button class="btn btn-green" onclick="window.location.href='C4.html'">🎓 Volver a la Clase</button>
       </div>
     </div>
     <div class="review-title">📋 Revisión de Respuestas</div>
@@ -345,256 +345,244 @@ body{
 <div id="submit-bar" style="display:none">
   <div id="answered-count">Respondidas: 0 / 45</div>
   <div style="display:flex;gap:10px">
-    <button class="btn btn-outline" onclick="window.location.href='C3.html'">← Clase</button>
+    <button class="btn btn-outline" onclick="window.location.href='C4.html'">← Clase</button>
     <button class="btn btn-gold" onclick="submitTest()">Finalizar Test ✓</button>
   </div>
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
-//  POOLS
+//  POOLS - TODAS LAS PREGUNTAS SON DIFERENTES A E3
 // ═══════════════════════════════════════════════════════════════
 
-// ─── SECCIÓN 1: LENGUAJE ALGEBRAICO (70 preguntas) ───
+// ─── SECCIÓN 1: LENGUAJE ALGEBRAICO + PROPIEDADES DE POTENCIAS (70 preguntas NUEVAS) ───
 const POOL_MC = [
-  // ─── LENGUAJE ALGEBRAICO (35 preguntas) ───
-  {q: 'El doble de un número $x$ se expresa como:', opts: ['$x + 2$', '$2x$', '$x^2$', '$\\frac{x}{2}$'], ans: 1},
-  {q: 'El triple de un número $x$ se expresa como:', opts: ['$x + 3$', '$3x$', '$x^3$', '$\\frac{x}{3}$'], ans: 1},
-  {q: 'La mitad de un número $x$ se expresa como:', opts: ['$2x$', '$x - 2$', '$\\frac{x}{2}$', '$x^2$'], ans: 2},
-  {q: 'El cuadrado de un número $x$ se expresa como:', opts: ['$2x$', '$x^2$', '$\\sqrt{x}$', '$x + x$'], ans: 1},
-  {q: 'El cubo de un número $x$ se expresa como:', opts: ['$3x$', '$x^3$', '$\\sqrt[3]{x}$', '$3^x$'], ans: 1},
-  {q: 'La suma de dos números $x$ e $y$ se expresa como:', opts: ['$xy$', '$x - y$', '$x + y$', '$\\frac{x}{y}$'], ans: 2},
-  {q: 'La diferencia entre $x$ e $y$ se expresa como:', opts: ['$x + y$', '$xy$', '$x - y$', '$\\frac{x}{y}$'], ans: 2},
-  {q: 'El producto de dos números $x$ e $y$ se expresa como:', opts: ['$x + y$', '$x - y$', '$xy$', '$\\frac{x}{y}$'], ans: 2},
-  {q: 'El cociente de $x$ e $y$ se expresa como:', opts: ['$x + y$', '$xy$', '$x - y$', '$\\frac{x}{y}$'], ans: 3},
-  {q: 'El doble de la suma de $x$ e $y$ se expresa como:', opts: ['$2x + y$', '$2(x + y)$', '$x + 2y$', '$2xy$'], ans: 1},
-  {q: 'La suma de los cuadrados de $x$ e $y$ se expresa como:', opts: ['$(x + y)^2$', '$x^2 + y^2$', '$(xy)^2$', '$x + y$'], ans: 1},
-  {q: 'El cuadrado de la suma de $x$ e $y$ se expresa como:', opts: ['$x^2 + y^2$', '$(x + y)^2$', '$x^2 + 2xy - y^2$', '$x^2 - 2xy + y^2$'], ans: 1},
-  {q: 'El exceso de $x$ sobre $y$ se expresa como:', opts: ['$x + y$', '$x - y$', '$y - x$', '$xy$'], ans: 1},
-  {q: 'La semisuma de $x$ e $y$ se expresa como:', opts: ['$\\frac{x - y}{2}$', '$\\frac{x + y}{2}$', '$\\frac{xy}{2}$', '$2(x + y)$'], ans: 1},
-  {q: 'El sucesor de un número $x$ se expresa como:', opts: ['$x - 1$', '$x + 1$', '$2x$', '$x^2$'], ans: 1},
-  {q: 'El antecesor de un número $x$ se expresa como:', opts: ['$x + 1$', '$x - 1$', '$2x$', '$\\frac{x}{2}$'], ans: 1},
-  {q: 'Un número par se expresa como:', opts: ['$2x + 1$', '$2x$', '$x + 2$', '$2x - 1$'], ans: 1},
-  {q: 'Un número impar se expresa como:', opts: ['$2x$', '$2x + 1$', '$x + 2$', '$2x + 2$'], ans: 1},
-  {q: 'El triple de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$3x - y$', '$3(x - y)$', '$x - 3y$', '$3x - 3y$'], ans: 1},
-  {q: 'El cuadrado del doble de un número $x$ se expresa como:', opts: ['$2x^2$', '$(2x)^2$', '$4x^2$', '$(2x)^2$ y $4x^2$'], ans: 1},
-  {q: 'El doble de un número $x$ aumentado en 3 se expresa como:', opts: ['$2x + 3$', '$2(x + 3)$', '$2x - 3$', '$x^2 + 3$'], ans: 0},
-  {q: 'El triple de un número $x$ disminuido en 2 se expresa como:', opts: ['$3x - 2$', '$3(x - 2)$', '$3x + 2$', '$x^3 - 2$'], ans: 0},
-  {q: 'La quinta parte de un número $x$ se expresa como:', opts: ['$5x$', '$\\frac{x}{5}$', '$x - 5$', '$x^5$'], ans: 1},
-  {q: 'El doble del cuadrado de un número $x$ se expresa como:', opts: ['$2x^2$', '$(2x)^2$', '$4x^2$', '$2x^3$'], ans: 0},
-  {q: 'La suma de un número $x$ y su doble se expresa como:', opts: ['$x + 2$', '$x + 2x$', '$3x$', '$x^2 + 2$'], ans: 2},
-  {q: 'La diferencia entre el doble de $x$ y la mitad de $y$ se expresa como:', opts: ['$2x - \\frac{y}{2}$', '$\\frac{2x}{y}$', '$2x - 2y$', '$\\frac{x}{2} - 2y$'], ans: 0},
-  {q: 'El cuadrado de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$x^2 - y^2$', '$(x - y)^2$', '$x^2 - 2xy - y^2$', '$x^2 + 2xy + y^2$'], ans: 1},
-  {q: 'El producto de la suma y la diferencia de dos números se expresa como:', opts: ['$x^2 + y^2$', '$(x + y)(x - y)$', '$x^2 + 2xy + y^2$', '$x^2 - 2xy + y^2$'], ans: 1},
-  {q: 'El cociente entre el cuadrado de un número y el triple de otro se expresa como:', opts: ['$\\frac{x^2}{3y}$', '$\\frac{3x}{y^2}$', '$\\frac{x^2}{y^3}$', '$\\frac{3x^2}{y}$'], ans: 0},
-  {q: 'La raíz cuadrada de la suma de dos números se expresa como:', opts: ['$\\sqrt{x + y}$', '$\\sqrt{x} + \\sqrt{y}$', '$\\sqrt{x^2 + y^2}$', '$(x + y)^2$'], ans: 0},
-  {q: 'El cubo de la diferencia de dos números se expresa como:', opts: ['$x^3 - y^3$', '$(x - y)^3$', '$x^3 + 3x^2y + 3xy^2 + y^3$', '$x^3 - 3x^2y - 3xy^2 - y^3$'], ans: 1},
-  {q: 'La suma de tres números consecutivos se expresa como:', opts: ['$x + (x+1) + (x+2)$', '$3x + 3$', '$x + x + x$', '$x(x+1)(x+2)$'], ans: 0},
-  {q: 'El doble de la suma de un número y su siguiente se expresa como:', opts: ['$2x + (x+1)$', '$2(x + x+1)$', '$2(2x+1)$', '$2x^2 + 2x$'], ans: 1},
-  {q: 'La edad de Juan es el doble de la edad de Pedro. Si Pedro tiene $x$ años, la edad de Juan es:', opts: ['$x + 2$', '$2x$', '$x^2$', '$\\frac{x}{2}$'], ans: 1},
-  {q: 'Un número aumentado en su cuarta parte se expresa como:', opts: ['$x + \\frac{x}{4}$', '$\\frac{5x}{4}$', '$\\frac{x}{4}$', '$x - \\frac{x}{4}$'], ans: 1},
+  // ─── LENGUAJE ALGEBRAICO (35 preguntas NUEVAS) ───
+  {q: 'La tercera parte de un número $x$ se expresa como:', opts: ['$3x$', '$\\frac{x}{3}$', '$x^3$', '$x - 3$'], ans: 1},
+  {q: 'El cuádruple de un número $x$ se expresa como:', opts: ['$x + 4$', '$4x$', '$x^4$', '$\\frac{x}{4}$'], ans: 1},
+  {q: 'La quinta parte de un número $x$ se expresa como:', opts: ['$5x$', '$\\frac{x}{5}$', '$x^5$', '$x - 5$'], ans: 1},
+  {q: 'La sexta parte de un número $x$ se expresa como:', opts: ['$6x$', '$\\frac{x}{6}$', '$x^6$', '$x - 6$'], ans: 1},
+  {q: 'El séxtuplo de un número $x$ se expresa como:', opts: ['$x + 6$', '$6x$', '$x^6$', '$\\frac{x}{6}$'], ans: 1},
+  {q: 'El doble de un número $x$ disminuido en 7 se expresa como:', opts: ['$2x - 7$', '$2(x - 7)$', '$2x + 7$', '$x^2 - 7$'], ans: 0},
+  {q: 'El triple de un número $x$ aumentado en 8 se expresa como:', opts: ['$3x + 8$', '$3(x + 8)$', '$3x - 8$', '$x^3 + 8$'], ans: 0},
+  {q: 'La diferencia entre el cuadrado de $x$ y el triple de $y$ se expresa como:', opts: ['$x^2 - 3y$', '$(x - 3y)^2$', '$3x^2 - y$', '$x^2 + 3y$'], ans: 0},
+  {q: 'La suma del cubo de $x$ y el cuádruple de $y$ se expresa como:', opts: ['$x^3 + 4y$', '$4x^3 + y$', '$(x + 4y)^3$', '$x^3 - 4y$'], ans: 0},
+  {q: 'El cociente entre el triple de $x$ y el doble de $y$ se expresa como:', opts: ['$\\frac{3x}{2y}$', '$\\frac{2x}{3y}$', '$\\frac{3y}{2x}$', '$\\frac{2y}{3x}$'], ans: 0},
+  {q: 'La raíz cuadrada del doble de un número $x$ se expresa como:', opts: ['$\\sqrt{2x}$', '$2\\sqrt{x}$', '$\\sqrt{x^2}$', '$\\sqrt{2} + x$'], ans: 0},
+  {q: 'La raíz cúbica del triple de un número $x$ se expresa como:', opts: ['$\\sqrt[3]{3x}$', '$3\\sqrt[3]{x}$', '$\\sqrt[3]{x^3}$', '$\\sqrt[3]{3} + x$'], ans: 0},
+  {q: 'El producto de la suma de $x$ e $y$ por el doble de $z$ se expresa como:', opts: ['$2z(x + y)$', '$(x + y)(z + 2)$', '$2x + 2y + z$', '$2(x + y + z)$'], ans: 0},
+  {q: 'La suma de tres números impares consecutivos se expresa como:', opts: ['$(2x+1) + (2x+3) + (2x+5)$', '$6x + 9$', '$2x + 2x + 2x$', '$(2x+1)^2 + (2x+3)^2$'], ans: 0},
+  {q: 'El doble de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$2(x - y)$', '$2x - y$', '$x - 2y$', '$(2x - 2y)$'], ans: 0},
+  {q: 'La mitad del cuadrado de un número $x$ se expresa como:', opts: ['$\\frac{x^2}{2}$', '$(\\frac{x}{2})^2$', '$\\frac{x}{2}^2$', '$\\frac{2}{x^2}$'], ans: 0},
+  {q: 'El triple del cubo de un número $x$ se expresa como:', opts: ['$3x^3$', '$(3x)^3$', '$27x^3$', '$3x^4$'], ans: 0},
+  {q: 'El cubo del triple de un número $x$ se expresa como:', opts: ['$3x^3$', '$(3x)^3$', '$27x^3$', '$3x^4$'], ans: 2},
+  {q: 'La diferencia entre la mitad de $x$ y la tercera parte de $y$ se expresa como:', opts: ['$\\frac{x}{2} - \\frac{y}{3}$', '$\\frac{x}{3} - \\frac{y}{2}$', '$\\frac{x - y}{5}$', '$\\frac{2x - 3y}{6}$'], ans: 0},
+  {q: 'La suma de la cuarta parte de $x$ y la quinta parte de $y$ se expresa como:', opts: ['$\\frac{x}{4} + \\frac{y}{5}$', '$\\frac{x}{5} + \\frac{y}{4}$', '$\\frac{x + y}{9}$', '$\\frac{5x + 4y}{20}$'], ans: 0},
+  {q: 'El producto del cuadrado de $x$ y el cubo de $y$ se expresa como:', opts: ['$x^2 y^3$', '$(xy)^5$', '$x^3 y^2$', '$x^2 + y^3$'], ans: 0},
+  {q: 'El cociente entre el cubo de $x$ y el cuadrado de $y$ se expresa como:', opts: ['$\\frac{x^3}{y^2}$', '$\\frac{x^2}{y^3}$', '$(\\frac{x}{y})^5$', '$\\frac{3x}{2y}$'], ans: 0},
+  {q: 'La raíz cuadrada de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$\\sqrt{x - y}$', '$\\sqrt{x} - \\sqrt{y}$', '$\\sqrt{x^2 - y^2}$', '$(x - y)^2$'], ans: 0},
+  {q: 'La raíz cúbica de la suma de dos números $x$ e $y$ se expresa como:', opts: ['$\\sqrt[3]{x + y}$', '$\\sqrt[3]{x} + \\sqrt[3]{y}$', '$\\sqrt[3]{x^3 + y^3}$', '$(x + y)^3$'], ans: 0},
+  {q: 'El doble de la raíz cuadrada de un número $x$ se expresa como:', opts: ['$2\\sqrt{x}$', '$\\sqrt{2x}$', '$\\sqrt{x^2}$', '$\\sqrt{2} + x$'], ans: 0},
+  {q: 'La mitad de la raíz cúbica de un número $x$ se expresa como:', opts: ['$\\frac{\\sqrt[3]{x}}{2}$', '$\\sqrt[3]{\\frac{x}{2}}$', '$\\frac{1}{2}\\sqrt[3]{x}$', '$\\sqrt[3]{x} - 2$'], ans: 2},
+  {q: 'El cuadrado de la suma del doble de $x$ y el triple de $y$ se expresa como:', opts: ['$(2x + 3y)^2$', '$4x^2 + 9y^2$', '$4x^2 + 12xy + 9y^2$', '$(2x)^2 + (3y)^2$'], ans: 2},
+  {q: 'El producto de $x$ por la diferencia entre $y$ y el doble de $z$ se expresa como:', opts: ['$x(y - 2z)$', '$xy - 2xz$', '$x + y - 2z$', '$x(y + 2z)$'], ans: 0},
+  {q: 'La suma de $x$ con el cociente de $y$ y $z$ se expresa como:', opts: ['$x + \\frac{y}{z}$', '$\\frac{x + y}{z}$', '$\\frac{x}{z} + y$', '$\\frac{x + z}{y}$'], ans: 0},
+  {q: 'El cociente entre la suma de $x$ e $y$ y la diferencia de $x$ e $y$ se expresa como:', opts: ['$\\frac{x + y}{x - y}$', '$\\frac{x - y}{x + y}$', '$\\frac{x}{x - y} + y$', '$\\frac{x + y}{y - x}$'], ans: 0},
+  {q: 'El cuadrado del cociente de $x$ e $y$ se expresa como:', opts: ['$(\\frac{x}{y})^2$', '$\\frac{x^2}{y^2}$', '$\\frac{x}{y^2}$', '$(\\frac{x}{y})^3$'], ans: 1},
+  {q: 'El cociente de los cuadrados de $x$ e $y$ se expresa como:', opts: ['$\\frac{x^2}{y^2}$', '$(\\frac{x}{y})^2$', '$\\frac{x}{y^2}$', '$(\\frac{x}{y})^3$'], ans: 1},
+  {q: 'La suma del doble de $x$ y el triple de $y$ menos el cuádruple de $z$ se expresa como:', opts: ['$2x + 3y - 4z$', '$2x + 3(y - 4z)$', '$2(x + 3y) - 4z$', '$2x - 3y + 4z$'], ans: 0},
+  {q: 'El producto de la diferencia de $x$ e $y$ y la suma de $x$ e $y$ se expresa como:', opts: ['$(x - y)(x + y)$', '$x^2 - y^2$', '$x^2 + y^2$', '$(x - y)^2$'], ans: 1},
+  {q: 'El triple del cuadrado de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$3(x - y)^2$', '$(3x - 3y)^2$', '$9(x - y)^2$', '$3x^2 - 3y^2$'], ans: 0},
 
-  // ─── PROPIEDADES DE POTENCIAS (35 preguntas) ───
-  {q: '$3^2 \\cdot 3^3 =$', opts: ['$3^5$', '$3^6$', '$3^1$', '$3^2$'], ans: 0},
-  {q: '$5^4 \\div 5^2 =$', opts: ['$5^2$', '$5^6$', '$5^8$', '$5^1$'], ans: 0},
-  {q: '$(2^3)^4 =$', opts: ['$2^7$', '$2^{12}$', '$2^{64}$', '$2^1$'], ans: 1},
-  {q: '$4^2 \\cdot 3^2 =$', opts: ['$12^2$', '$12^4$', '$7^2$', '$1^2$'], ans: 0},
-  {q: '$10^5 \\div 2^5 =$', opts: ['$5^5$', '$8^5$', '$12^5$', '$20^5$'], ans: 0},
-  {q: '$2^{-3} =$', opts: ['$\\frac{1}{8}$', '$-8$', '$\\frac{1}{6}$', '$-6$'], ans: 0},
-  {q: '$5^0 =$', opts: ['$0$', '$1$', '$5$', '$\\frac{1}{5}$'], ans: 1},
-  {q: '$3^2 \\cdot 3^4 \\cdot 3^5 =$', opts: ['$3^{11}$', '$3^{40}$', '$3^9$', '$3^{20}$'], ans: 0},
-  {q: '$\\frac{7^8}{7^5} =$', opts: ['$7^3$', '$7^{13}$', '$7^{40}$', '$7^0$'], ans: 0},
-  {q: '$(6^2)^5 =$', opts: ['$6^{10}$', '$6^7$', '$6^{25}$', '$6^3$'], ans: 0},
-  {q: '$2^4 \\cdot 5^4 =$', opts: ['$10^4$', '$10^8$', '$7^4$', '$3^4$'], ans: 0},
-  {q: '$\\frac{15^3}{3^3} =$', opts: ['$5^3$', '$12^3$', '$18^3$', '$45^3$'], ans: 0},
-  {q: '$(-2)^4 =$', opts: ['$16$', '$-16$', '$8$', '$-8$'], ans: 0},
-  {q: '$-2^4 =$', opts: ['$16$', '$-16$', '$8$', '$-8$'], ans: 1},
-  {q: '$(-3)^3 =$', opts: ['$27$', '$-27$', '$9$', '$-9$'], ans: 1},
-  {q: '$-3^3 =$', opts: ['$27$', '$-27$', '$9$', '$-9$'], ans: 1},
-  {q: '$2^{-4} =$', opts: ['$\\frac{1}{16}$', '$\\frac{1}{8}$', '$-16$', '$-8$'], ans: 0},
-  {q: '$(-2)^{-3} =$', opts: ['$-\\frac{1}{8}$', '$\\frac{1}{8}$', '$-8$', '$8$'], ans: 0},
-  {q: '$-2^{-3} =$', opts: ['$-\\frac{1}{8}$', '$\\frac{1}{8}$', '$-8$', '$8$'], ans: 0},
-  {q: '$(x^3)^5 =$', opts: ['$x^{15}$', '$x^8$', '$x^{125}$', '$x^3$'], ans: 0},
-  {q: '$\\frac{x^7}{x^3} =$', opts: ['$x^4$', '$x^{10}$', '$x^{21}$', '$x^1$'], ans: 0},
-  {q: '$x^2 \\cdot x^5 =$', opts: ['$x^7$', '$x^{10}$', '$x^3$', '$x^2$'], ans: 0},
-  {q: '$(2x)^3 =$', opts: ['$8x^3$', '$6x^3$', '$2x^3$', '$8x$'], ans: 0},
-  {q: '$\\left(\\frac{2}{3}\\right)^{-2} =$', opts: ['$\\frac{9}{4}$', '$\\frac{4}{9}$', '$-\\frac{4}{9}$', '$-\\frac{9}{4}$'], ans: 0},
-  {q: '$\\left(\\frac{x}{y}\\right)^3 =$', opts: ['$\\frac{x^3}{y^3}$', '$\\frac{x}{y^3}$', '$\\frac{x^3}{y}$', '$\\frac{3x}{3y}$'], ans: 0},
-  {q: '$a^m \\cdot a^n =$', opts: ['$a^{m+n}$', '$a^{m-n}$', '$a^{m \\cdot n}$', '$a^{m \\div n}$'], ans: 0},
-  {q: '$\\frac{a^m}{a^n} =$', opts: ['$a^{m-n}$', '$a^{m+n}$', '$a^{m \\cdot n}$', '$a^{m \\div n}$'], ans: 0},
-  {q: '$(a^m)^n =$', opts: ['$a^{m \\cdot n}$', '$a^{m+n}$', '$a^{m-n}$', '$a^{m \\div n}$'], ans: 0},
-  {q: '$a^n \\cdot b^n =$', opts: ['$(ab)^n$', '$(a+b)^n$', '$(a-b)^n$', '$(a \\div b)^n$'], ans: 0},
-  {q: '$\\frac{a^n}{b^n} =$', opts: ['$\\left(\\frac{a}{b}\\right)^n$', '$(a+b)^n$', '$(a-b)^n$', '$(ab)^n$'], ans: 0},
-  {q: '$7^2 =$', opts: ['$49$', '$14$', '$7$', '$21$'], ans: 0},
-  {q: '$8^2 =$', opts: ['$64$', '$16$', '$8$', '$24$'], ans: 0},
-  {q: '$9^2 =$', opts: ['$81$', '$18$', '$9$', '$27$'], ans: 0},
-  {q: '$6^3 =$', opts: ['$216$', '$18$', '$36$', '$72$'], ans: 0},
-  {q: '$4^4 =$', opts: ['$256$', '$16$', '$64$', '$128$'], ans: 0}
+  // ─── PROPIEDADES DE POTENCIAS (35 preguntas NUEVAS) ───
+  {q: '$2^5 \\cdot 2^3 =$', opts: ['$2^8$', '$2^{15}$', '$2^2$', '$2^5$'], ans: 0},
+  {q: '$4^6 \\div 4^3 =$', opts: ['$4^3$', '$4^9$', '$4^{18}$', '$4^2$'], ans: 0},
+  {q: '$(3^2)^5 =$', opts: ['$3^{10}$', '$3^7$', '$3^{25}$', '$3^2$'], ans: 0},
+  {q: '$5^3 \\cdot 2^3 =$', opts: ['$10^3$', '$10^6$', '$7^3$', '$3^3$'], ans: 0},
+  {q: '$12^4 \\div 3^4 =$', opts: ['$4^4$', '$9^4$', '$15^4$', '$36^4$'], ans: 0},
+  {q: '$3^{-4} =$', opts: ['$\\frac{1}{81}$', '$-81$', '$\\frac{1}{27}$', '$-27$'], ans: 0},
+  {q: '$6^0 =$', opts: ['$0$', '$1$', '$6$', '$\\frac{1}{6}$'], ans: 1},
+  {q: '$4^3 \\cdot 4^2 \\cdot 4^5 =$', opts: ['$4^{10}$', '$4^{30}$', '$4^7$', '$4^{20}$'], ans: 0},
+  {q: '$\\frac{9^6}{9^2} =$', opts: ['$9^4$', '$9^8$', '$9^{12}$', '$9^3$'], ans: 0},
+  {q: '$(5^3)^4 =$', opts: ['$5^{12}$', '$5^7$', '$5^{64}$', '$5^1$'], ans: 0},
+  {q: '$3^3 \\cdot 4^3 =$', opts: ['$12^3$', '$12^6$', '$7^3$', '$1^3$'], ans: 0},
+  {q: '$\\frac{20^4}{4^4} =$', opts: ['$5^4$', '$16^4$', '$24^4$', '$80^4$'], ans: 0},
+  {q: '$(-5)^3 =$', opts: ['$-125$', '$125$', '$-25$', '$25$'], ans: 0},
+  {q: '$-5^3 =$', opts: ['$-125$', '$125$', '$-25$', '$25$'], ans: 0},
+  {q: '$(-4)^4 =$', opts: ['$256$', '$-256$', '$64$', '$-64$'], ans: 0},
+  {q: '$-4^4 =$', opts: ['$-256$', '$256$', '$-64$', '$64$'], ans: 0},
+  {q: '$(-6)^2 =$', opts: ['$36$', '$-36$', '$12$', '$-12$'], ans: 0},
+  {q: '$-6^2 =$', opts: ['$-36$', '$36$', '$-12$', '$12$'], ans: 0},
+  {q: '$5^{-3} =$', opts: ['$\\frac{1}{125}$', '$-125$', '$\\frac{1}{25}$', '$-25$'], ans: 0},
+  {q: '$(-3)^{-4} =$', opts: ['$\\frac{1}{81}$', '$-\\frac{1}{81}$', '$\\frac{1}{27}$', '$-\\frac{1}{27}$'], ans: 0},
+  {q: '$-3^{-4} =$', opts: ['$-\\frac{1}{81}$', '$\\frac{1}{81}$', '$-\\frac{1}{27}$', '$\\frac{1}{27}$'], ans: 0},
+  {q: '$(y^4)^3 =$', opts: ['$y^{12}$', '$y^7$', '$y^{64}$', '$y^1$'], ans: 0},
+  {q: '$\\frac{z^9}{z^4} =$', opts: ['$z^5$', '$z^{13}$', '$z^{36}$', '$z^1$'], ans: 0},
+  {q: '$w^3 \\cdot w^6 =$', opts: ['$w^9$', '$w^{18}$', '$w^3$', '$w^2$'], ans: 0},
+  {q: '$(3y)^4 =$', opts: ['$81y^4$', '$12y^4$', '$3y^4$', '$81y$'], ans: 0},
+  {q: '$\\left(\\frac{3}{5}\\right)^{-2} =$', opts: ['$\\frac{25}{9}$', '$\\frac{9}{25}$', '$-\\frac{9}{25}$', '$-\\frac{25}{9}$'], ans: 0},
+  {q: '$\\left(\\frac{a}{b}\\right)^4 =$', opts: ['$\\frac{a^4}{b^4}$', '$\\frac{a}{b^4}$', '$\\frac{a^4}{b}$', '$\\frac{4a}{4b}$'], ans: 0},
+  {q: '$x^m \\cdot x^n =$', opts: ['$x^{m+n}$', '$x^{m-n}$', '$x^{m \\cdot n}$', '$x^{m \\div n}$'], ans: 0},
+  {q: '$\\frac{x^m}{x^n} =$', opts: ['$x^{m-n}$', '$x^{m+n}$', '$x^{m \\cdot n}$', '$x^{m \\div n}$'], ans: 0},
+  {q: '$(x^m)^n =$', opts: ['$x^{m \\cdot n}$', '$x^{m+n}$', '$x^{m-n}$', '$x^{m \\div n}$'], ans: 0},
+  {q: '$x^n \\cdot y^n =$', opts: ['$(xy)^n$', '$(x+y)^n$', '$(x-y)^n$', '$(x \\div y)^n$'], ans: 0},
+  {q: '$\\frac{x^n}{y^n} =$', opts: ['$\\left(\\frac{x}{y}\\right)^n$', '$(x+y)^n$', '$(x-y)^n$', '$(xy)^n$'], ans: 0},
+  {q: '$11^2 =$', opts: ['$121$', '$22$', '$11$', '$33$'], ans: 0},
+  {q: '$12^2 =$', opts: ['$144$', '$24$', '$12$', '$36$'], ans: 0},
+  {q: '$13^2 =$', opts: ['$169$', '$26$', '$13$', '$39$'], ans: 0},
+  {q: '$14^2 =$', opts: ['$196$', '$28$', '$14$', '$42$'], ans: 0}
 ];
 
 // ─── SECCIÓN 2: REEMPLAZO DE VARIABLES (70 preguntas) ───
 // Valores fijos: a=2, b=3, c=5, d=7, e=1, f=4, g=6
 
 const VAR_VALUES = {a:2, b:3, c:5, d:7, e:1, f:4, g:6};
-const VAR_NAMES = ['a','b','c','d','e','f','g'];
-
-function evalExpr(expr, vals) {
-  let e = expr;
-  for (const [k,v] of Object.entries(vals)) {
-    e = e.replace(new RegExp(k, 'g'), v);
-  }
-  try {
-    return Function('"use strict"; return (' + e + ')')();
-  } catch {
-    return null;
-  }
-}
 
 const POOL_REPLACE = [
-  {expr: '2*a - b', ans: 1},
-  {expr: 'a + 3*b - c', ans: 6},
-  {expr: 'a^2 + b^2', ans: 13},
-  {expr: 'c - a + d', ans: 10},
-  {expr: 'a*b + c', ans: 11},
-  {expr: 'd/a + e', ans: 4.5},
-  {expr: 'b^2 - a^2', ans: 5},
-  {expr: 'c + d - a', ans: 10},
-  {expr: 'a*b - c', ans: 1},
-  {expr: 'd + e - f', ans: 4},
-  {expr: 'g - b + a', ans: 5},
-  {expr: 'a^3 - b', ans: 5},
-  {expr: 'c^2 - d', ans: 18},
-  {expr: 'f^2 + g', ans: 22},
-  {expr: 'b^3 - c', ans: 22},
-  {expr: 'a^4 - f', ans: 12},
-  {expr: 'g/a + b', ans: 6},
-  {expr: 'd - c + a', ans: 4},
-  {expr: 'a*b*c', ans: 30},
-  {expr: 'f*g - d', ans: 17},
-  {expr: 'b^2 + c^2', ans: 34},
-  {expr: 'a + b + c + d', ans: 17},
-  {expr: 'f^3 - g', ans: 58},
-  {expr: 'g^2 - d', ans: 29},
-  {expr: 'a^b + c', ans: 13},
-  {expr: 'b^a + d', ans: 16},
-  {expr: 'c^e - f', ans: 1},
-  {expr: 'd^e - a', ans: 5},
-  {expr: 'f^a + g', ans: 22},
-  {expr: 'g^e - c', ans: 1},
+  {expr: '3*a - b', ans: 3},
+  {expr: 'a + 2*b + c', ans: 13},
+  {expr: 'b^2 - a', ans: 7},
+  {expr: 'c - b + d', ans: 9},
   {expr: 'a*b - d', ans: -1},
-  {expr: 'b*c - d', ans: 8},
-  {expr: 'c*d - g', ans: 29},
-  {expr: 'f*g - b', ans: 21},
-  {expr: 'a^2 + b^2 + c^2', ans: 38},
-  {expr: 'd^2 - e^2', ans: 48},
-  {expr: 'f^2 + g^2', ans: 52},
-  {expr: 'a^3 + b^3', ans: 35},
+  {expr: 'd + e + f', ans: 12},
+  {expr: 'g - a + b', ans: 7},
+  {expr: 'a^2 + c', ans: 9},
+  {expr: 'b^3 - d', ans: 20},
+  {expr: 'c^2 - f', ans: 21},
+  {expr: 'f^2 + e', ans: 17},
+  {expr: 'g^2 - b', ans: 33},
+  {expr: 'a*b + d', ans: 13},
+  {expr: 'c*d - f', ans: 31},
+  {expr: 'f*g - c', ans: 19},
+  {expr: 'a^3 - c', ans: 3},
+  {expr: 'b^2 + d', ans: 16},
+  {expr: 'c^2 - a', ans: 23},
+  {expr: 'd^2 - f', ans: 45},
+  {expr: 'g^2 + a', ans: 38},
+  {expr: 'a^b - d', ans: 1},
+  {expr: 'b^a + e', ans: 10},
+  {expr: 'c^e - b', ans: 2},
+  {expr: 'd^e - f', ans: 3},
+  {expr: 'f^a - g', ans: 10},
+  {expr: 'g^e - a', ans: 4},
+  {expr: 'a + b - c', ans: 0},
+  {expr: 'b + c - d', ans: 1},
+  {expr: 'c + d - g', ans: 6},
+  {expr: 'f + g - a', ans: 8},
+  {expr: 'a^2 + b^2 - c^2', ans: -12},
+  {expr: 'd^2 - e^2 - f^2', ans: 32},
+  {expr: 'g^2 - f^2 - a^2', ans: 16},
+  {expr: 'a^3 - b^2', ans: -1},
   {expr: 'c^3 - d^2', ans: 76},
-  {expr: 'g^2 - f^2', ans: 20},
-  {expr: 'a*b + f', ans: 10},
-  {expr: 'c*d - e', ans: 34},
-  {expr: 'f*g + a', ans: 26},
-  {expr: 'b^3 - a^2', ans: 23},
-  {expr: 'c^2 + d', ans: 32},
-  {expr: 'g^2 + f', ans: 40},
-  {expr: 'a^b - c', ans: 3},
-  {expr: 'b^c - d', ans: 236},
-  {expr: 'c^a - f', ans: 21},
-  {expr: 'd^b - c', ans: 338},
-  {expr: 'f^e + g', ans: 10},
-  {expr: 'g^a - d', ans: 29},
-  {expr: 'a + b*c', ans: 17},
-  {expr: 'b + c*d', ans: 38},
-  {expr: 'c + d*f', ans: 33},
-  {expr: 'd + e*f', ans: 11},
-  {expr: 'f + g*e', ans: 10},
-  {expr: 'g + a*b', ans: 12},
-  {expr: 'a^2 - b^2', ans: -5},
-  {expr: 'c^2 - d^2', ans: -24},
-  {expr: 'f^2 - g^2', ans: -20},
-  {expr: 'a^3 + f', ans: 12},
-  {expr: 'b^3 - g', ans: 21},
-  {expr: 'c^2 - e', ans: 24},
-  {expr: 'd^2 + a', ans: 51},
-  {expr: 'f^2 - b', ans: 13},
-  {expr: 'g^2 + c', ans: 41},
-  {expr: 'a^b + b^a', ans: 17},
-  {expr: 'c^e + d^e', ans: 12},
-  {expr: 'f^a - g', ans: 10}
+  {expr: 'f^3 - g^2', ans: 28},
+  {expr: 'a*b + c - d', ans: 4},
+  {expr: 'b*c + d - f', ans: 18},
+  {expr: 'c*d + e - g', ans: 30},
+  {expr: 'f*g + a - b', ans: 23},
+  {expr: 'a^4 - b^3', ans: -11},
+  {expr: 'c^2 - d^2 + f^2', ans: -8},
+  {expr: 'g^2 - f^2 + e^2', ans: 21},
+  {expr: 'a^b + c^e', ans: 14},
+  {expr: 'b^a + d^e', ans: 16},
+  {expr: 'c^a - f^e', ans: 17},
+  {expr: 'd^b - g^e', ans: 337},
+  {expr: 'f^a - g^e', ans: 10},
+  {expr: 'g^a - d^e', ans: 29},
+  {expr: 'a + b*c - d', ans: 11},
+  {expr: 'b + c*d - f', ans: 34},
+  {expr: 'c + d*f - g', ans: 27},
+  {expr: 'd + e*f - a', ans: 9},
+  {expr: 'f + g*e - b', ans: 7},
+  {expr: 'g + a*b - c', ans: 7},
+  {expr: 'a^2 - b^2 + c^2', ans: 20},
+  {expr: 'd^2 - f^2 - e^2', ans: 32},
+  {expr: 'g^2 - c^2 + a^2', ans: 15},
+  {expr: 'a^3 + b^3 - c^2', ans: 10},
+  {expr: 'd^3 - f^3 + e^3', ans: 279},
+  {expr: 'g^3 - d^3 + a^3', ans: 127},
+  {expr: 'a*b + c*d - f*g', ans: -7},
+  {expr: 'b*c + d*e - f*a', ans: 4},
+  {expr: 'c*d + f*e - g*b', ans: 21},
+  {expr: 'a^b + b^c - c^a', ans: 29},
+  {expr: 'd^e + e^f - f^g', ans: -4092},
+  {expr: 'g^a - f^e + b^a', ans: 37},
+  {expr: 'a^3 + b^3 - c^3', ans: -90},
+  {expr: 'd^2 - e^2 + f^2', ans: 64}
 ];
 
 // ─── SECCIÓN 3: POTENCIAS V/F (70 preguntas) ───
 const POOL_VF = [
-  {q: '2^5 = 32', ans: true, correctVal: 32},
-  {q: '3^4 = 81', ans: true, correctVal: 81},
-  {q: '5^3 = 125', ans: true, correctVal: 125},
-  {q: '10^2 = 100', ans: true, correctVal: 100},
-  {q: '2^6 = 64', ans: true, correctVal: 64},
-  {q: '4^3 = 64', ans: true, correctVal: 64},
-  {q: '3^5 = 243', ans: true, correctVal: 243},
-  {q: '2^8 = 256', ans: true, correctVal: 256},
-  {q: '5^4 = 625', ans: true, correctVal: 625},
-  {q: '6^3 = 216', ans: true, correctVal: 216},
-  {q: '7^3 = 343', ans: true, correctVal: 343},
-  {q: '2^7 = 128', ans: true, correctVal: 128},
-  {q: '3^6 = 729', ans: true, correctVal: 729},
-  {q: '4^4 = 256', ans: true, correctVal: 256},
-  {q: '5^5 = 3125', ans: true, correctVal: 3125},
-  {q: '2^4 = 8', ans: false, correctVal: 16},
+  {q: '2^4 = 16', ans: true, correctVal: 16},
   {q: '3^3 = 27', ans: true, correctVal: 27},
   {q: '4^2 = 16', ans: true, correctVal: 16},
-  {q: '6^2 = 36', ans: true, correctVal: 36},
-  {q: '8^2 = 64', ans: true, correctVal: 64},
-  {q: '9^2 = 81', ans: true, correctVal: 81},
-  {q: '2^3 = 6', ans: false, correctVal: 8},
-  {q: '3^2 = 9', ans: true, correctVal: 9},
-  {q: '2^4 = 16', ans: true, correctVal: 16},
-  {q: '5^2 = 10', ans: false, correctVal: 25},
-  {q: '2^5 = 16', ans: false, correctVal: 32},
-  {q: '3^4 = 27', ans: false, correctVal: 81},
-  {q: '4^3 = 16', ans: false, correctVal: 64},
-  {q: '5^3 = 125', ans: true, correctVal: 125},
-  {q: '2^6 = 32', ans: false, correctVal: 64},
-  {q: '7^2 = 49', ans: true, correctVal: 49},
-  {q: '10^3 = 1000', ans: true, correctVal: 1000},
-  {q: '2^2 = 4', ans: true, correctVal: 4},
-  {q: '1^5 = 1', ans: true, correctVal: 1},
-  {q: '0^4 = 0', ans: true, correctVal: 0},
-  {q: '3^2 = 6', ans: false, correctVal: 9},
-  {q: '4^3 = 256', ans: false, correctVal: 64},
-  {q: '6^2 = 12', ans: false, correctVal: 36},
-  {q: '8^2 = 16', ans: false, correctVal: 64},
-  {q: '9^2 = 18', ans: false, correctVal: 81},
-  {q: '2^3 = 8', ans: true, correctVal: 8},
-  {q: '3^3 = 9', ans: false, correctVal: 27},
-  {q: '4^2 = 8', ans: false, correctVal: 16},
   {q: '5^2 = 25', ans: true, correctVal: 25},
-  {q: '6^3 = 18', ans: false, correctVal: 216},
-  {q: '7^2 = 14', ans: false, correctVal: 49},
+  {q: '6^2 = 36', ans: true, correctVal: 36},
+  {q: '7^2 = 49', ans: true, correctVal: 49},
   {q: '8^2 = 64', ans: true, correctVal: 64},
   {q: '9^2 = 81', ans: true, correctVal: 81},
   {q: '10^2 = 100', ans: true, correctVal: 100},
-  {q: '2^4 = 32', ans: false, correctVal: 16},
+  {q: '2^5 = 32', ans: true, correctVal: 32},
   {q: '3^4 = 81', ans: true, correctVal: 81},
+  {q: '4^3 = 64', ans: true, correctVal: 64},
+  {q: '5^3 = 125', ans: true, correctVal: 125},
+  {q: '6^3 = 216', ans: true, correctVal: 216},
+  {q: '7^3 = 343', ans: true, correctVal: 343},
+  {q: '8^3 = 512', ans: true, correctVal: 512},
+  {q: '9^3 = 729', ans: true, correctVal: 729},
+  {q: '10^3 = 1000', ans: true, correctVal: 1000},
+  {q: '2^6 = 64', ans: true, correctVal: 64},
+  {q: '3^5 = 243', ans: true, correctVal: 243},
+  {q: '4^4 = 256', ans: true, correctVal: 256},
+  {q: '5^4 = 625', ans: true, correctVal: 625},
+  {q: '2^3 = 8', ans: true, correctVal: 8},
+  {q: '3^2 = 9', ans: true, correctVal: 9},
+  {q: '4^2 = 8', ans: false, correctVal: 16},
+  {q: '5^2 = 10', ans: false, correctVal: 25},
+  {q: '2^4 = 8', ans: false, correctVal: 16},
+  {q: '3^3 = 9', ans: false, correctVal: 27},
+  {q: '4^3 = 16', ans: false, correctVal: 64},
+  {q: '5^3 = 25', ans: false, correctVal: 125},
+  {q: '2^5 = 64', ans: false, correctVal: 32},
+  {q: '3^4 = 27', ans: false, correctVal: 81},
   {q: '4^4 = 64', ans: false, correctVal: 256},
   {q: '5^4 = 125', ans: false, correctVal: 625},
-  {q: '6^2 = 36', ans: true, correctVal: 36},
-  {q: '7^3 = 21', ans: false, correctVal: 343},
-  {q: '8^2 = 64', ans: true, correctVal: 64},
-  {q: '9^3 = 729', ans: true, correctVal: 729},
-  {q: '10^4 = 10000', ans: true, correctVal: 10000},
-  {q: '2^5 = 64', ans: false, correctVal: 32},
+  {q: '6^2 = 12', ans: false, correctVal: 36},
+  {q: '7^2 = 14', ans: false, correctVal: 49},
+  {q: '8^2 = 16', ans: false, correctVal: 64},
+  {q: '9^2 = 18', ans: false, correctVal: 81},
+  {q: '10^2 = 20', ans: false, correctVal: 100},
+  {q: '2^6 = 128', ans: false, correctVal: 64},
   {q: '3^5 = 81', ans: false, correctVal: 243},
-  {q: '4^2 = 16', ans: true, correctVal: 16},
-  {q: '5^3 = 625', ans: false, correctVal: 125},
+  {q: '4^4 = 16', ans: false, correctVal: 256},
+  {q: '5^4 = 625', ans: true, correctVal: 625},
   {q: '6^3 = 216', ans: true, correctVal: 216},
-  {q: '7^2 = 49', ans: true, correctVal: 49},
+  {q: '7^3 = 49', ans: false, correctVal: 343},
   {q: '8^3 = 512', ans: true, correctVal: 512},
-  {q: '9^2 = 81', ans: true, correctVal: 81},
-  {q: '10^5 = 100000', ans: true, correctVal: 100000},
+  {q: '9^3 = 81', ans: false, correctVal: 729},
+  {q: '10^3 = 1000', ans: true, correctVal: 1000},
+  {q: '2^7 = 128', ans: true, correctVal: 128},
+  {q: '3^6 = 729', ans: true, correctVal: 729},
+  {q: '4^3 = 256', ans: false, correctVal: 64},
+  {q: '5^5 = 3125', ans: true, correctVal: 3125},
+  {q: '2^8 = 256', ans: true, correctVal: 256},
+  {q: '3^7 = 2187', ans: true, correctVal: 2187},
+  {q: '4^5 = 1024', ans: true, correctVal: 1024},
+  {q: '2^9 = 512', ans: true, correctVal: 512},
+  {q: '3^8 = 6561', ans: true, correctVal: 6561},
+  {q: '5^6 = 15625', ans: true, correctVal: 15625},
   {q: '2^10 = 1024', ans: true, correctVal: 1024},
-  {q: '3^6 = 81', ans: false, correctVal: 729},
-  {q: '4^3 = 256', ans: false, correctVal: 64}
+  {q: '4^6 = 4096', ans: true, correctVal: 4096},
+  {q: '3^2 = 6', ans: false, correctVal: 9},
+  {q: '5^2 = 125', ans: false, correctVal: 25},
+  {q: '6^3 = 18', ans: false, correctVal: 216},
+  {q: '7^3 = 21', ans: false, correctVal: 343},
+  {q: '8^2 = 16', ans: false, correctVal: 64},
+  {q: '9^2 = 18', ans: false, correctVal: 81},
+  {q: '10^2 = 1000', ans: false, correctVal: 100},
+  {q: '2^4 = 32', ans: false, correctVal: 16},
+  {q: '3^4 = 81', ans: true, correctVal: 81},
+  {q: '5^3 = 625', ans: false, correctVal: 125},
+  {q: '6^2 = 36', ans: true, correctVal: 36}
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -610,7 +598,6 @@ let selectedVF = [];
 let allQuestions = [];
 let userAns = [];
 let submitted = false;
-let correctVals = [];
 
 // ─── UTILS ───
 function shuffle(arr){
@@ -656,12 +643,6 @@ function buildTest(){
   ];
 
   userAns = Array(TOTAL).fill(null);
-  correctVals = Array(TOTAL).fill(null);
-  allQuestions.forEach((q, i) => {
-    if (q.type === 'mc') correctVals[i] = q.ansIdx;
-    else if (q.type === 'replace') correctVals[i] = q.ans;
-    else if (q.type === 'vf') correctVals[i] = q.ans;
-  });
 }
 
 // ─── START ───
@@ -698,7 +679,7 @@ function renderQuestions(){
   wrap.innerHTML='';
 
   const sections = [
-    {num: 1, title: 'Lenguaje Algebraico', desc: 'Selecciona la expresión correcta para cada enunciado.', start: 0, end: PER_SECTION},
+    {num: 1, title: 'Lenguaje Algebraico + Propiedades de Potencias', desc: 'Selecciona la opción correcta para cada enunciado o propiedad.', start: 0, end: PER_SECTION},
     {num: 2, title: 'Reemplazo de Variables', desc: 'Usa los valores de las variables para calcular el resultado.', start: PER_SECTION, end: PER_SECTION*2},
     {num: 3, title: 'Potencias — Verdadero o Falso', desc: 'Determina si la igualdad es verdadera o falsa. Si es falsa, corrige.', start: PER_SECTION*2, end: PER_SECTION*3}
   ];
@@ -742,7 +723,6 @@ function renderQuestions(){
           <div class="options">${optsHtml}</div>
           <div class="q-feedback" id="qfb-${i}"></div>`;
       } else if (q.type === 'replace') {
-        // Mostrar valores de variables en cada pregunta de reemplazo
         const varChips = Object.entries(VAR_VALUES).map(([k,v]) => 
           `<span class="var-chip"><span class="var-name">${k}</span> = <span class="var-val">${v}</span></span>`
         ).join('');
@@ -1048,10 +1028,10 @@ function submitTest(){
   document.getElementById('r-grade-display').textContent = grade.toFixed(1);
 
   let title, msg;
-  if(grade >= 6.0){title = '🏆 Excelente resultado!'; msg = 'Dominas el lenguaje algebraico, el reemplazo de variables y las potencias con solidez. ¡Sigue así!';}
+  if(grade >= 6.0){title = '🏆 Excelente resultado!'; msg = 'Dominas el lenguaje algebraico, el reemplazo de variables y las propiedades de potencias con solidez. ¡Sigue así!';}
   else if(grade >= 5.0){title = '👍 ¡Buen trabajo!'; msg = 'Tienes una buena base. Repasa los temas donde fallaste para mejorar.';}
   else if(grade >= 4.0){title = '📚 Aprobado'; msg = 'Vas por buen camino, pero necesitas repasar más la materia.';}
-  else{title = '💪 No te rindas'; msg = 'Revisa bien la clase C3 (Lenguaje Algebraico y Reemplazo) y vuelve a intentarlo. ¡Puedes mejorar!';}
+  else{title = '💪 No te rindas'; msg = 'Revisa bien la clase C4 (Lenguaje Algebraico, Reemplazo y Propiedades de Potencias) y vuelve a intentarlo. ¡Puedes mejorar!';}
 
   document.getElementById('result-title').textContent = title;
   document.getElementById('result-msg').textContent = msg;
