@@ -291,7 +291,7 @@ body{
   <span class="logo">⚡</span>
   <h1>Ejercicios — <span>Lenguaje Algebraico, Reemplazo y Propiedades de Potencias</span></h1>
   <span id="section-indicator">Sección 1/3</span>
-  <div id="score-pill">45 preguntas · Sin límite de tiempo</div>
+  <div id="score-pill">15 preguntas · Sin límite de tiempo</div>
 </div>
 <div id="prog-wrap"><div id="prog-fill"></div></div>
 
@@ -301,7 +301,7 @@ body{
   <div id="intro-card">
     <div class="anchor">⚡</div>
     <h2>Lenguaje Algebraico, Reemplazo y Propiedades de Potencias — Práctica</h2>
-    <p>Este test consta de <strong>3 secciones</strong> con <strong>15 preguntas cada una</strong> (45 en total):</p>
+    <p>Este test consta de <strong>3 secciones</strong> con <strong>5 preguntas cada una</strong> (15 en total):</p>
     <div class="tag-row">
       <span class="tag">📝 Sección 1: Lenguaje Algebraico + Propiedades de Potencias</span>
       <span class="tag">🔄 Sección 2: Reemplazo de Variables</span>
@@ -318,7 +318,7 @@ body{
     <div id="results-card">
       <div class="score-ring" id="score-ring">
         <div class="score-num" id="r-score">0</div>
-        <div class="score-of" id="r-of">/ 45</div>
+        <div class="score-of" id="r-of">/ 15</div>
         <div class="grade-num" id="r-grade">0.0</div>
       </div>
       <div id="result-title"></div>
@@ -343,7 +343,7 @@ body{
 
 <!-- SUBMIT BAR -->
 <div id="submit-bar" style="display:none">
-  <div id="answered-count">Respondidas: 0 / 45</div>
+  <div id="answered-count">Respondidas: 0 / 15</div>
   <div style="display:flex;gap:10px">
     <button class="btn btn-outline" onclick="window.location.href='C4.html'">← Clase</button>
     <button class="btn btn-gold" onclick="submitTest()">Finalizar Test ✓</button>
@@ -375,7 +375,7 @@ const POOL_MC = [
   {q: 'El doble de la diferencia de dos números $x$ e $y$ se expresa como:', opts: ['$2(x - y)$', '$2x - y$', '$x - 2y$', '$(2x - 2y)$'], ans: 0},
   {q: 'La mitad del cuadrado de un número $x$ se expresa como:', opts: ['$\\frac{x^2}{2}$', '$(\\frac{x}{2})^2$', '$\\frac{x}{2}^2$', '$\\frac{2}{x^2}$'], ans: 0},
   {q: 'El triple del cubo de un número $x$ se expresa como:', opts: ['$3x^3$', '$(3x)^3$', '$27x^3$', '$3x^4$'], ans: 0},
-  {q: 'El cubo del triple de un número $x$ se expresa como:', opts: ['$3x^3$', '$(3x)^3$', '$27x^3$', '$3x^4$'], ans: 2},
+  {q: 'El cubo del triple de un número $x$ se expresa como:', opts: ['$3x^3$', '$(3x)^2$', '$(3x)^3$', '$3x^4$'], ans: 2},
   {q: 'La diferencia entre la mitad de $x$ y la tercera parte de $y$ se expresa como:', opts: ['$\\frac{x}{2} - \\frac{y}{3}$', '$\\frac{x}{3} - \\frac{y}{2}$', '$\\frac{x - y}{5}$', '$\\frac{2x - 3y}{6}$'], ans: 0},
   {q: 'La suma de la cuarta parte de $x$ y la quinta parte de $y$ se expresa como:', opts: ['$\\frac{x}{4} + \\frac{y}{5}$', '$\\frac{x}{5} + \\frac{y}{4}$', '$\\frac{x + y}{9}$', '$\\frac{5x + 4y}{20}$'], ans: 0},
   {q: 'El producto del cuadrado de $x$ y el cubo de $y$ se expresa como:', opts: ['$x^2 y^3$', '$(xy)^5$', '$x^3 y^2$', '$x^2 + y^3$'], ans: 0},
@@ -384,7 +384,7 @@ const POOL_MC = [
   {q: 'La raíz cúbica de la suma de dos números $x$ e $y$ se expresa como:', opts: ['$\\sqrt[3]{x + y}$', '$\\sqrt[3]{x} + \\sqrt[3]{y}$', '$\\sqrt[3]{x^3 + y^3}$', '$(x + y)^3$'], ans: 0},
   {q: 'El doble de la raíz cuadrada de un número $x$ se expresa como:', opts: ['$2\\sqrt{x}$', '$\\sqrt{2x}$', '$\\sqrt{x^2}$', '$\\sqrt{2} + x$'], ans: 0},
   {q: 'La mitad de la raíz cúbica de un número $x$ se expresa como:', opts: ['$\\frac{\\sqrt[3]{x}}{2}$', '$\\sqrt[3]{\\frac{x}{2}}$', '$\\frac{1}{2}\\sqrt[3]{x}$', '$\\sqrt[3]{x} - 2$'], ans: 2},
-  {q: 'El cuadrado de la suma del doble de $x$ y el triple de $y$ se expresa como:', opts: ['$(2x + 3y)^2$', '$4x^2 + 9y^2$', '$4x^2 + 12xy + 9y^2$', '$(2x)^2 + (3y)^2$'], ans: 2},
+  {q: 'El cuadrado de la suma del doble de $x$ y el triple de $y$ se expresa como:', opts: ['$(2x + 3y)^2$', '$4x^2 + 9y^2$', '$4x^2 + 20xy + 9y^2$', '$(2x)^2 + (3y)^2$'], ans: 0},
   {q: 'El producto de $x$ por la diferencia entre $y$ y el doble de $z$ se expresa como:', opts: ['$x(y - 2z)$', '$xy - 2xz$', '$x + y - 2z$', '$x(y + 2z)$'], ans: 0},
   {q: 'La suma de $x$ con el cociente de $y$ y $z$ se expresa como:', opts: ['$x + \\frac{y}{z}$', '$\\frac{x + y}{z}$', '$\\frac{x}{z} + y$', '$\\frac{x + z}{y}$'], ans: 0},
   {q: 'El cociente entre la suma de $x$ e $y$ y la diferencia de $x$ e $y$ se expresa como:', opts: ['$\\frac{x + y}{x - y}$', '$\\frac{x - y}{x + y}$', '$\\frac{x}{x - y} + y$', '$\\frac{x + y}{y - x}$'], ans: 0},
@@ -488,7 +488,7 @@ const POOL_REPLACE = [
   {expr: 'd^b - g^e', ans: 337},
   {expr: 'f^a - g^e', ans: 10},
   {expr: 'g^a - d^e', ans: 29},
-  {expr: 'a + b*c - d', ans: 11},
+  {expr: 'a + b*c - d', ans: 10},
   {expr: 'b + c*d - f', ans: 34},
   {expr: 'c + d*f - g', ans: 27},
   {expr: 'd + e*f - a', ans: 9},
@@ -589,8 +589,8 @@ const POOL_VF = [
 //  STATE
 // ═══════════════════════════════════════════════════════════════
 
-const TOTAL = 45;
-const PER_SECTION = 15;
+const TOTAL = 15;
+const PER_SECTION = 5;
 
 let selectedMC = [];
 let selectedReplace = [];
