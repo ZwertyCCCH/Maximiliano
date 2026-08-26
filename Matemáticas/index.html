@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases de Matemáticas - 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Paleta matemática profesional */
+  --primary:#1a2a4a;
+  --primary2:#1e3a6a;
+  --primary3:#1a4a7a;
+  --accent:#2a7a8a;
+  --accent2:#3a9aaa;
+  --gold:#d4a84a;
+  --gold2:#e8c86a;
+  --gold3:rgba(42,122,138,.12);
+  --white:#ffffff;
+  --light:#f0f4f8;
+  --lighter:#f7f9fc;
+  --green:#1a7a4a;
+  --green2:#e8f7ef;
+  --green3:#0f5c37;
+  --gray:#5a6a7a;
+  --border:#d0dce8;
+  --a1:#1a6fa8;
+  --a2:#0d7377;
+  --b1:#7a3a9a;
+  --b2:#a02020;
+  --math-blue:#1a5a8a;
+  --math-blue2:#2a7aaa;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:var(--light);color:#1a2a3a;min-height:100vh;
+}
+
+/* ══ HERO ══ */
+#hero{
+  background:linear-gradient(150deg,var(--primary) 0%,var(--primary2) 55%,var(--primary3) 100%);
+  padding:0;position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(42,122,138,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+#hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);
+}
+
+.hero-inner{
+  max-width:1100px;margin:0 auto;padding:52px 28px 56px;
+  display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+}
+.hero-pretitle{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  color:var(--gold);letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.hero-pretitle::before{content:'';width:32px;height:2px;background:var(--gold);display:inline-block;}
+.hero-title{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.08;
+  margin-bottom:16px;
+}
+.hero-title span{color:var(--gold);}
+.hero-sub{
+  color:#a0b8d0;font-size:1rem;line-height:1.75;max-width:540px;margin-bottom:28px;
+}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.hero-tag{
+  background:rgba(255,255,255,.07);border:1px solid rgba(212,168,74,.3);
+  color:var(--gold2);padding:5px 14px;border-radius:20px;
+  font-size:.78rem;font-weight:600;letter-spacing:.04em;
+}
+.hero-badge{
+  background:rgba(255,255,255,.06);border:1px solid rgba(212,168,74,.25);
+  border-radius:20px;padding:28px 32px;text-align:center;
+  backdrop-filter:blur(4px);flex-shrink:0;
+}
+.hero-badge .anchor{font-size:3.2rem;margin-bottom:10px;}
+.hero-badge .badge-label{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;
+  color:var(--gold);letter-spacing:.12em;text-transform:uppercase;display:block;
+  margin-bottom:6px;
+}
+.hero-badge .badge-val{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.5rem;font-weight:700;
+}
+.exam-info{
+  display:flex;gap:20px;flex-wrap:wrap;margin-top:10px;
+}
+.exam-chip{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:7px 14px;
+  color:#c8d8e8;font-size:.82rem;
+}
+.exam-chip strong{color:var(--white);}
+
+/* ══ MAIN LAYOUT ══ */
+#page{max-width:1100px;margin:0 auto;padding:40px 28px 80px;display:grid;grid-template-columns:1fr 340px;gap:36px;align-items:start;}
+
+/* ══ SECTION HEADERS ══ */
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sec-header h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--primary);font-weight:700;}
+.sec-line{flex:1;height:2px;background:linear-gradient(90deg,var(--border),transparent);}
+.sec-icon{font-size:1.3rem;}
+
+/* ══ TEMARIO ══ */
+.level-block{
+  background:var(--white);border-radius:16px;margin-bottom:16px;
+  box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;
+  border:1px solid var(--border);
+}
+.level-head{
+  display:flex;align-items:center;gap:14px;padding:14px 20px;
+  border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .2s;user-select:none;
+}
+.level-head:hover{background:var(--lighter);}
+.level-badge{
+  width:40px;height:40px;border-radius:10px;display:flex;
+  align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1rem;color:var(--white);
+  flex-shrink:0;
+}
+.lvl-num .level-badge{background:var(--math-blue);}
+.lvl-alg .level-badge{background:var(--accent);}
+.lvl-geo .level-badge{background:var(--b1);}
+.lvl-prob .level-badge{background:var(--b2);}
+.level-head-text{flex:1;}
+.level-head-text h3{font-size:1rem;font-weight:700;color:var(--primary);}
+.level-head-text p{font-size:.8rem;color:var(--gray);margin-top:2px;}
+.level-toggle{color:var(--gray);font-size:.85rem;transition:transform .3s;}
+.level-block.open .level-toggle{transform:rotate(180deg);}
+
+.level-body{display:none;padding:16px 20px;}
+.level-block.open .level-body{display:block;}
+
+.sub-section{margin-bottom:14px;}
+.sub-section:last-child{margin-bottom:0;}
+.sub-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gray);margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.sub-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.topic-list{display:flex;flex-wrap:wrap;gap:6px;}
+.topic{
+  background:var(--light);border:1px solid var(--border);border-radius:8px;
+  padding:4px 11px;font-size:.82rem;color:#2a3a4a;
+}
+.lvl-num .topic{border-color:#b0c8e0;background:#e8f0fc;}
+.lvl-alg .topic{border-color:#b0d0d8;background:#e8f4f8;}
+.lvl-geo .topic{border-color:#d0c0e0;background:#f4ecfc;}
+.lvl-prob .topic{border-color:#e0c0c0;background:#fcecec;}
+
+/* ══ SIDEBAR ══ */
+#sidebar{}
+
+/* ══ TIMELINE ══ */
+#timeline-wrap{
+  background:var(--white);border-radius:16px;border:1px solid var(--border);
+  box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;
+}
+.timeline-header{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  padding:16px 20px;border-bottom:3px solid var(--gold);
+}
+.timeline-header h3{
+  font-family:'Playfair Display',serif;color:var(--white);font-size:1.05rem;
+  display:flex;align-items:center;gap:8px;
+}
+.timeline-header p{color:#a0b8d0;font-size:.78rem;margin-top:4px;}
+
+.timeline-body{padding:20px;}
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{
+  content:'';position:absolute;left:10px;top:8px;bottom:8px;
+  width:2px;background:linear-gradient(to bottom,var(--gold),var(--border));
+}
+
+.tl-item{position:relative;margin-bottom:24px;}
+.tl-item:last-child{margin-bottom:0;}
+
+.tl-dot{
+  position:absolute;left:-24px;top:10px;
+  width:16px;height:16px;border-radius:50%;border:3px solid var(--white);
+  box-shadow:0 0 0 2px var(--gold);background:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:.55rem;
+}
+.tl-item.future .tl-dot{background:var(--border);box-shadow:0 0 0 2px var(--border);}
+.tl-item.available .tl-dot{background:var(--green);box-shadow:0 0 0 2px var(--green);}
+
+.tl-card{
+  background:var(--lighter);border:1px solid var(--border);border-radius:12px;
+  padding:13px 15px;transition:box-shadow .2s;
+}
+.tl-item.available .tl-card{border-color:var(--green);background:var(--green2);}
+.tl-item.future .tl-card{opacity:.65;}
+
+.tl-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+.tl-date{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gray);
+}
+.tl-level-badge{
+  font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:10px;color:var(--white);
+}
+.badge-num{background:var(--math-blue);}
+.badge-alg{background:var(--accent);}
+.badge-geo{background:var(--b1);}
+.badge-prob{background:var(--b2);}
+.tl-status{
+  margin-left:auto;font-size:.65rem;font-weight:700;
+  padding:2px 8px;border-radius:10px;
+}
+.tl-item.available .tl-status{background:var(--green2);color:var(--green3);border:1px solid var(--green);}
+.tl-item.future .tl-status{background:var(--light);color:var(--gray);border:1px solid var(--border);}
+
+.tl-title{font-weight:700;color:var(--primary);font-size:.92rem;margin-bottom:10px;line-height:1.4;}
+.tl-item.future .tl-title{color:var(--gray);}
+
+.tl-actions{display:flex;gap:7px;}
+.tl-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  border:none;cursor:pointer;border-radius:8px;
+  font-family:'Source Sans 3',sans-serif;font-weight:700;
+  font-size:.78rem;padding:6px 13px;transition:all .18s;text-decoration:none;
+}
+.tl-btn-class{background:var(--math-blue);color:var(--white);}
+.tl-btn-class:hover{background:var(--math-blue2);}
+.tl-btn-ex{background:var(--green);color:var(--white);}
+.tl-btn-ex:hover{background:var(--green3);}
+.tl-btn-disabled{background:var(--border);color:var(--gray);cursor:not-allowed;pointer-events:none;}
+
+.tl-upcoming{
+  text-align:center;padding:18px 10px;
+  color:var(--gray);font-size:.82rem;line-height:1.6;
+}
+.tl-upcoming .icon{font-size:1.6rem;margin-bottom:8px;opacity:.5;}
+
+/* ══ QUICK STATS ══ */
+#quick-stats{
+  background:var(--white);border-radius:16px;border:1px solid var(--border);
+  box-shadow:0 2px 12px rgba(0,0,0,.07);
+  padding:20px;margin-bottom:20px;
+}
+#quick-stats h3{
+  font-family:'Playfair Display',serif;font-size:1rem;color:var(--primary);
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat-card{
+  background:var(--light);border-radius:10px;padding:12px;text-align:center;
+  border:1px solid var(--border);
+}
+.stat-card .sv{
+  font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;
+  color:var(--primary);line-height:1;
+}
+.stat-card .sl{font-size:.72rem;color:var(--gray);margin-top:3px;}
+
+/* ══ EXAM INFO BOX ══ */
+#exam-box{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  border-radius:16px;padding:20px;margin-bottom:20px;
+  border:1px solid rgba(212,168,74,.3);
+}
+#exam-box h3{
+  font-family:'Playfair Display',serif;color:var(--gold2);
+  font-size:1rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.exam-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:.82rem;
+}
+.exam-row:last-child{border-bottom:none;}
+.exam-row .ek{color:#a0b8d0;}
+.exam-row .ev{color:var(--white);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:.78rem;}
+
+/* ══ FOOTER ══ */
+footer{
+  text-align:center;padding:24px;
+  color:var(--gray);font-size:.78rem;border-top:1px solid var(--border);
+  background:var(--white);
+}
+footer strong{color:var(--primary);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:800px){
+  .hero-inner{grid-template-columns:1fr;}.hero-badge{display:none;}
+  #page{grid-template-columns:1fr;}
+  #sidebar{order:-1;}
+}
+@media(max-width:500px){
+  .hero-inner{padding:36px 18px 40px;}
+  #page{padding:24px 16px 60px;}
+}
+/* ══ BOTÓN VOLVER ══ */
+.back-btn-wrap{
+  text-align:center;
+  margin-top:12px;
+}
+.btn-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--primary);
+  color:var(--white);
+  border:none;
+  border-radius:12px;
+  padding:12px 28px;
+  font-family:'Source Sans 3',sans-serif;
+  font-weight:700;
+  font-size:.95rem;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all .2s ease;
+}
+.btn-back:hover{
+  background:var(--primary2);
+  transform:scale(1.03);
+}
+.btn-back .arrow{font-size:1.2rem;}
+/* ══ ANIMATIONS ══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner{animation:fadeUp .5s ease forwards;}
+#temario{animation:fadeUp .5s .1s ease both;}
+#sidebar{animation:fadeUp .5s .2s ease both;}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-pretitle">Habilidades Matemáticas</div>
+      <h1 class="hero-title">Clases de<br><span>Matemáticas</span></h1>
+      <p class="hero-sub">Clases personalizadas para los requirimientos de Maximiliano. </p>
+      <div class="hero-tags">
+        <span class="hero-tag">📐 Materias</span>
+        <span class="hero-tag">📋 Números reales</span>
+        <span class="hero-tag">📋 Álgebra</span>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="anchor">📐</div>
+      <span class="badge-label">Preparación de Pruebas</span>
+      <div class="badge-val">Matemática</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE BODY ══ -->
+   <!-- Botón volver al inicio (raíz) -->
+  <div class="back-btn-wrap">
+    <a href="../../index.html" class="btn-back">
+      <span class="arrow">🏠</span> Volver al Inicio
+    </a>
+  </div>
+<div id="page">
+
+  <!-- ── LEFT: TEMARIO ── -->
+  <div id="temario">
+    <div class="sec-header">
+      <span class="sec-icon">📚</span>
+      <h2>Temario Matemáticas </h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- NÚMEROS -->
+    <div class="level-block lvl-num open" id="block-num">
+      <div class="level-head" onclick="toggleBlock('block-num')">
+        <div class="level-badge">N</div>
+        <div class="level-head-text">
+          <h3>Números</h3>
+          <p>Conjunto de los números enteros y racionales · Porcentaje · Potencias y raíces enésimas</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">🔢 Conjunto de los números enteros y racionales</div>
+          <div class="topic-list">
+            <span class="topic">Operaciones y orden en el conjunto de los números enteros</span>
+            <span class="topic">Operaciones y comparación entre números en el conjunto de los números racionales</span>
+            <span class="topic">Problemas que involucren el conjunto de los números enteros y racionales en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📊 Porcentaje</div>
+          <div class="topic-list">
+            <span class="topic">Concepto y cálculo de porcentaje</span>
+            <span class="topic">Problemas que involucren porcentaje en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">⚡ Potencias y raíces enésimas</div>
+          <div class="topic-list">
+            <span class="topic">Propiedades de las potencias de base racional y exponente racional</span>
+            <span class="topic">Descomposición y propiedades de las raíces enésimas en los números reales</span>
+            <span class="topic">Problemas que involucren potencias y raíces enésimas en los números reales en diversos contextos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁLGEBRA Y FUNCIONES -->
+    <div class="level-block lvl-alg" id="block-alg">
+      <div class="level-head" onclick="toggleBlock('block-alg')">
+        <div class="level-badge">A</div>
+        <div class="level-head-text">
+          <h3>Álgebra y Funciones</h3>
+          <p>Expresiones algebraicas · Proporcionalidad · Ecuaciones e inecuaciones · Sistemas · Funciones lineal, afín y cuadrática</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">📐 Expresiones algebraicas</div>
+          <div class="topic-list">
+            <span class="topic">Productos notables</span>
+            <span class="topic">Factorizaciones y desarrollo de expresiones algebraicas</span>
+            <span class="topic">Operatoria con expresiones algebraicas</span>
+            <span class="topic">Problemas que involucren expresiones algebraicas en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📈 Proporcionalidad</div>
+          <div class="topic-list">
+            <span class="topic">Concepto de proporción directa e inversa con sus diferentes representaciones</span>
+            <span class="topic">Problemas que involucren proporción directa e inversa en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">✏️ Ecuaciones e inecuaciones de primer grado</div>
+          <div class="topic-list">
+            <span class="topic">Resolución de ecuaciones lineales</span>
+            <span class="topic">Problemas que involucren ecuaciones lineales en diversos contextos</span>
+            <span class="topic">Resolución de inecuaciones lineales</span>
+            <span class="topic">Problemas que involucren inecuaciones lineales en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🔄 Sistemas de ecuaciones lineales (2x2)</div>
+          <div class="topic-list">
+            <span class="topic">Resolución de sistemas de ecuaciones lineales</span>
+            <span class="topic">Problemas que involucren sistemas de ecuaciones lineales en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📉 Función lineal y afín</div>
+          <div class="topic-list">
+            <span class="topic">Concepto de función lineal y función afín</span>
+            <span class="topic">Tablas y gráficos de función lineal y afín</span>
+            <span class="topic">Problemas que involucren función lineal y afín en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📊 Función cuadrática</div>
+          <div class="topic-list">
+            <span class="topic">Resolución y problemas de ecuaciones de segundo grado en diversos contextos</span>
+            <span class="topic">Tablas y gráficos de la función cuadrática, considerando la variación de sus parámetros</span>
+            <span class="topic">Puntos especiales de la gráfica: vértice, ceros de la función e intersección con los ejes</span>
+            <span class="topic">Problemas que involucren la función cuadrática en diversos contextos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GEOMETRÍA -->
+    <div class="level-block lvl-geo" id="block-geo">
+      <div class="level-head" onclick="toggleBlock('block-geo')">
+        <div class="level-badge">G</div>
+        <div class="level-head-text">
+          <h3>Geometría</h3>
+          <p>Figuras geométricas · Cuerpos geométricos · Transformaciones isométricas · Semejanza y proporcionalidad</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">📐 Figuras geométricas</div>
+          <div class="topic-list">
+            <span class="topic">Problemas que involucren el Teorema de Pitágoras en diversos contextos</span>
+            <span class="topic">Perímetro y áreas de triángulos, paralelogramos, trapecios y círculos</span>
+            <span class="topic">Problemas que involucren perímetro y áreas en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📦 Cuerpos geométricos</div>
+          <div class="topic-list">
+            <span class="topic">Área de superficies de paralelepípedos, cubos y cilindros</span>
+            <span class="topic">Volumen de paralelepípedos, cubos y cilindros</span>
+            <span class="topic">Problemas que involucren área y volumen en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🔄 Transformaciones isométricas</div>
+          <div class="topic-list">
+            <span class="topic">Puntos y vectores en el plano cartesiano</span>
+            <span class="topic">Rotación, traslación y reflexión de figuras geométricas</span>
+            <span class="topic">Problemas que involucren rotación, traslación y reflexión en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📏 Semejanza y proporcionalidad de figuras</div>
+          <div class="topic-list">
+            <span class="topic">Aplicar propiedades de semejanza y de proporcionalidad a modelos a escala y otras situaciones de la vida diaria y otras asignaturas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROBABILIDAD Y ESTADÍSTICA -->
+    <div class="level-block lvl-prob" id="block-prob">
+      <div class="level-head" onclick="toggleBlock('block-prob')">
+        <div class="level-badge">P</div>
+        <div class="level-head-text">
+          <h3>Probabilidad y Estadística</h3>
+          <p>Representación de datos · Medidas de posición · Reglas de las probabilidades</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">📊 Representación de datos a través de tablas y gráficos</div>
+          <div class="topic-list">
+            <span class="topic">Tablas de frecuencia absoluta y relativa</span>
+            <span class="topic">Tipos de gráficos que permitan representar datos</span>
+            <span class="topic">Promedio de un conjunto de datos</span>
+            <span class="topic">Problemas que involucren tablas y gráficos en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📈 Medidas de posición</div>
+          <div class="topic-list">
+            <span class="topic">Cuartiles y percentiles de uno o más grupos de datos</span>
+            <span class="topic">Diagrama de cajón para representar distribución de datos</span>
+            <span class="topic">Problemas que involucren medidas de posición en diversos contextos</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🎲 Reglas de las probabilidades</div>
+          <div class="topic-list">
+            <span class="topic">Problemas que involucren probabilidad de un evento en diversos contextos</span>
+            <span class="topic">Problemas que involucren la regla aditiva y multiplicativa de probabilidades en diversos contextos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#temario -->
+
+  <!-- ── RIGHT: SIDEBAR ── -->
+  <div id="sidebar">
+
+    <!-- Timeline -->
+    <div id="timeline-wrap">
+      <div class="timeline-header">
+        <h3>📅 Calendario de Clases</h3>
+        <p>Las clases disponibles se actualizan automáticamente por fecha</p>
+      </div>
+      <div class="timeline-body">
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+
+  </div><!-- /#sidebar -->
+
+</div><!-- /#page -->
+
+<footer>
+  <strong>Preparación de Matemáticas — 2026</strong><br>
+  Basado en el temario de Mineduc año 2026
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  CLASES — 3 clases con fecha 27/06/2026
+// ═══════════════════════════════════════════════════
+const CLASES = [
+  {
+    id: 1,
+    fecha: "2026-08-11",
+    nombre: "Potencias",
+    nivel: "Números",
+    descripcion: "Propiedades de las potencias de base racional y exponente racional. Descomposición y propiedades de las raíces enésimas en los números reales."
+  },
+  {
+    id: 2,
+    fecha: "2026-08-11",
+    nombre: "Expresiones algebraicas",
+    nivel: "Álgebra y funciones",
+    descripcion: "Resolución de expresiones algebraicas. Productos notables. Factorización."
+  },
+  {
+    id: 3,
+    fecha: "2026-08-15",
+    nombre: "Expresiones algebraicas y potencias",
+    nivel: "Álgebra y funciones",
+    descripcion: "Preparación prueba a repetir Miércoles 19/06/2026."
+  },
+  {
+    id: 4,
+    fecha: "2026-08-18",
+    nombre: "Expresiones algebraicas y potencias",
+    nivel: "Álgebra y funciones",
+    descripcion: "Preparación prueba a repetir Miércoles 19/06/2026."
+  },
+  {
+    id: 5,
+    fecha: "2026-08-22",
+    nombre: "Proporciones directas e inversas",
+    nivel: "Álgebra",
+    descripcion: "Definiciones y ejercicios sobre proporciones directas e inversas."
+  },
+];
+
+// ═══════════════════════════════════════════════════
+//  RENDER TIMELINE
+// ═══════════════════════════════════════════════════
+function renderTimeline(){
+  const tl = document.getElementById('timeline');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  let availableCount = 0;
+
+  tl.innerHTML = '';
+
+  CLASES.forEach(cls => {
+    const clsDate = new Date(cls.fecha + 'T00:00:00');
+    const isAvailable = clsDate <= today;
+    if(isAvailable) availableCount++;
+
+    const item = document.createElement('div');
+    item.className = 'tl-item ' + (isAvailable ? 'available' : 'future');
+
+    const dateStr = clsDate.toLocaleDateString('es-CL',{day:'numeric',month:'long',year:'numeric'});
+    const statusTxt = isAvailable ? '✅ Disponible' : '🔒 Próximamente';
+
+    // Determinar badge class según nivel
+    let badgeClass = 'badge-num';
+    if(cls.nivel.includes('Álgebra') || cls.nivel.includes('funciones')) badgeClass = 'badge-alg';
+    else if(cls.nivel.includes('Geometría')) badgeClass = 'badge-geo';
+    else if(cls.nivel.includes('Probabilidad') || cls.nivel.includes('Estadística')) badgeClass = 'badge-prob';
+
+    const actionsHtml = isAvailable
+      ? `<a class="tl-btn tl-btn-class" href="C${cls.id}.html">📖 Ir a la Clase</a>
+         <a class="tl-btn tl-btn-ex" href="E${cls.id}.html">✏️ Ejercicios</a>`
+      : `<span class="tl-btn tl-btn-disabled">📖 Ir a la Clase</span>
+         <span class="tl-btn tl-btn-disabled">✏️ Ejercicios</span>`;
+
+    item.innerHTML = `
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-date">📅 ${dateStr}</span>
+          <span class="tl-level-badge ${badgeClass}">${cls.nivel}</span>
+          <span class="tl-status">${statusTxt}</span>
+        </div>
+        <div class="tl-title">Clase ${cls.id} — ${cls.nombre}</div>
+        ${cls.descripcion ? `<div style="font-size:.78rem;color:var(--gray);margin-bottom:10px;line-height:1.5;">${cls.descripcion}</div>` : ''}
+        <div class="tl-actions">${actionsHtml}</div>
+      </div>`;
+
+    tl.appendChild(item);
+  });
+
+  // Upcoming placeholder
+  const upcoming = document.createElement('div');
+  upcoming.className = 'tl-item future';
+  upcoming.innerHTML = `
+    <div class="tl-dot"></div>
+    <div class="tl-upcoming">
+      <div class="icon">📐</div>
+      Nuevas clases serán publicadas<br>próximamente. ¡Sigue practicando!
+    </div>`;
+  tl.appendChild(upcoming);
+
+  // Update stat
+  document.getElementById('stat-clases').textContent = availableCount;
+}
+
+// ═══════════════════════════════════════════════════
+//  TOGGLE LEVEL BLOCKS
+// ═══════════════════════════════════════════════════
+function toggleBlock(id){
+  const block = document.getElementById(id);
+  block.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════
+renderTimeline();
+</script>
+</body>
+</html>

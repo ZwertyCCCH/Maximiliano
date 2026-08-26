@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matemáticas – Ejercicios: Proporciones Directas e Inversas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- KaTeX CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+
+<style>
+:root{
+  --primary:#1a2a4a;
+  --primary2:#1e3a6a;
+  --primary3:#1a4a7a;
+  --math-blue:#1a5a8a;
+  --math-blue2:#2a7aaa;
+  --gold:#d4a84a;
+  --gold2:#e8c86a;
+  --white:#ffffff;
+  --light:#f0f4f8;
+  --lighter:#f7f9fc;
+  --green:#1a7a4a;
+  --green2:#e8f7ef;
+  --green3:#0f5c37;
+  --red:#b02a2a;
+  --red2:#fde8e8;
+  --gray:#5a6a7a;
+  --border:#d0dce8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:linear-gradient(160deg,var(--primary) 0%,var(--primary2) 40%,var(--primary3) 100%);
+  min-height:100vh;color:#1a2a3a;
+}
+
+/* ── TOP BAR ── */
+#topbar{
+  position:sticky;top:0;z-index:200;
+  background:var(--primary);border-bottom:3px solid var(--gold);
+  padding:12px 24px;display:flex;align-items:center;gap:14px;
+}
+#topbar .logo{font-size:1.6rem;}
+#topbar h1{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.25rem;font-weight:700;flex:1;
+}
+#topbar h1 span{color:var(--gold);}
+#score-pill{
+  background:rgba(212,168,74,.15);border:1px solid var(--gold);
+  color:var(--gold2);font-family:'JetBrains Mono',monospace;
+  font-size:.8rem;padding:5px 14px;border-radius:20px;white-space:nowrap;
+}
+#section-indicator{
+  background:rgba(212,168,74,.1);border:1px solid var(--gold);
+  color:var(--gold2);font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;padding:4px 12px;border-radius:20px;white-space:nowrap;
+}
+
+/* ── PROGRESS BAR ── */
+#prog-wrap{background:rgba(255,255,255,.08);height:6px;}
+#prog-fill{height:100%;background:var(--gold);transition:width .4s;width:0%;}
+
+/* ── MAIN ── */
+#main{max-width:820px;margin:0 auto;padding:28px 20px 120px;}
+
+/* ── INTRO CARD ── */
+#intro-card{
+  background:var(--white);border-radius:20px;padding:36px 40px;
+  text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.25);
+  animation:fadeUp .5s ease forwards;
+}
+#intro-card .anchor{font-size:3rem;margin-bottom:12px;}
+#intro-card h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--primary);margin-bottom:10px;}
+#intro-card p{color:var(--gray);font-size:1rem;line-height:1.7;margin-bottom:24px;}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;}
+.tag{
+  background:var(--light);border:1px solid var(--border);border-radius:20px;
+  padding:4px 14px;font-size:.82rem;color:var(--primary);font-weight:600;
+}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  border:none;cursor:pointer;border-radius:10px;font-family:'Source Sans 3',sans-serif;
+  font-weight:700;font-size:.95rem;padding:11px 24px;transition:all .2s;
+}
+.btn-gold{background:var(--gold);color:var(--primary);}
+.btn-gold:hover{background:var(--gold2);transform:scale(1.03);}
+.btn-sky{background:var(--math-blue);color:var(--white);}
+.btn-sky:hover{background:var(--math-blue2);transform:scale(1.03);}
+.btn-green{background:var(--green);color:var(--white);}
+.btn-green:hover{background:var(--green3);transform:scale(1.03);}
+.btn-outline{background:transparent;border:2px solid var(--gold);color:var(--gold);}
+.btn-outline:hover{background:rgba(212,168,74,.12);}
+
+/* ── SECTION HEADERS ── */
+.section-header{
+  background:linear-gradient(135deg,var(--primary2),var(--math-blue));
+  border-radius:12px;padding:14px 20px;margin-bottom:18px;
+  display:flex;align-items:center;gap:12px;border-left:4px solid var(--gold);
+}
+.section-header .num{
+  font-family:'Playfair Display',serif;color:var(--gold);
+  font-size:1.8rem;font-weight:900;line-height:1;
+}
+.section-header .info{flex:1;}
+.section-header .info h3{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.1rem;font-weight:700;
+}
+.section-header .info p{
+  color:#a0b8d0;font-size:.8rem;margin-top:2px;
+}
+.section-header .count{
+  color:var(--gold2);font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;background:rgba(212,168,74,.15);
+  padding:4px 12px;border-radius:12px;border:1px solid rgba(212,168,74,.3);
+}
+
+/* ── QUESTION CARDS ── */
+#questions-wrap{display:none;flex-direction:column;gap:20px;}
+.q-card{
+  background:var(--white);border-radius:16px;padding:22px 26px;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  border-left:5px solid var(--border);
+  transition:border-color .2s;
+  animation:fadeUp .4s ease both;
+}
+.q-card.answered-correct{border-left-color:var(--green);}
+.q-card.answered-wrong{border-left-color:var(--red);}
+.q-card.answered-skip{border-left-color:var(--gold);}
+
+.q-num{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  color:var(--gray);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase;
+}
+.q-text{
+  font-size:1rem;font-weight:600;color:var(--primary);line-height:1.8;margin-bottom:14px;
+}
+.q-text .katex{font-size:1.05rem;}
+
+/* options (sección 1) */
+.options{display:flex;flex-direction:column;gap:8px;}
+.opt{
+  display:flex;align-items:center;gap:12px;
+  border:2px solid var(--border);border-radius:10px;
+  padding:10px 14px;cursor:pointer;transition:all .18s;
+  background:var(--light);user-select:none;
+}
+.opt:hover:not(.locked){border-color:var(--math-blue);background:#e8f0fc;}
+.opt.selected{border-color:var(--math-blue);background:#dbe8ff;}
+.opt.correct{border-color:var(--green);background:var(--green2);}
+.opt.wrong{border-color:var(--red);background:var(--red2);}
+.opt.locked{cursor:default;}
+.opt-letter{
+  width:26px;height:26px;border-radius:50%;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;
+  color:var(--gray);flex-shrink:0;transition:all .18s;background:var(--white);
+}
+.opt.selected .opt-letter{border-color:var(--math-blue);color:var(--math-blue);background:#dbe8ff;}
+.opt.correct .opt-letter{border-color:var(--green);color:var(--green);background:var(--green2);}
+.opt.wrong .opt-letter{border-color:var(--red);color:var(--red);background:var(--red2);}
+.opt-text{font-size:.93rem;color:#1a2a3a;line-height:1.4;}
+.opt-text .katex{font-size:.95rem;}
+
+/* input (sección 2) */
+.input-group{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.input-group label{font-weight:600;color:var(--primary);font-size:.95rem;}
+.input-group input{
+  border:2px solid var(--border);border-radius:8px;
+  padding:8px 14px;font-size:.95rem;font-family:'JetBrains Mono',monospace;
+  width:140px;transition:border-color .2s;background:var(--lighter);
+}
+.input-group input:focus{outline:none;border-color:var(--math-blue);}
+.input-group input:disabled{background:var(--light);cursor:not-allowed;}
+.input-group .input-feedback{font-weight:700;font-size:.9rem;}
+
+/* feedback */
+.q-feedback{display:none;margin-top:10px;font-size:.88rem;font-weight:600;padding:7px 12px;border-radius:8px;}
+.q-feedback.correct{display:flex;align-items:center;gap:6px;color:var(--green);background:var(--green2);}
+.q-feedback.wrong{display:flex;align-items:center;gap:6px;color:var(--red);background:var(--red2);}
+.q-feedback.skip{display:flex;align-items:center;gap:6px;color:#7a6a00;background:#fff8e0;}
+
+/* ── SUBMIT BAR ── */
+#submit-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--primary);border-top:2px solid var(--gold);
+  padding:10px 24px;display:flex;align-items:center;gap:14px;
+  justify-content:space-between;
+}
+#answered-count{color:#a0b8d0;font-family:'JetBrains Mono',monospace;font-size:.8rem;}
+
+/* ── RESULTS ── */
+#results-wrap{display:none;animation:fadeUp .5s ease forwards;}
+#results-card{
+  background:var(--white);border-radius:20px;padding:36px 40px;
+  box-shadow:0 12px 40px rgba(0,0,0,.25);margin-bottom:28px;text-align:center;
+}
+.score-ring{
+  width:140px;height:140px;border-radius:50%;margin:0 auto 20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  border:8px solid var(--gold);background:var(--light);
+  transition:border-color .4s;
+}
+.score-ring .score-num{font-size:2.8rem;font-weight:900;color:var(--primary);line-height:1;}
+.score-ring .score-of{font-size:.9rem;color:var(--gray);}
+.score-ring .grade-num{font-size:1.4rem;font-weight:700;color:var(--primary);margin-top:4px;}
+#result-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--primary);margin-bottom:8px;}
+#result-msg{color:var(--gray);font-size:1rem;line-height:1.6;margin-bottom:24px;}
+.result-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+.stat-box{background:var(--light);border-radius:12px;padding:12px 22px;text-align:center;border:1px solid var(--border);}
+.stat-box .sv{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
+.stat-box .sl{font-size:.78rem;color:var(--gray);margin-top:2px;}
+.stat-box.ok .sv{color:var(--green);}
+.stat-box.err .sv{color:var(--red);}
+.stat-box.skip .sv{color:var(--gold);}
+.stat-box.grade .sv{color:var(--math-blue);}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+
+/* review section */
+#review-wrap{display:flex;flex-direction:column;gap:16px;}
+.review-title{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.3rem;font-weight:700;margin-bottom:6px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  #main{padding:16px 12px 100px;}
+  #intro-card,#results-card{padding:24px 18px;}
+  .result-actions{flex-direction:column;}
+  .btn{justify-content:center;}
+  #topbar h1{font-size:1rem;}
+  #score-pill{font-size:.65rem;padding:4px 10px;}
+  .input-group input{width:100px;}
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="logo">📊</span>
+  <h1>Ejercicios — <span>Proporciones Directas e Inversas</span></h1>
+  <span id="section-indicator">Sección 1/2</span>
+  <div id="score-pill">14 preguntas · Sin límite de tiempo</div>
+</div>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+
+<div id="main">
+
+  <!-- INTRO -->
+  <div id="intro-card">
+    <div class="anchor">📊</div>
+    <h2>Proporciones Directas e Inversas — Práctica</h2>
+    <p>Este test consta de <strong>2 secciones</strong> con <strong>7 preguntas cada una</strong> (10 en total):</p>
+    <div class="tag-row">
+      <span class="tag">📝 Sección 1: Selección Múltiple</span>
+      <span class="tag">✏️ Sección 2: Desarrollo (Input)</span>
+    </div>
+    <button class="btn btn-gold" onclick="startTest()">🚀 Iniciar Test</button>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div id="questions-wrap"></div>
+
+  <!-- RESULTS -->
+  <div id="results-wrap">
+    <div id="results-card">
+      <div class="score-ring" id="score-ring">
+        <div class="score-num" id="r-score">0</div>
+        <div class="score-of" id="r-of">/ 14</div>
+        <div class="grade-num" id="r-grade">0.0</div>
+      </div>
+      <div id="result-title"></div>
+      <div id="result-msg"></div>
+      <div class="result-stats">
+        <div class="stat-box ok"><div class="sv" id="r-correct">0</div><div class="sl">✅ Correctas</div></div>
+        <div class="stat-box err"><div class="sv" id="r-wrong">0</div><div class="sl">❌ Incorrectas</div></div>
+        <div class="stat-box skip"><div class="sv" id="r-skip">0</div><div class="sl">⚪ Sin responder</div></div>
+        <div class="stat-box grade"><div class="sv" id="r-grade-display">0.0</div><div class="sl">📊 Nota (1–7)</div></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-gold" onclick="restartTest()">🔄 Nuevo Test</button>
+        <button class="btn btn-sky" onclick="window.location.href='index.html'">📖 Curso</button>
+        <button class="btn btn-green" onclick="window.location.href='C5.html'">🎓 Volver a la Clase</button>
+      </div>
+    </div>
+    <div class="review-title">📋 Revisión de Respuestas</div>
+    <div id="review-wrap"></div>
+  </div>
+
+</div>
+
+<!-- SUBMIT BAR -->
+<div id="submit-bar" style="display:none">
+  <div id="answered-count">Respondidas: 0 / 14</div>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-outline" onclick="window.location.href='C5.html'">← Clase</button>
+    <button class="btn btn-gold" onclick="submitTest()">Finalizar Test ✓</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  POOLS - CON NÚMEROS GRANDES (CENTENAS Y MILES)
+// ═══════════════════════════════════════════════════════════════
+
+// ─── SECCIÓN 1: SELECCIÓN MÚLTIPLE (70 preguntas) ───
+const POOL_MC = [
+  {q: 'Si 12 kg de manzanas cuestan $54.000, ¿cuánto cuestan 18 kg?', opts: ['$76.000', '$78.000', '$81.000', '$84.000'], ans: 2},
+  {q: '15 obreros construyen un muro en 24 días. ¿Cuánto demoran 9 obreros?', opts: ['36 días', '38 días', '40 días', '42 días'], ans: 2},
+  {q: 'Un auto a 85 km/h tarda 6 horas. ¿Cuánto tarda a 102 km/h?', opts: ['4 horas', '4,5 horas', '5 horas', '5,5 horas'], ans: 2},
+  {q: '8 cajas contienen 720 botellas. ¿Cuántas botellas hay en 14 cajas?', opts: ['1.140', '1.200', '1.260', '1.320'], ans: 2},
+  {q: '6 grifos llenan un estanque en 15 horas. ¿Cuánto demoran 10 grifos?', opts: ['7 horas', '8 horas', '9 horas', '10 horas'], ans: 2},
+  {q: 'Si 25 lápices cuestan $18.750, ¿cuánto cuestan 40 lápices?', opts: ['$28.000', '$29.000', '$30.000', '$31.000'], ans: 2},
+  {q: '8 personas hacen un trabajo en 18 días. ¿Cuánto demoran 12 personas?', opts: ['10 días', '11 días', '12 días', '13 días'], ans: 2},
+  {q: 'Un tren a 120 km/h tarda 5 horas. ¿Cuánto tarda a 150 km/h?', opts: ['3 horas', '3,5 horas', '4 horas', '4,5 horas'], ans: 2},
+  {q: 'Si 15 kg de pan cuestan $37.500, ¿cuánto cuestan 24 kg?', opts: ['$55.000', '$57.000', '$59.000', '$60.000'], ans: 3},
+  {q: '18 obreros construyen una casa en 20 días. ¿Cuánto demoran 12 obreros?', opts: ['25 días', '27 días', '30 días', '32 días'], ans: 2},
+  {q: 'Un ciclista a 22 km/h tarda 9 horas. ¿Cuánto tarda a 33 km/h?', opts: ['5 horas', '5,5 horas', '6 horas', '6,5 horas'], ans: 2},
+  {q: '5 cajas contienen 450 huevos. ¿Cuántos huevos hay en 12 cajas?', opts: ['1.040', '1.060', '1.080', '1.100'], ans: 2},
+  {q: 'Si 14 libros cuestan $84.000, ¿cuánto cuestan 9 libros?', opts: ['$50.000', '$52.000', '$54.000', '$56.000'], ans: 2},
+  {q: '10 trabajadores pintan una casa en 12 días. ¿Cuánto demoran 8 trabajadores?', opts: ['13 días', '14 días', '15 días', '16 días'], ans: 2},
+  {q: 'Un auto a 65 km/h tarda 8 horas. ¿Cuánto tarda a 104 km/h?', opts: ['4 horas', '4,5 horas', '5 horas', '5,5 horas'], ans: 2},
+  {q: '9 bolsas contienen 675 naranjas. ¿Cuántas naranjas hay en 16 bolsas?', opts: ['1.100', '1.150', '1.200', '1.250'], ans: 2},
+  {q: 'Si 20 kg de arroz cuestan $64.000, ¿cuánto cuestan 35 kg?', opts: ['$108.000', '$110.000', '$112.000', '$115.000'], ans: 2},
+  {q: '24 obreros construyen un puente en 15 días. ¿Cuánto demoran 18 obreros?', opts: ['18 días', '19 días', '20 días', '21 días'], ans: 2},
+  {q: 'Un barco a 25 nudos tarda 12 horas. ¿Cuánto tarda a 30 nudos?', opts: ['8 horas', '9 horas', '10 horas', '11 horas'], ans: 2},
+  {q: '6 cajas contienen 384 galletas. ¿Cuántas galletas hay en 15 cajas?', opts: ['920', '940', '960', '980'], ans: 2},
+  {q: 'Si 18 m de tela cuestan $135.000, ¿cuánto cuestan 12 m?', opts: ['$86.000', '$88.000', '$90.000', '$92.000'], ans: 2},
+  {q: '5 personas comen 35 panes. ¿Cuántos panes comen 12 personas?', opts: ['80', '82', '84', '86'], ans: 2},
+  {q: 'Un auto a 55 km/h tarda 9 horas. ¿Cuánto tarda a 99 km/h?', opts: ['4 horas', '4,5 horas', '5 horas', '5,5 horas'], ans: 2},
+  {q: '10 botellas contienen 12 litros de agua. ¿Cuántos litros hay en 25 botellas?', opts: ['28', '29', '30', '31'], ans: 2},
+  {q: 'Si 6 obreros hacen un trabajo en 25 días, ¿cuánto demoran 15 obreros?', opts: ['8 días', '9 días', '10 días', '11 días'], ans: 2},
+  {q: 'Un avión a 750 km/h tarda 4 horas. ¿Cuánto tarda a 600 km/h?', opts: ['4 horas', '4,5 horas', '5 horas', '5,5 horas'], ans: 2},
+  {q: '9 kg de naranjas cuestan $11.700. ¿Cuánto cuestan 21 kg?', opts: ['$26.000', '$26.500', '$27.000', '$27.300'], ans: 3},
+  {q: '8 máquinas producen 960 piezas en 6 horas. ¿Cuánto demoran 12 máquinas?', opts: ['3 horas', '3,5 horas', '4 horas', '4,5 horas'], ans: 2},
+  {q: 'Un tren a 140 km/h tarda 4 horas. ¿Cuánto tarda a 175 km/h?', opts: ['2,8 horas', '3 horas', '3,2 horas', '3,5 horas'], ans: 2},
+  {q: '7 kg de queso cuestan $63.000. ¿Cuánto cuestan 13 kg?', opts: ['$113.000', '$115.000', '$117.000', '$119.000'], ans: 2},
+  {q: '12 personas hacen un trabajo en 16 días. ¿Cuánto demoran 8 personas?', opts: ['20 días', '22 días', '24 días', '26 días'], ans: 2},
+  {q: 'Un auto a 80 km/h tarda 3 horas. ¿Cuánto tarda a 96 km/h?', opts: ['2 horas', '2,2 horas', '2,4 horas', '2,5 horas'], ans: 2},
+  {q: '7 bolsas contienen 91 kilos. ¿Cuántos kilos hay en 16 bolsas?', opts: ['200', '204', '208', '212'], ans: 2},
+  {q: 'Si 15 m de cable cuestan $18.000, ¿cuánto cuestan 28 m?', opts: ['$32.000', '$32.500', '$33.000', '$33.600'], ans: 3},
+  {q: '20 obreros construyen un muro en 9 días. ¿Cuánto demoran 12 obreros?', opts: ['13 días', '14 días', '15 días', '16 días'], ans: 2},
+  {q: 'Un auto a 48 km/h tarda 10 horas. ¿Cuánto tarda a 60 km/h?', opts: ['6 horas', '6,5 horas', '7 horas', '8 horas'], ans: 2},
+  {q: '4 cajas contienen 300 lápices. ¿Cuántos lápices hay en 15 cajas?', opts: ['1.100', '1.125', '1.150', '1.175'], ans: 1},
+  {q: 'Si 24 kg de papas cuestan $48.000, ¿cuánto cuestan 15 kg?', opts: ['$28.000', '$29.000', '$30.000', '$31.000'], ans: 2},
+  {q: '8 personas hacen un trabajo en 15 días. ¿Cuánto demoran 20 personas?', opts: ['4 días', '5 días', '6 días', '7 días'], ans: 2},
+  {q: 'Un tren a 110 km/h tarda 3 horas. ¿Cuánto tarda a 165 km/h?', opts: ['1,5 horas', '2 horas', '2,5 horas', '3 horas'], ans: 1},
+  {q: '6 cajas contienen 420 bombones. ¿Cuántos bombones hay en 11 cajas?', opts: ['700', '720', '740', '770'], ans: 3},
+  {q: 'Si 21 m de tela cuestan $105.000, ¿cuánto cuestan 14 m?', opts: ['$65.000', '$68.000', '$70.000', '$72.000'], ans: 2},
+  {q: '5 grifos llenan un estanque en 18 horas. ¿Cuánto demoran 9 grifos?', opts: ['8 horas', '9 horas', '10 horas', '11 horas'], ans: 2},
+  {q: 'Un auto a 72 km/h tarda 5 horas. ¿Cuánto tarda a 90 km/h?', opts: ['3 horas', '3,5 horas', '4 horas', '4,5 horas'], ans: 2},
+  {q: '3 kg de nueces cuestan $24.000. ¿Cuánto cuestan 11 kg?', opts: ['$84.000', '$85.000', '$86.000', '$88.000'], ans: 3},
+  {q: '18 obreros construyen una casa en 15 días. ¿Cuánto demoran 10 obreros?', opts: ['24 días', '25 días', '26 días', '27 días'], ans: 2},
+  {q: 'Un ciclista a 30 km/h tarda 8 horas. ¿Cuánto tarda a 48 km/h?', opts: ['4 horas', '4,5 horas', '5 horas', '5,5 horas'], ans: 2},
+  {q: '12 botellas contienen 18 litros. ¿Cuántos litros hay en 20 botellas?', opts: ['28', '29', '30', '31'], ans: 2},
+  {q: 'Si 8 kg de café cuestan $56.000, ¿cuánto cuestan 14 kg?', opts: ['$92.000', '$94.000', '$96.000', '$98.000'], ans: 3},
+  {q: '15 personas hacen un trabajo en 8 días. ¿Cuánto demoran 24 personas?', opts: ['4 días', '4,5 días', '5 días', '5,5 días'], ans: 2},
+  {q: 'Un auto a 78 km/h tarda 4 horas. ¿Cuánto tarda a 104 km/h?', opts: ['2,5 horas', '3 horas', '3,5 horas', '4 horas'], ans: 1},
+  {q: '5 cajas contienen 135 manzanas. ¿Cuántas manzanas hay en 16 cajas?', opts: ['400', '416', '432', '448'], ans: 2},
+  {q: 'Si 22 kg de harina cuestan $44.000, ¿cuánto cuestan 35 kg?', opts: ['$66.000', '$68.000', '$70.000', '$72.000'], ans: 2},
+  {q: '8 obreros demoran 30 días en construir un muro. ¿Cuánto demoran 12 obreros?', opts: ['18 días', '19 días', '20 días', '21 días'], ans: 2},
+  {q: 'Un tren a 180 km/h tarda 3 horas. ¿Cuánto tarda a 120 km/h?', opts: ['3,5 horas', '4 horas', '4,5 horas', '5 horas'], ans: 2},
+  {q: '6 kg de cebollas cuestan $8.400. ¿Cuánto cuestan 17 kg?', opts: ['$22.800', '$23.000', '$23.200', '$23.800'], ans: 3},
+  {q: '12 personas hacen un trabajo en 6 días. ¿Cuánto demoran 9 personas?', opts: ['6 días', '7 días', '8 días', '9 días'], ans: 2},
+  {q: 'Un auto a 95 km/h tarda 4 horas. ¿Cuánto tarda a 114 km/h?', opts: ['2,5 horas', '2,83 horas', '3 horas', '3,33 horas'], ans: 1},
+  {q: '10 cajas contienen 450 galletas. ¿Cuántas galletas hay en 24 cajas?', opts: ['1.040', '1.060', '1.080', '1.100'], ans: 2},
+  {q: 'Si 30 m de tela cuestan $120.000, ¿cuánto cuestan 18 m?', opts: ['$68.000', '$70.000', '$72.000', '$75.000'], ans: 2},
+  {q: '4 trabajadores demoran 36 días en hacer un trabajo. ¿Cuánto demoran 12 trabajadores?', opts: ['10 días', '11 días', '12 días', '13 días'], ans: 2},
+  {q: 'Un ciclista a 16 km/h tarda 15 horas. ¿Cuánto tarda a 24 km/h?', opts: ['8 horas', '9 horas', '10 horas', '11 horas'], ans: 2},
+  {q: '8 kg de tomates cuestan $14.400. ¿Cuánto cuestan 22 kg?', opts: ['$37.000', '$38.000', '$39.000', '$39.600'], ans: 3},
+  {q: '10 obreros demoran 18 días en construir un puente. ¿Cuánto demoran 6 obreros?', opts: ['26 días', '28 días', '30 días', '32 días'], ans: 2},
+  {q: 'Un auto a 68 km/h tarda 3 horas. ¿Cuánto tarda a 102 km/h?', opts: ['1,5 horas', '2 horas', '2,5 horas', '3 horas'], ans: 1},
+  {q: '5 botellas contienen 4 litros. ¿Cuántos litros hay en 17 botellas?', opts: ['12,5', '13', '13,5', '13,6'], ans: 3},
+  {q: 'Si 16 kg de queso cuestan $96.000, ¿cuánto cuestan 11 kg?', opts: ['$62.000', '$64.000', '$66.000', '$68.000'], ans: 2},
+  {q: '14 personas hacen un trabajo en 9 días. ¿Cuánto demoran 21 personas?', opts: ['4 días', '5 días', '6 días', '7 dias'], ans: 2},
+  {q: 'Un auto a 84 km/h tarda 5 horas. ¿Cuánto tarda a 105 km/h?', opts: ['3 horas', '3,5 horas', '4 horas', '4,5 horas'], ans: 2},
+  {q: '7 cajas contienen 280 huevos. ¿Cuántos huevos hay en 18 cajas?', opts: ['700', '710', '720', '730'], ans: 2},
+  {q: 'Si 27 kg de harina cuestan $67.500, ¿cuánto cuestan 16 kg?', opts: ['$38.000', '$39.000', '$40.000', '$41.000'], ans: 2},
+  {q: '6 obreros demoran 28 días en construir un muro. ¿Cuánto demoran 8 obreros?', opts: ['18 días', '19 días', '20 días', '21 días'], ans: 2},
+  {q: 'Un tren a 160 km/h tarda 3 horas. ¿Cuánto tarda a 128 km/h?', opts: ['3,2 horas', '3,5 horas', '3,75 horas', '4 horas'], ans: 2},
+  {q: '12 kg de papas cuestan $16.800. ¿Cuánto cuestan 25 kg?', opts: ['$33.000', '$34.000', '$35.000', '$36.000'], ans: 2}
+];
+
+// ─── SECCIÓN 2: DESARROLLO CON INPUT (70 preguntas - DIRECTAS E INVERSAS) ───
+const POOL_INPUT = [
+  // ─── PROPORCIONALIDAD DIRECTA (35 preguntas) ───
+  {q: 'Si 18 kg de arroz cuestan $54.000, ¿cuánto cuestan 27 kg?', ans: 81000, type: 'directa'},
+  {q: 'Si 24 lápices cuestan $36.000, ¿cuánto cuestan 40 lápices?', ans: 60000, type: 'directa'},
+  {q: 'Si 15 kg de pan cuestan $45.000, ¿cuánto cuestan 25 kg?', ans: 75000, type: 'directa'},
+  {q: 'Si 12 libros cuestan $72.000, ¿cuánto cuestan 8 libros?', ans: 48000, type: 'directa'},
+  {q: 'Si 25 kg de arroz cuestan $75.000, ¿cuánto cuestan 40 kg?', ans: 120000, type: 'directa'},
+  {q: 'Si 16 m de tela cuestan $96.000, ¿cuánto cuestan 12 m?', ans: 72000, type: 'directa'},
+  {q: 'Si 8 kg de queso cuestan $72.000, ¿cuánto cuestan 14 kg?', ans: 126000, type: 'directa'},
+  {q: 'Si 20 m de cable cuestan $30.000, ¿cuánto cuestan 32 m?', ans: 48000, type: 'directa'},
+  {q: 'Si 18 kg de papas cuestan $36.000, ¿cuánto cuestan 25 kg?', ans: 50000, type: 'directa'},
+  {q: 'Si 24 m de tela cuestan $144.000, ¿cuánto cuestan 16 m?', ans: 96000, type: 'directa'},
+  {q: 'Si 4 kg de nueces cuestan $32.000, ¿cuánto cuestan 13 kg?', ans: 104000, type: 'directa'},
+  {q: 'Si 10 kg de café cuestan $70.000, ¿cuánto cuestan 16 kg?', ans: 112000, type: 'directa'},
+  {q: 'Si 30 kg de harina cuestan $75.000, ¿cuánto cuestan 48 kg?', ans: 120000, type: 'directa'},
+  {q: 'Si 9 kg de cebollas cuestan $12.600, ¿cuánto cuestan 25 kg?', ans: 35000, type: 'directa'},
+  {q: 'Si 45 m de tela cuestan $180.000, ¿cuánto cuestan 25 m?', ans: 100000, type: 'directa'},
+  {q: 'Si 14 kg de tomates cuestan $25.200, ¿cuánto cuestan 22 kg?', ans: 39600, type: 'directa'},
+  {q: 'Si 20 kg de queso cuestan $120.000, ¿cuánto cuestan 15 kg?', ans: 90000, type: 'directa'},
+  {q: '6 cajas contienen 540 huevos. ¿Cuántos huevos hay en 15 cajas?', ans: 1350, type: 'directa'},
+  {q: '4 cajas contienen 320 bombones. ¿Cuántos bombones hay en 13 cajas?', ans: 1040, type: 'directa'},
+  {q: '7 bolsas contienen 560 naranjas. ¿Cuántas naranjas hay en 13 bolsas?', ans: 1040, type: 'directa'},
+  {q: '5 cajas contienen 300 galletas. ¿Cuántas galletas hay en 18 cajas?', ans: 1080, type: 'directa'},
+  {q: '6 personas comen 42 panes. ¿Cuántos panes comen 10 personas?', ans: 70, type: 'directa'},
+  {q: '8 botellas contienen 10 litros. ¿Cuántos litros hay en 20 botellas?', ans: 25, type: 'directa'},
+  {q: '12 kg de naranjas cuestan $18.000. ¿Cuánto cuestan 28 kg?', ans: 42000, type: 'directa'},
+  {q: '6 bolsas contienen 78 kilos. ¿Cuántos kilos hay en 15 bolsas?', ans: 195, type: 'directa'},
+  {q: '5 cajas contienen 375 lápices. ¿Cuántos lápices hay en 14 cajas?', ans: 1050, type: 'directa'},
+  {q: '9 cajas contienen 630 bombones. ¿Cuántos bombones hay en 16 cajas?', ans: 1120, type: 'directa'},
+  {q: '11 botellas contienen 16,5 litros. ¿Cuántos litros hay en 18 botellas?', ans: 27, type: 'directa'},
+  {q: '7 cajas contienen 252 manzanas. ¿Cuántas manzanas hay en 19 cajas?', ans: 684, type: 'directa'},
+  {q: '12 cajas contienen 540 galletas. ¿Cuántas galletas hay en 28 cajas?', ans: 1260, type: 'directa'},
+  {q: '6 botellas contienen 4,8 litros. ¿Cuántos litros hay en 15 botellas?', ans: 12, type: 'directa'},
+  {q: '8 cajas contienen 320 huevos. ¿Cuántos huevos hay en 22 cajas?', ans: 880, type: 'directa'},
+  {q: 'Un auto a 80 km/h recorre 480 km. ¿Cuántos km recorre a 120 km/h en el mismo tiempo?', ans: 720, type: 'directa'},
+  {q: 'Un auto a 90 km/h recorre 630 km. ¿Cuántos km recorre a 135 km/h en el mismo tiempo?', ans: 945, type: 'directa'},
+  {q: 'Un auto a 100 km/h recorre 600 km. ¿Cuántos km recorre a 150 km/h en el mismo tiempo?', ans: 900, type: 'directa'},
+
+  // ─── PROPORCIONALIDAD INVERSA (35 preguntas) ───
+  {q: '15 obreros construyen un muro en 20 días. ¿Cuánto demoran 10 obreros?', ans: 30, type: 'inversa'},
+  {q: '8 grifos llenan un estanque en 12 horas. ¿Cuánto demoran 6 grifos?', ans: 16, type: 'inversa'},
+  {q: '9 personas hacen un trabajo en 16 días. ¿Cuánto demoran 12 personas?', ans: 12, type: 'inversa'},
+  {q: '20 obreros construyen una casa en 18 días. ¿Cuánto demoran 15 obreros?', ans: 24, type: 'inversa'},
+  {q: '8 trabajadores pintan una casa en 15 días. ¿Cuánto demoran 6 trabajadores?', ans: 20, type: 'inversa'},
+  {q: '30 obreros construyen un puente en 12 días. ¿Cuánto demoran 20 obreros?', ans: 18, type: 'inversa'},
+  {q: '5 obreros hacen un trabajo en 30 días, ¿cuánto demoran 12 obreros?', ans: 12.5, type: 'inversa'},
+  {q: '10 máquinas producen 1.200 piezas en 8 horas. ¿Cuánto demoran 15 máquinas?', ans: 5.333, type: 'inversa'},
+  {q: '15 personas hacen un trabajo en 12 días. ¿Cuánto demoran 9 personas?', ans: 20, type: 'inversa'},
+  {q: '24 obreros construyen un muro en 10 días. ¿Cuánto demoran 16 obreros?', ans: 15, type: 'inversa'},
+  {q: '10 personas hacen un trabajo en 18 días. ¿Cuánto demoran 15 personas?', ans: 12, type: 'inversa'},
+  {q: '6 grifos llenan un estanque en 15 horas. ¿Cuánto demoran 10 grifos?', ans: 9, type: 'inversa'},
+  {q: '21 obreros construyen una casa en 12 días. ¿Cuánto demoran 14 obreros?', ans: 18, type: 'inversa'},
+  {q: '18 personas hacen un trabajo en 10 días. ¿Cuánto demoran 30 personas?', ans: 6, type: 'inversa'},
+  {q: '12 obreros demoran 25 días en construir un muro. ¿Cuánto demoran 20 obreros?', ans: 15, type: 'inversa'},
+  {q: '15 personas hacen un trabajo en 8 días. ¿Cuánto demoran 12 personas?', ans: 10, type: 'inversa'},
+  {q: '5 trabajadores demoran 48 días en hacer un trabajo. ¿Cuánto demoran 15 trabajadores?', ans: 16, type: 'inversa'},
+  {q: '8 obreros demoran 24 días en construir un puente. ¿Cuánto demoran 6 obreros?', ans: 32, type: 'inversa'},
+  {q: '16 personas hacen un trabajo en 9 días. ¿Cuánto demoran 24 personas?', ans: 6, type: 'inversa'},
+  {q: 'Un auto a 80 km/h tarda 6 horas. ¿Cuánto tarda a 120 km/h?', ans: 4, type: 'inversa'},
+  {q: 'Un tren a 100 km/h tarda 6 horas. ¿Cuánto tarda a 150 km/h?', ans: 4, type: 'inversa'},
+  {q: 'Un auto a 60 km/h tarda 9 horas. ¿Cuánto tarda a 90 km/h?', ans: 6, type: 'inversa'},
+  {q: 'Un barco a 30 nudos tarda 10 horas. ¿Cuánto tarda a 50 nudos?', ans: 6, type: 'inversa'},
+  {q: 'Un auto a 72 km/h tarda 8 horas. ¿Cuánto tarda a 96 km/h?', ans: 6, type: 'inversa'},
+  {q: 'Un avión a 800 km/h tarda 5 horas. ¿Cuánto tarda a 500 km/h?', ans: 8, type: 'inversa'},
+  {q: 'Un tren a 150 km/h tarda 4 horas. ¿Cuánto tarda a 200 km/h?', ans: 3, type: 'inversa'},
+  {q: 'Un auto a 90 km/h tarda 3 horas. ¿Cuánto tarda a 135 km/h?', ans: 2, type: 'inversa'},
+  {q: 'Un auto a 56 km/h tarda 7 horas. ¿Cuánto tarda a 98 km/h?', ans: 4, type: 'inversa'},
+  {q: 'Un tren a 120 km/h tarda 5 horas. ¿Cuánto tarda a 180 km/h?', ans: 3.333, type: 'inversa'},
+  {q: 'Un auto a 84 km/h tarda 5 horas. ¿Cuánto tarda a 105 km/h?', ans: 4, type: 'inversa'},
+  {q: 'Un ciclista a 28 km/h tarda 9 horas. ¿Cuánto tarda a 42 km/h?', ans: 6, type: 'inversa'},
+  {q: 'Un auto a 70 km/h tarda 6 horas. ¿Cuánto tarda a 105 km/h?', ans: 4, type: 'inversa'},
+  {q: 'Un tren a 200 km/h tarda 3 horas. ¿Cuánto tarda a 150 km/h?', ans: 4, type: 'inversa'},
+  {q: 'Un auto a 110 km/h tarda 3 horas. ¿Cuánto tarda a 165 km/h?', ans: 2, type: 'inversa'},
+  {q: 'Un ciclista a 18 km/h tarda 12 horas. ¿Cuánto tarda a 27 km/h?', ans: 8, type: 'inversa'},
+  {q: 'Un auto a 76 km/h tarda 3 horas. ¿Cuánto tarda a 114 km/h?', ans: 2, type: 'inversa'},
+  {q: 'Un auto a 96 km/h tarda 5 horas. ¿Cuánto tarda a 120 km/h?', ans: 4, type: 'inversa'}
+];
+
+// ═══════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════
+
+const TOTAL = 14;
+const PER_SECTION = 7;
+
+let selectedMC = [];
+let selectedInput = [];
+let allQuestions = [];
+let userAns = [];
+let submitted = false;
+
+// ─── UTILS ───
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function sample(arr,n){return shuffle(arr).slice(0,n);}
+function letters(){return ['a','b','c','d'];}
+
+// ─── CALCULATE GRADE ───
+function calculateGrade(correctCount, total) {
+  const percentCorrect = correctCount / total;
+  if (percentCorrect <= 0.6) return 1 + (percentCorrect / 0.6) * 3;
+  else return 4 + ((percentCorrect - 0.6) / 0.4) * 3;
+}
+
+// ─── BUILD TEST ───
+function buildTest(){
+  const mcSample = sample(POOL_MC, PER_SECTION);
+  selectedMC = mcSample.map(q => {
+    const indices = [0,1,2,3];
+    const sIdx = shuffle(indices);
+    const newOpts = sIdx.map(i => q.opts[i]);
+    const newAns = sIdx.indexOf(q.ans);
+    return {type: 'mc', q: q.q, opts: newOpts, ansIdx: newAns};
+  });
+
+  const inputSample = sample(POOL_INPUT, PER_SECTION);
+  selectedInput = inputSample.map(q => {
+    return {type: 'input', q: q.q, ans: q.ans};
+  });
+
+  allQuestions = [
+    ...selectedMC.map((q, i) => ({...q, section: 1, idx: i})),
+    ...selectedInput.map((q, i) => ({...q, section: 2, idx: i}))
+  ];
+
+  userAns = Array(TOTAL).fill(null);
+}
+
+// ─── START ───
+function startTest(){
+  buildTest();
+  submitted = false;
+  document.getElementById('intro-card').style.display='none';
+  document.getElementById('results-wrap').style.display='none';
+  renderQuestions();
+  document.getElementById('questions-wrap').style.display='flex';
+  document.getElementById('submit-bar').style.display='flex';
+  updateProgress();
+  updateSectionIndicator();
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(document.getElementById('questions-wrap'), {
+      delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]
+    });
+  }
+}
+
+// ─── UPDATE SECTION INDICATOR ───
+function updateSectionIndicator(){
+  const answered = userAns.filter(v=>v!==null).length;
+  let section = 1;
+  if (answered >= PER_SECTION) section = 2;
+  document.getElementById('section-indicator').textContent = `Sección ${section}/2`;
+}
+
+// ─── RENDER QUESTIONS ───
+function renderQuestions(){
+  const wrap = document.getElementById('questions-wrap');
+  wrap.innerHTML='';
+
+  const sections = [
+    {num: 1, title: 'Selección Múltiple', desc: 'Selecciona la opción correcta para cada problema de proporciones.', start: 0, end: PER_SECTION},
+    {num: 2, title: 'Desarrollo con Input', desc: 'Resuelve cada problema y escribe tu respuesta numérica.', start: PER_SECTION, end: PER_SECTION*2}
+  ];
+
+  let qIndex = 0;
+  sections.forEach(sec => {
+    const header = document.createElement('div');
+    header.className = 'section-header';
+    header.innerHTML = `
+      <div class="num">${sec.num}</div>
+      <div class="info">
+        <h3>${sec.title}</h3>
+        <p>${sec.desc}</p>
+      </div>
+      <div class="count">Preguntas ${sec.start+1} - ${sec.end}</div>
+    `;
+    wrap.appendChild(header);
+
+    for (let i = sec.start; i < sec.end; i++) {
+      const q = allQuestions[i];
+      const card = document.createElement('div');
+      card.className = 'q-card';
+      card.id = `qcard-${i}`;
+      card.style.animationDelay = (qIndex * 0.03) + 's';
+
+      let content = '';
+      const qNum = i + 1;
+
+      if (q.type === 'mc') {
+        let optsHtml = '';
+        q.opts.forEach((opt, oi) => {
+          optsHtml += `
+            <div class="opt" id="opt-${i}-${oi}" onclick="selectOpt(${i},${oi})">
+              <div class="opt-letter">${letters()[oi]}</div>
+              <div class="opt-text">${opt}</div>
+            </div>`;
+        });
+        content = `
+          <div class="q-num">Pregunta ${qNum} · Sección ${q.section}</div>
+          <div class="q-text">${q.q}</div>
+          <div class="options">${optsHtml}</div>
+          <div class="q-feedback" id="qfb-${i}"></div>`;
+      } else if (q.type === 'input') {
+        content = `
+          <div class="q-num">Pregunta ${qNum} · Sección ${q.section}</div>
+          <div class="q-text">${q.q}</div>
+          <div class="input-group">
+            <label>Respuesta:</label>
+            <input type="number" id="input-${i}" onchange="updateInput(${i}, this.value)" step="any">
+            <span class="input-feedback" id="ifb-${i}"></span>
+          </div>
+          <div class="q-feedback" id="qfb-${i}"></div>`;
+      }
+
+      card.innerHTML = content;
+      wrap.appendChild(card);
+      qIndex++;
+    }
+  });
+
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(wrap, {
+      delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]
+    });
+  }
+}
+
+// ─── SELECT OPT (Sección 1) ───
+function selectOpt(qi, oi){
+  if(submitted) return;
+  if(userAns[qi] !== null){
+    const prev = userAns[qi];
+    document.getElementById(`opt-${qi}-${prev}`).classList.remove('selected');
+  }
+  userAns[qi] = oi;
+  document.getElementById(`opt-${qi}-${oi}`).classList.add('selected');
+  updateProgress();
+  updateSectionIndicator();
+}
+
+// ─── UPDATE INPUT (Sección 2) ───
+function updateInput(qi, val){
+  if(submitted) return;
+  const numVal = parseFloat(val);
+  if (!isNaN(numVal)) {
+    userAns[qi] = numVal;
+  } else {
+    userAns[qi] = null;
+  }
+  updateProgress();
+  updateSectionIndicator();
+}
+
+// ─── PROGRESS ───
+function updateProgress(){
+  const answered = userAns.filter(v=>v!==null).length;
+  document.getElementById('answered-count').textContent = `Respondidas: ${answered} / ${TOTAL}`;
+  document.getElementById('prog-fill').style.width = (answered/TOTAL*100)+'%';
+}
+
+// ─── SUBMIT ───
+function submitTest(){
+  submitted = true;
+  const answered = userAns.filter(v=>v!==null).length;
+  
+  if(answered < TOTAL){
+    const rem = TOTAL - answered;
+    if(!confirm(`Tienes ${rem} pregunta(s) sin responder. ¿Deseas finalizar igual?`)) return;
+  }
+
+  let correct = 0;
+  let wrong = 0;
+  let skipped = 0;
+
+  allQuestions.forEach((q, qi) => {
+    const card = document.getElementById(`qcard-${qi}`);
+    const fb = document.getElementById(`qfb-${qi}`);
+    const ans = userAns[qi];
+    
+    if (q.type === 'mc') {
+      const right = q.ansIdx;
+      q.opts.forEach((_, oi) => {
+        document.getElementById(`opt-${qi}-${oi}`).classList.add('locked');
+      });
+      
+      if (ans === null) {
+        skipped++;
+        document.getElementById(`opt-${qi}-${right}`).classList.add('correct');
+        card.classList.add('answered-skip');
+        fb.className = 'q-feedback skip';
+        fb.innerHTML = `⚪ Sin responder — la respuesta correcta era: <strong>${letters()[right]}) ${q.opts[right]}</strong>`;
+      } else if (ans === right) {
+        correct++;
+        document.getElementById(`opt-${qi}-${ans}`).classList.remove('selected');
+        document.getElementById(`opt-${qi}-${ans}`).classList.add('correct');
+        card.classList.add('answered-correct');
+        fb.className = 'q-feedback correct';
+        fb.innerHTML = `✅ ¡Correcto!`;
+      } else {
+        wrong++;
+        document.getElementById(`opt-${qi}-${ans}`).classList.remove('selected');
+        document.getElementById(`opt-${qi}-${ans}`).classList.add('wrong');
+        document.getElementById(`opt-${qi}-${right}`).classList.add('correct');
+        card.classList.add('answered-wrong');
+        fb.className = 'q-feedback wrong';
+        fb.innerHTML = `❌ Incorrecto — la respuesta correcta era: <strong>${letters()[right]}) ${q.opts[right]}</strong>`;
+      }
+    } else if (q.type === 'input') {
+      const input = document.getElementById(`input-${qi}`);
+      input.disabled = true;
+      const right = q.ans;
+      
+      if (ans === null) {
+        skipped++;
+        card.classList.add('answered-skip');
+        fb.className = 'q-feedback skip';
+        fb.innerHTML = `⚪ Sin responder — la respuesta correcta era: <strong>${right}</strong>`;
+      } else if (Math.abs(ans - right) < 0.001) {
+        correct++;
+        card.classList.add('answered-correct');
+        fb.className = 'q-feedback correct';
+        fb.innerHTML = `✅ ¡Correcto! (${right})`;
+      } else {
+        wrong++;
+        card.classList.add('answered-wrong');
+        fb.className = 'q-feedback wrong';
+        fb.innerHTML = `❌ Incorrecto — la respuesta correcta era: <strong>${right}</strong>`;
+      }
+    }
+  });
+
+  const grade = calculateGrade(correct, TOTAL);
+
+  document.getElementById('r-score').textContent = correct;
+  document.getElementById('r-of').textContent = '/ ' + TOTAL;
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent = wrong;
+  document.getElementById('r-skip').textContent = skipped;
+  document.getElementById('r-grade').textContent = grade.toFixed(1);
+  document.getElementById('r-grade-display').textContent = grade.toFixed(1);
+
+  let title, msg;
+  if(grade >= 6.0){title = '🏆 Excelente resultado!'; msg = 'Dominas las proporciones directas e inversas con solidez. ¡Sigue así!';}
+  else if(grade >= 5.0){title = '👍 ¡Buen trabajo!'; msg = 'Tienes una buena base. Repasa los temas donde fallaste para mejorar.';}
+  else if(grade >= 4.0){title = '📚 Aprobado'; msg = 'Vas por buen camino, pero necesitas repasar más la materia.';}
+  else{title = '💪 No te rindas'; msg = 'Revisa bien la clase C5 (Proporciones Directas e Inversas) y vuelve a intentarlo. ¡Puedes mejorar!';}
+
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-msg').textContent = msg;
+
+  const ring = document.getElementById('score-ring');
+  ring.style.borderColor = grade >= 5.0 ? 'var(--green)' : grade >= 4.0 ? 'var(--gold)' : 'var(--red)';
+
+  document.getElementById('submit-bar').style.display = 'none';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('results-wrap').style.display = 'block';
+  document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
+}
+
+// ─── RESTART ───
+function restartTest(){
+  document.getElementById('results-wrap').style.display = 'none';
+  document.getElementById('questions-wrap').style.display = 'none';
+  startTest();
+}
+
+// ─── KEYBOARD NAV ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !submitted) {
+    const answered = userAns.filter(v=>v!==null).length;
+    if (answered > 0) submitTest();
+  }
+});
+</script>
+</body>
+</html>
