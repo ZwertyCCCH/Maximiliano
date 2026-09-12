@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases de Inglés - 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Paleta idiomas - tonos verdes/teal profesionales */
+  --primary:#1a3a3a;
+  --primary2:#1e4a4a;
+  --primary3:#1a5a5a;
+  --accent:#2a8a7a;
+  --accent2:#3aaaa0;
+  --gold:#d4a84a;
+  --gold2:#e8c86a;
+  --gold3:rgba(42,138,122,.12);
+  --white:#ffffff;
+  --light:#f0f8f6;
+  --lighter:#f7fcfa;
+  --green:#1a7a4a;
+  --green2:#e8f7ef;
+  --green3:#0f5c37;
+  --gray:#5a7a7a;
+  --border:#d0e0dc;
+  --a1:#1a8a6a;
+  --a2:#0d7377;
+  --b1:#7a3a9a;
+  --b2:#a02020;
+  --eng-teal:#1a7a6a;
+  --eng-teal2:#2a9a8a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:var(--light);color:#1a3a3a;min-height:100vh;
+}
+
+/* ══ HERO ══ */
+#hero{
+  background:linear-gradient(150deg,var(--primary) 0%,var(--primary2) 55%,var(--primary3) 100%);
+  padding:0;position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(42,138,122,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+#hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);
+}
+
+.hero-inner{
+  max-width:1100px;margin:0 auto;padding:52px 28px 56px;
+  display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+}
+.hero-pretitle{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  color:var(--gold);letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.hero-pretitle::before{content:'';width:32px;height:2px;background:var(--gold);display:inline-block;}
+.hero-title{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.08;
+  margin-bottom:16px;
+}
+.hero-title span{color:var(--gold);}
+.hero-sub{
+  color:#a0c8c0;font-size:1rem;line-height:1.75;max-width:540px;margin-bottom:28px;
+}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.hero-tag{
+  background:rgba(255,255,255,.07);border:1px solid rgba(212,168,74,.3);
+  color:var(--gold2);padding:5px 14px;border-radius:20px;
+  font-size:.78rem;font-weight:600;letter-spacing:.04em;
+}
+.hero-badge{
+  background:rgba(255,255,255,.06);border:1px solid rgba(212,168,74,.25);
+  border-radius:20px;padding:28px 32px;text-align:center;
+  backdrop-filter:blur(4px);flex-shrink:0;
+}
+.hero-badge .anchor{font-size:3.2rem;margin-bottom:10px;}
+.hero-badge .badge-label{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;
+  color:var(--gold);letter-spacing:.12em;text-transform:uppercase;display:block;
+  margin-bottom:6px;
+}
+.hero-badge .badge-val{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.5rem;font-weight:700;
+}
+
+/* ══ MAIN LAYOUT ══ */
+#page{max-width:1100px;margin:0 auto;padding:40px 28px 80px;display:grid;grid-template-columns:1fr 340px;gap:36px;align-items:start;}
+
+/* ══ SECTION HEADERS ══ */
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.sec-header h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--primary);font-weight:700;}
+.sec-line{flex:1;height:2px;background:linear-gradient(90deg,var(--border),transparent);}
+.sec-icon{font-size:1.3rem;}
+
+/* ══ TEMARIO ══ */
+.level-block{
+  background:var(--white);border-radius:16px;margin-bottom:16px;
+  box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;
+  border:1px solid var(--border);
+}
+.level-head{
+  display:flex;align-items:center;gap:14px;padding:14px 20px;
+  border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .2s;user-select:none;
+}
+.level-head:hover{background:var(--lighter);}
+.level-badge{
+  width:40px;height:40px;border-radius:10px;display:flex;
+  align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1rem;color:var(--white);
+  flex-shrink:0;
+}
+.lvl-u1 .level-badge{background:var(--eng-teal);}
+.lvl-u2 .level-badge{background:var(--accent);}
+.lvl-u3 .level-badge{background:var(--b1);}
+.lvl-u4 .level-badge{background:var(--b2);}
+.level-head-text{flex:1;}
+.level-head-text h3{font-size:1rem;font-weight:700;color:var(--primary);}
+.level-head-text p{font-size:.8rem;color:var(--gray);margin-top:2px;}
+.level-toggle{color:var(--gray);font-size:.85rem;transition:transform .3s;}
+.level-block.open .level-toggle{transform:rotate(180deg);}
+
+.level-body{display:none;padding:16px 20px;}
+.level-block.open .level-body{display:block;}
+
+.sub-section{margin-bottom:14px;}
+.sub-section:last-child{margin-bottom:0;}
+.sub-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gray);margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.sub-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.topic-list{display:flex;flex-wrap:wrap;gap:6px;}
+.topic{
+  background:var(--light);border:1px solid var(--border);border-radius:8px;
+  padding:4px 11px;font-size:.82rem;color:#2a3a3a;
+}
+.lvl-u1 .topic{border-color:#a0d8cc;background:#e8f8f4;}
+.lvl-u2 .topic{border-color:#b0d8d0;background:#e8f4f0;}
+.lvl-u3 .topic{border-color:#d0c0e0;background:#f4ecfc;}
+.lvl-u4 .topic{border-color:#e0c0c0;background:#fcecec;}
+
+/* ══ SIDEBAR ══ */
+#sidebar{}
+
+/* ══ TIMELINE ══ */
+#timeline-wrap{
+  background:var(--white);border-radius:16px;border:1px solid var(--border);
+  box-shadow:0 2px 12px rgba(0,0,0,.07);overflow:hidden;
+}
+.timeline-header{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  padding:16px 20px;border-bottom:3px solid var(--gold);
+}
+.timeline-header h3{
+  font-family:'Playfair Display',serif;color:var(--white);font-size:1.05rem;
+  display:flex;align-items:center;gap:8px;
+}
+.timeline-header p{color:#a0c8c0;font-size:.78rem;margin-top:4px;}
+
+.timeline-body{padding:20px;}
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{
+  content:'';position:absolute;left:10px;top:8px;bottom:8px;
+  width:2px;background:linear-gradient(to bottom,var(--gold),var(--border));
+}
+
+.tl-item{position:relative;margin-bottom:24px;}
+.tl-item:last-child{margin-bottom:0;}
+
+.tl-dot{
+  position:absolute;left:-24px;top:10px;
+  width:16px;height:16px;border-radius:50%;border:3px solid var(--white);
+  box-shadow:0 0 0 2px var(--gold);background:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:.55rem;
+}
+.tl-item.future .tl-dot{background:var(--border);box-shadow:0 0 0 2px var(--border);}
+.tl-item.available .tl-dot{background:var(--green);box-shadow:0 0 0 2px var(--green);}
+
+.tl-card{
+  background:var(--lighter);border:1px solid var(--border);border-radius:12px;
+  padding:13px 15px;transition:box-shadow .2s;
+}
+.tl-item.available .tl-card{border-color:var(--green);background:var(--green2);}
+.tl-item.future .tl-card{opacity:.65;}
+
+.tl-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+.tl-date{
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gray);
+}
+.tl-level-badge{
+  font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:10px;color:var(--white);
+}
+.badge-u1{background:var(--eng-teal);}
+.badge-u2{background:var(--accent);}
+.badge-u3{background:var(--b1);}
+.badge-u4{background:var(--b2);}
+.tl-status{
+  margin-left:auto;font-size:.65rem;font-weight:700;
+  padding:2px 8px;border-radius:10px;
+}
+.tl-item.available .tl-status{background:var(--green2);color:var(--green3);border:1px solid var(--green);}
+.tl-item.future .tl-status{background:var(--light);color:var(--gray);border:1px solid var(--border);}
+
+.tl-title{font-weight:700;color:var(--primary);font-size:.92rem;margin-bottom:10px;line-height:1.4;}
+.tl-item.future .tl-title{color:var(--gray);}
+
+.tl-actions{display:flex;gap:7px;}
+.tl-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  border:none;cursor:pointer;border-radius:8px;
+  font-family:'Source Sans 3',sans-serif;font-weight:700;
+  font-size:.78rem;padding:6px 13px;transition:all .18s;text-decoration:none;
+}
+.tl-btn-class{background:var(--eng-teal);color:var(--white);}
+.tl-btn-class:hover{background:var(--eng-teal2);}
+.tl-btn-ex{background:var(--green);color:var(--white);}
+.tl-btn-ex:hover{background:var(--green3);}
+.tl-btn-disabled{background:var(--border);color:var(--gray);cursor:not-allowed;pointer-events:none;}
+
+.tl-upcoming{
+  text-align:center;padding:18px 10px;
+  color:var(--gray);font-size:.82rem;line-height:1.6;
+}
+.tl-upcoming .icon{font-size:1.6rem;margin-bottom:8px;opacity:.5;}
+
+/* ══ FOOTER ══ */
+footer{
+  text-align:center;padding:24px;
+  color:var(--gray);font-size:.78rem;border-top:1px solid var(--border);
+  background:var(--white);
+}
+footer strong{color:var(--primary);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:800px){
+  .hero-inner{grid-template-columns:1fr;}.hero-badge{display:none;}
+  #page{grid-template-columns:1fr;}
+  #sidebar{order:-1;}
+}
+@media(max-width:500px){
+  .hero-inner{padding:36px 18px 40px;}
+  #page{padding:24px 16px 60px;}
+}
+/* ══ BOTÓN VOLVER ══ */
+.back-btn-wrap{
+  text-align:center;
+  margin-top:12px;
+}
+.btn-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--primary);
+  color:var(--white);
+  border:none;
+  border-radius:12px;
+  padding:12px 28px;
+  font-family:'Source Sans 3',sans-serif;
+  font-weight:700;
+  font-size:.95rem;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all .2s ease;
+}
+.btn-back:hover{
+  background:var(--primary2);
+  transform:scale(1.03);
+}
+.btn-back .arrow{font-size:1.2rem;}
+/* ══ ANIMATIONS ══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner{animation:fadeUp .5s ease forwards;}
+#temario{animation:fadeUp .5s .1s ease both;}
+#sidebar{animation:fadeUp .5s .2s ease both;}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-pretitle">Idioma Extranjero</div>
+      <h1 class="hero-title">Clases de<br><span>Inglés</span></h1>
+      <p class="hero-sub">Clases personalizadas para los requerimientos de Maximiliano.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">🗣️ Speaking</span>
+        <span class="hero-tag">📖 Reading</span>
+        <span class="hero-tag">✍️ Writing</span>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="anchor">🇬🇧</div>
+      <span class="badge-label">Preparación de Pruebas</span>
+      <div class="badge-val">Inglés</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE BODY ══ -->
+   <!-- Botón volver al inicio (raíz) -->
+  <div class="back-btn-wrap">
+    <a href="../../index.html" class="btn-back">
+      <span class="arrow">🏠</span> Volver al Inicio
+    </a>
+  </div>
+<div id="page">
+
+  <!-- ── LEFT: TEMARIO ── -->
+  <div id="temario">
+    <div class="sec-header">
+      <span class="sec-icon">📚</span>
+      <h2>Temario Inglés</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- UNIDAD 1 -->
+    <div class="level-block lvl-u1 open" id="block-u1">
+      <div class="level-head" onclick="toggleBlock('block-u1')">
+        <div class="level-badge">1</div>
+        <div class="level-head-text">
+          <h3>Feelings and opinions</h3>
+          <p>Personal information · Feelings · Opinions · Adverbs · Time expressions</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">👤 Giving personal information</div>
+          <div class="topic-list">
+            <span class="topic">Vocabulario y estructuras de presentación personal, rutinas diarias y preferencias</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">😊 Expressing feelings</div>
+          <div class="topic-list">
+            <span class="topic">Vocabulario de emociones y sentimientos (happy, angry, etc.)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">💬 Stating and justifying opinions</div>
+          <div class="topic-list">
+            <span class="topic">Expresar puntos de vista y argumentar de forma simple (I think that..., I like... because...)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🔤 Adverbs of degree and manner</div>
+          <div class="topic-list">
+            <span class="topic">Modificar acciones y estados para indicar cómo y en qué grado ocurren (quietly, softly, etc.)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">⏰ Time expressions</div>
+          <div class="topic-list">
+            <span class="topic">Uso de indicadores temporales para situar acontecimientos (yesterday, every week, etc.)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIDAD 2 -->
+    <div class="level-block lvl-u2" id="block-u2">
+      <div class="level-head" onclick="toggleBlock('block-u2')">
+        <div class="level-badge">2</div>
+        <div class="level-head-text">
+          <h3>Healthy habits</h3>
+          <p>Daily routines · Sequencing · Healthy eating · Recommendations · Biographies</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">🏃 Describing daily routines</div>
+          <div class="topic-list">
+            <span class="topic">Estructuras en presente simple para describir hábitos de vida saludable, alimentación e higiene</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🔢 Sequencing actions</div>
+          <div class="topic-list">
+            <span class="topic">Uso de conectores de secuencia para organizar eventos (first, second, etc.)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🥗 Healthy eating and typical food</div>
+          <div class="topic-list">
+            <span class="topic">Alimentos, dietas saludables y comida típica</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">💡 Giving recommendations and advice</div>
+          <div class="topic-list">
+            <span class="topic">Expresar sugerencias y consejos orientados a la salud mediante el modal should / shouldn't (We should practice... / We shouldn't eat...)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📖 Comprehending famous biographies</div>
+          <div class="topic-list">
+            <span class="topic">Lectura comprensiva de biografías de personajes destacados de la ciencia, el deporte o la historia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIDAD 3 -->
+    <div class="level-block lvl-u3" id="block-u3">
+      <div class="level-head" onclick="toggleBlock('block-u3')">
+        <div class="level-badge">3</div>
+        <div class="level-head-text">
+          <h3>Sports and free time activities</h3>
+          <p>Sports vocabulary · Obligation · Present and past routines · Past progressive</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">⚽ Sports and hobbies vocabulary</div>
+          <div class="topic-list">
+            <span class="topic">Clasificación de deportes individuales y en equipo</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🚫 Expressing obligation and prohibition</div>
+          <div class="topic-list">
+            <span class="topic">Instrucciones y advertencias en el ámbito deportivo empleando must y mustn't (You must practice / You mustn't ride without a helmet)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🔄 Present and past routines</div>
+          <div class="topic-list">
+            <span class="topic">Preguntas y respuestas cortas sobre rutinas presentes y pasadas en el deporte (Does/did he play? Yes/No, he does/doesn't/did/didn't)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">⏳ Past progressive (while)</div>
+          <div class="topic-list">
+            <span class="topic">Describir acciones en desarrollo simultáneo en el pasado (while he was cycling, she was listening to music)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">⚡ Past progressive interrupted (when)</div>
+          <div class="topic-list">
+            <span class="topic">Expresar interrupciones de eventos pasados utilizando when (I was playing football in the yard when it started to rain)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIDAD 4 -->
+    <div class="level-block lvl-u4" id="block-u4">
+      <div class="level-head" onclick="toggleBlock('block-u4')">
+        <div class="level-badge">4</div>
+        <div class="level-head-text">
+          <h3>Green issues</h3>
+          <p>Environment · Conditionals · Connectors · Word formation · Action plans</p>
+        </div>
+        <span class="level-toggle">▼</span>
+      </div>
+      <div class="level-body">
+        <div class="sub-section">
+          <div class="sub-label">🌍 Environmental and green vocabulary</div>
+          <div class="topic-list">
+            <span class="topic">Palabras clave del cuidado ecológico (reciclaje, contaminación, etc.)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🔗 Cause and effect (if conditional)</div>
+          <div class="topic-list">
+            <span class="topic">Estructurar relaciones de causa y efecto simples en presente (Ice melts if you heat it)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🧩 Connecting arguments</div>
+          <div class="topic-list">
+            <span class="topic">Uso de conectores lógicos de adición, contraste y causa en discursos breves (or, etc.)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">🔤 Prefixes and suffixes (word formation)</div>
+          <div class="topic-list">
+            <span class="topic">Identificación de palabras derivadas por medio del prefijo un- y de los sufijos -ing, -ly (unhappy, etc.)</span>
+          </div>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">📝 Action plans for the environment</div>
+          <div class="topic-list">
+            <span class="topic">Redacción de propuestas de solución o folletos informativos multimodales para el cuidado local con ayuda de tecnologías</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#temario -->
+
+  <!-- ── RIGHT: SIDEBAR ── -->
+  <div id="sidebar">
+
+    <!-- Timeline -->
+    <div id="timeline-wrap">
+      <div class="timeline-header">
+        <h3>📅 Calendario de Clases</h3>
+        <p>Las clases disponibles se actualizan automáticamente por fecha</p>
+      </div>
+      <div class="timeline-body">
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+
+  </div><!-- /#sidebar -->
+
+</div><!-- /#page -->
+
+<footer>
+  <strong>Preparación de Inglés — 2026</strong><br>
+  Basado en el temario de Mineduc año 2026
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  CLASES — 1 clase: Free Time Activities & Past Continuous
+// ═══════════════════════════════════════════════════
+const CLASES = [
+  {
+    id: 1,
+    fecha: "2026-09-12",
+    nombre: "Free Time Activities & Past Continuous",
+    nivel: "Sports and free time activities",
+    descripcion: "Vocabulario de deportes y actividades de tiempo libre. Past progressive: acciones simultáneas (while) e interrupciones (when)."
+  },
+];
+
+// ═══════════════════════════════════════════════════
+//  RENDER TIMELINE
+// ═══════════════════════════════════════════════════
+function renderTimeline(){
+  const tl = document.getElementById('timeline');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  tl.innerHTML = '';
+
+  CLASES.forEach(cls => {
+    const clsDate = new Date(cls.fecha + 'T00:00:00');
+    const isAvailable = clsDate <= today;
+
+    const item = document.createElement('div');
+    item.className = 'tl-item ' + (isAvailable ? 'available' : 'future');
+
+    const dateStr = clsDate.toLocaleDateString('es-CL',{day:'numeric',month:'long',year:'numeric'});
+    const statusTxt = isAvailable ? '✅ Disponible' : '🔒 Próximamente';
+
+    // Determinar badge class según nivel
+    let badgeClass = 'badge-u3';
+    if(cls.nivel.includes('Feelings') || cls.nivel.includes('opinions')) badgeClass = 'badge-u1';
+    else if(cls.nivel.includes('Healthy') || cls.nivel.includes('habits')) badgeClass = 'badge-u2';
+    else if(cls.nivel.includes('Sports') || cls.nivel.includes('free time')) badgeClass = 'badge-u3';
+    else if(cls.nivel.includes('Green') || cls.nivel.includes('issues')) badgeClass = 'badge-u4';
+
+    const actionsHtml = isAvailable
+      ? `<a class="tl-btn tl-btn-class" href="C${cls.id}.html">📖 Ir a la Clase</a>
+         <a class="tl-btn tl-btn-ex" href="E${cls.id}.html">✏️ Ejercicios</a>`
+      : `<span class="tl-btn tl-btn-disabled">📖 Ir a la Clase</span>
+         <span class="tl-btn tl-btn-disabled">✏️ Ejercicios</span>`;
+
+    item.innerHTML = `
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-meta">
+          <span class="tl-date">📅 ${dateStr}</span>
+          <span class="tl-level-badge ${badgeClass}">${cls.nivel}</span>
+          <span class="tl-status">${statusTxt}</span>
+        </div>
+        <div class="tl-title">Clase ${cls.id} — ${cls.nombre}</div>
+        ${cls.descripcion ? `<div style="font-size:.78rem;color:var(--gray);margin-bottom:10px;line-height:1.5;">${cls.descripcion}</div>` : ''}
+        <div class="tl-actions">${actionsHtml}</div>
+      </div>`;
+
+    tl.appendChild(item);
+  });
+
+  // Upcoming placeholder
+  const upcoming = document.createElement('div');
+  upcoming.className = 'tl-item future';
+  upcoming.innerHTML = `
+    <div class="tl-dot"></div>
+    <div class="tl-upcoming">
+      <div class="icon">📘</div>
+      Nuevas clases serán publicadas<br>próximamente. ¡Sigue practicando!
+    </div>`;
+  tl.appendChild(upcoming);
+}
+
+// ═══════════════════════════════════════════════════
+//  TOGGLE LEVEL BLOCKS
+// ═══════════════════════════════════════════════════
+function toggleBlock(id){
+  const block = document.getElementById(id);
+  block.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════
+renderTimeline();
+</script>
+</body>
+</html>

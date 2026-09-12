@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inglés – Past Continuous & Free Time Activities</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+  <style>
+    :root {
+      --primary: #1a2a4a;
+      --primary2: #1e3a6a;
+      --primary3: #1a4a7a;
+      --accent: #2a7a8a;
+      --accent2: #3a9aaa;
+      --gold: #d4a84a;
+      --gold2: #e8c86a;
+      --gold3: rgba(42,122,138,.12);
+      --math-blue: #1a5a8a;
+      --math-blue2: #2a7aaa;
+      --white: #ffffff;
+      --light: #f0f4f8;
+      --lighter: #f7f9fc;
+      --green: #1a7a4a;
+      --green2: #e8f7ef;
+      --green3: #0f5c37;
+      --red: #b02a2a;
+      --gray: #5a6a7a;
+      --border: #d0dce8;
+      --teal: #0d7377;
+      --purple: #6a3a9a;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; overflow:hidden; font-family:'Source Sans 3', sans-serif; background:var(--primary); }
+    body { display:flex; flex-direction:column; }
+    #app { position:relative; width:100%; height:calc(100vh - 62px); overflow:hidden; }
+
+    .slide {
+      position:absolute; inset:0; display:none; flex-direction:column;
+      background:var(--light); overflow:hidden;
+    }
+    .slide.active { display:flex; }
+    .s-body { padding-bottom:16px !important; }
+
+    .s-header {
+      background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 60%,var(--math-blue) 100%);
+      padding:18px 40px 14px; display:flex; align-items:center; gap:16px; flex-shrink:0;
+      border-bottom:3px solid var(--gold);
+    }
+    .s-header .badge {
+      background:var(--gold); color:var(--primary); font-family:'Playfair Display',serif;
+      font-size:.7rem; font-weight:700; padding:4px 10px; border-radius:20px;
+      letter-spacing:.08em; white-space:nowrap;
+    }
+    .s-header h2 {
+      font-family:'Playfair Display',serif; color:var(--white); font-size:1.5rem;
+      font-weight:700; letter-spacing:-.01em; flex:1;
+    }
+    .s-num { color:var(--gold); font-family:'JetBrains Mono',monospace; font-size:.85rem; margin-left:auto; white-space:nowrap; }
+
+    .s-body { flex:1; overflow-y:auto; padding:24px 40px 20px; display:flex; flex-direction:column; gap:16px; }
+    .s-body::-webkit-scrollbar { width:5px; }
+    .s-body::-webkit-scrollbar-thumb { background:var(--accent2); border-radius:4px; }
+
+    .intro-text { font-size:1.05rem; color:#2d3a4a; line-height:1.7; }
+    .intro-text strong { color:var(--math-blue); }
+
+    .sec-label {
+      font-size:.65rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--gray); margin-bottom:4px;
+    }
+
+    .rule-box {
+      background:var(--white); border-radius:12px; padding:14px 18px;
+      border-left:4px solid var(--math-blue); box-shadow:0 2px 8px rgba(0,0,0,.06);
+    }
+    .rule-box.gold { border-left-color:var(--gold); }
+    .rule-box.green { border-left-color:var(--green); }
+    .rule-box.red { border-left-color:var(--red); }
+    .rule-box.purple { border-left-color:var(--purple); }
+    .rule-box .title { font-weight:700; color:var(--primary); margin-bottom:6px; font-size:1rem; }
+    .rule-box p, .rule-box li { font-size:.95rem; color:#2d3a4a; line-height:1.6; }
+    .rule-box ul { padding-left:18px; }
+
+    .formula-box {
+      background:var(--primary); color:var(--gold2); border-radius:10px;
+      padding:14px 18px; text-align:center; overflow-x:auto;
+    }
+    .formula-box .katex-display { margin:0; }
+    .formula-box .comment { color:#6b8ab0; font-size:.8rem; display:block; margin-top:4px; }
+
+    .ex {
+      background:linear-gradient(135deg,#e8f0fc,#dce8f8);
+      border-radius:10px; padding:10px 16px;
+      font-size:.9rem; color:#0a2040;
+      border-left:3px solid var(--math-blue2);
+      line-height:1.8;
+    }
+    .ex .highlight { background:#fef3c7; padding:1px 4px; border-radius:3px; }
+
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+
+    .tip {
+      background:#fffbec; border:1px solid #f0d080; border-radius:10px;
+      padding:10px 16px; display:flex; gap:10px; align-items:flex-start;
+    }
+    .tip .icon { font-size:1.2rem; margin-top:1px; }
+    .tip .content { font-size:.88rem; color:#4a3800; line-height:1.5; }
+    .tip .content strong { color:#7a5500; }
+
+    .prop-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .prop-card {
+      background:var(--white); border-radius:10px; padding:12px 14px;
+      border:1px solid var(--border);
+    }
+    .prop-card .name { font-weight:700; color:var(--math-blue); font-size:.9rem; }
+    .prop-card .formula-box { background:var(--lighter); color:var(--primary); padding:8px 12px; margin-top:6px; border-radius:6px; }
+    .prop-card .example { font-size:.82rem; color:var(--gray); margin-top:4px; }
+
+    .math-table { width:100%; border-collapse:collapse; border-radius:10px; overflow:hidden; }
+    .math-table th { background:var(--primary); color:var(--gold); padding:8px 14px; text-align:left; font-size:.85rem; }
+    .math-table td { background:var(--white); padding:8px 14px; font-size:.88rem; border-bottom:1px solid #eef1f5; }
+    .math-table tr:nth-child(even) td { background:#f8fafc; }
+
+    .step-list { counter-reset:step; }
+    .step-item {
+      display:flex; gap:12px; align-items:flex-start;
+      padding:8px 12px; background:var(--white); border-radius:8px;
+      margin-bottom:8px; border:1px solid var(--border);
+    }
+    .step-item:last-child { margin-bottom:0; }
+    .step-num {
+      background:var(--math-blue); color:var(--white); border-radius:50%;
+      width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:.75rem; flex-shrink:0;
+    }
+    .step-content { font-size:.9rem; color:#2d3a4a; line-height:1.5; flex:1; }
+
+    /* Vocab chips */
+    .vocab-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .vocab-card {
+      background:var(--white); border-radius:10px; padding:12px 14px;
+      border:1px solid var(--border); border-top:3px solid var(--math-blue);
+    }
+    .vocab-card .cat { font-weight:700; color:var(--math-blue); font-size:.85rem; margin-bottom:6px; }
+    .vocab-card ul { list-style:none; padding:0; }
+    .vocab-card li { font-size:.88rem; color:#2d3a4a; line-height:1.7; }
+    .vocab-card li::before { content:"• "; color:var(--gold); font-weight:700; }
+    .vocab-card .en { font-weight:600; color:var(--primary); }
+    .vocab-card .es { color:var(--gray); font-size:.8rem; }
+
+    /* Cover */
+    .cover-slide {
+      background:linear-gradient(145deg,var(--primary) 0%,var(--primary2) 50%,var(--primary3) 100%) !important;
+      justify-content:center; align-items:center; text-align:center; gap:0 !important; padding:0 !important;
+    }
+    .cover-slide .cover-inner { display:flex; flex-direction:column; align-items:center; gap:18px; padding:40px; }
+    .cover-logo {
+      width:80px; height:80px; background:var(--gold); border-radius:50%; display:flex;
+      align-items:center; justify-content:center; font-size:2.2rem;
+    }
+    .cover-title {
+      font-family:'Playfair Display',serif; color:var(--white); font-size:2.8rem;
+      font-weight:900; line-height:1.1; max-width:700px;
+    }
+    .cover-title span { color:var(--gold); }
+    .cover-sub { color:#a0b8d0; font-size:1.05rem; max-width:550px; line-height:1.6; }
+    .cover-tags { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+    .cover-tag {
+      background:rgba(212,168,74,.15); border:1px solid var(--gold);
+      color:var(--gold2); padding:5px 14px; border-radius:20px; font-size:.8rem; font-weight:600;
+    }
+    .cover-level {
+      background:var(--gold); color:var(--primary); font-family:'Playfair Display',serif;
+      font-size:1.1rem; font-weight:700; padding:8px 24px; border-radius:30px; letter-spacing:.05em;
+    }
+
+    /* Nav */
+    #nav {
+      position:fixed; bottom:0; left:0; right:0;
+      background:var(--primary); border-top:2px solid var(--gold);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 16px; z-index:100; gap:8px; height:62px;
+    }
+    .nav-btn {
+      background:var(--math-blue); color:var(--white); border:none; cursor:pointer;
+      border-radius:8px; padding:7px 14px; font-family:'Source Sans 3',sans-serif;
+      font-weight:700; font-size:.82rem; transition:background .2s,transform .1s; display:flex; align-items:center; gap:5px; white-space:nowrap;
+    }
+    .nav-btn:hover { background:var(--math-blue2); transform:scale(1.03); }
+    .nav-btn:disabled { background:#2a3a50; color:#4a5a70; cursor:not-allowed; transform:none; }
+    .nav-btn.gold { background:var(--gold); color:var(--primary); }
+    .nav-btn.gold:hover { background:var(--gold2); }
+    .nav-btn.green-btn { background:var(--green); color:var(--white); }
+    .nav-btn.green-btn:hover { background:var(--green3); }
+    #progress-wrap { flex:1; max-width:300px; }
+    #progress-bar { height:5px; background:#1a2e4a; border-radius:4px; overflow:hidden; }
+    #progress-fill { height:100%; background:var(--gold); transition:width .4s; }
+    #slide-label { color:#a0b8d0; font-size:.72rem; text-align:center; margin-top:4px; font-family:'JetBrains Mono',monospace; }
+    .nav-links { display:flex; gap:6px; }
+
+    @keyframes slideIn { from{opacity:0; transform:translateX(30px)} to{opacity:1; transform:translateX(0)} }
+    @keyframes slideOut { from{opacity:1; transform:translateX(0)} to{opacity:0; transform:translateX(-30px)} }
+    .slide.active { animation:slideIn .3s ease forwards; }
+
+    @media(max-width:700px) {
+      .s-header { padding:12px 16px; }
+      .s-header h2 { font-size:1.1rem; }
+      .s-body { padding:14px 16px; }
+      .two-col, .three-col, .prop-grid, .vocab-grid { grid-template-columns:1fr; }
+      .cover-title { font-size:2rem; }
+    }
+
+    /* KaTeX dark background fix */
+    .formula-box .katex .mathnormal { color:var(--gold2); }
+    .formula-box .katex .mord { color:var(--gold2); }
+    .formula-box .katex .mbin { color:#8ab0d0; }
+    .formula-box .katex .mrel { color:#8ab0d0; }
+    .formula-box .katex .mopen, .formula-box .katex .mclose { color:#8ab0d0; }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══ SLIDE 1 – COVER ═══ -->
+  <div class="slide cover-slide active" id="s1">
+    <div class="cover-inner">
+      <div class="cover-logo">🎧</div>
+      <div class="cover-level">Past Continuous</div>
+      <div class="cover-title">Past Continuous<br><span>& Free Time Activities</span></div>
+      <div class="cover-sub">Preparación Prueba de Inglés · Vocabulario de tiempo libre + gramática del pasado continuo.<br>Estructura, formas, usos y ejercicios tipo.</div>
+      <div class="cover-tags">
+        <span class="cover-tag">🎯 Free Time Activities</span>
+        <span class="cover-tag">⏳ Past Continuous</span>
+        <span class="cover-tag">🔀 When / While</span>
+        <span class="cover-tag">📝 Ejercicios</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 2 – FREE TIME VOCABULARY ═══ -->
+  <div class="slide" id="s2">
+    <div class="s-header">
+      <span class="badge">VOCABULARY</span>
+      <h2>Free Time Activities</h2>
+      <span class="s-num">02 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Estas son las <strong>actividades de tiempo libre</strong> más comunes. Las usarás para describir qué estabas haciendo en un momento del pasado.</p>
+      <div class="vocab-grid">
+        <div class="vocab-card">
+          <div class="cat">⚽ Sports & Movement</div>
+          <ul>
+            <li><span class="en">playing football</span> <span class="es">– jugando fútbol</span></li>
+            <li><span class="en">playing basketball</span> <span class="es">– jugando básquetbol</span></li>
+            <li><span class="en">playing tennis</span> <span class="es">– jugando tenis</span></li>
+            <li><span class="en">swimming</span> <span class="es">– nadando</span></li>
+            <li><span class="en">riding a bike</span> <span class="es">– andando en bici</span></li>
+            <li><span class="en">skateboarding</span> <span class="es">– andando en skate</span></li>
+            <li><span class="en">running / jogging</span> <span class="es">– corriendo / trotando</span></li>
+            <li><span class="en">dancing</span> <span class="es">– bailando</span></li>
+          </ul>
+        </div>
+        <div class="vocab-card">
+          <div class="cat">🏠 At Home / Relax</div>
+          <ul>
+            <li><span class="en">watching TV</span> <span class="es">– viendo televisión</span></li>
+            <li><span class="en">watching a film / series</span> <span class="es">– viendo una película / serie</span></li>
+            <li><span class="en">reading a book / magazine</span> <span class="es">– leyendo un libro / revista</span></li>
+            <li><span class="en">listening to music</span> <span class="es">– escuchando música</span></li>
+            <li><span class="en">playing video games</span> <span class="es">– jugando videojuegos</span></li>
+            <li><span class="en">drawing / painting</span> <span class="es">– dibujando / pintando</span></li>
+            <li><span class="en">cooking / baking</span> <span class="es">– cocinando / horneando</span></li>
+            <li><span class="en">chatting with friends online</span> <span class="es">– chateando con amigos</span></li>
+          </ul>
+        </div>
+        <div class="vocab-card">
+          <div class="cat">👥 Social / Outdoors</div>
+          <ul>
+            <li><span class="en">hanging out with friends</span> <span class="es">– pasando el rato con amigos</span></li>
+            <li><span class="en">going to the cinema</span> <span class="es">– yendo al cine</span></li>
+            <li><span class="en">going to the park</span> <span class="es">– yendo al parque</span></li>
+            <li><span class="en">going to the mall</span> <span class="es">– yendo al centro comercial</span></li>
+            <li><span class="en">having a picnic</span> <span class="es">– haciendo un picnic</span></li>
+            <li><span class="en">shopping</span> <span class="es">– comprando / de compras</span></li>
+          </ul>
+        </div>
+        <div class="vocab-card">
+          <div class="cat">🕐 Time Expressions</div>
+          <ul>
+            <li><span class="en">last night</span> <span class="es">– anoche</span></li>
+            <li><span class="en">yesterday at 8 pm</span> <span class="es">– ayer a las 8 pm</span></li>
+            <li><span class="en">at that moment</span> <span class="es">– en ese momento</span></li>
+            <li><span class="en">while</span> <span class="es">– mientras</span></li>
+            <li><span class="en">when</span> <span class="es">– cuando</span></li>
+            <li><span class="en">at 7 o'clock last night</span> <span class="es">– a las 7 anoche</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">💡</span><div class="content"><strong>Tip:</strong> Memoriza las actividades con su verbo en <strong>-ing</strong> (playing, watching, swimming…). Así las usarás directamente en el past continuous.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 3 – ESTRUCTURA ═══ -->
+  <div class="slide" id="s3">
+    <div class="s-header">
+      <span class="badge">GRAMMAR</span>
+      <h2>Estructura del Past Continuous</h2>
+      <span class="s-num">03 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">El <strong>past continuous</strong> se forma con el auxiliar <strong>was / were</strong> + el verbo principal en <strong>-ing</strong>.</p>
+      <div class="formula-box">
+        $$\text{Subject} + \underbrace{\text{was/were}}_{\text{auxiliar}} + \underbrace{\text{verb-ing}}_{\text{verbo principal}}$$
+        <span class="comment">Ej: I was playing video games.</span>
+      </div>
+      <div class="two-col">
+        <div class="rule-box">
+          <div class="title">👤 Was</div>
+          <p>Se usa con <strong>I, He, She, It</strong>.</p>
+          <div class="ex" style="margin-top:6px;">
+            I <strong>was</strong> watching TV.<br>
+            She <strong>was</strong> reading a book.
+          </div>
+        </div>
+        <div class="rule-box gold">
+          <div class="title">👥 Were</div>
+          <p>Se usa con <strong>You, We, They</strong>.</p>
+          <div class="ex" style="margin-top:6px;">
+            They <strong>were</strong> playing football.<br>
+            We <strong>were</strong> listening to music.
+          </div>
+        </div>
+      </div>
+      <div class="math-table">
+        <table class="math-table">
+          <thead>
+            <tr><th>Subject</th><th>Auxiliar</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>I</td><td>was</td><td>I <strong>was swimming</strong></td></tr>
+            <tr><td>He / She / It</td><td>was</td><td>She <strong>was dancing</strong></td></tr>
+            <tr><td>You</td><td>were</td><td>You <strong>were running</strong></td></tr>
+            <tr><td>We</td><td>were</td><td>We <strong>were cooking</strong></td></tr>
+            <tr><td>They</td><td>were</td><td>They <strong>were hanging out</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip"><span class="icon">⚠️</span><div class="content"><strong>¡Cuidado!</strong> No olvides el <strong>-ing</strong> en el verbo principal. <em>I was play</em> ❌ → <em>I was playing</em> ✅</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 4 – FORMAS ═══ -->
+  <div class="slide" id="s4">
+    <div class="s-header">
+      <span class="badge">GRAMMAR</span>
+      <h2>Formas: afirmativa, negativa e interrogativa</h2>
+      <span class="s-num">04 / 12</span>
+    </div>
+    <div class="s-body">
+      <div class="prop-grid">
+        <div class="prop-card">
+          <div class="name">✅ Afirmativa</div>
+          <div class="formula-box">$$\text{S} + \text{was/were} + \text{V-ing}$$</div>
+          <div class="example">I <strong>was watching</strong> TV.<br>They <strong>were playing</strong> football.</div>
+        </div>
+        <div class="prop-card">
+          <div class="name">❌ Negativa</div>
+          <div class="formula-box">$$\text{S} + \text{wasn't/weren't} + \text{V-ing}$$</div>
+          <div class="example">I <strong>wasn't watching</strong> TV.<br>They <strong>weren't playing</strong> football.</div>
+        </div>
+        <div class="prop-card">
+          <div class="name">❓ Yes/No Questions</div>
+          <div class="formula-box">$$\text{Was/Were} + \text{S} + \text{V-ing}?$$</div>
+          <div class="example"><strong>Was</strong> she <strong>reading</strong>?<br>Yes, she was. / No, she wasn't.</div>
+        </div>
+        <div class="prop-card">
+          <div class="name">❓ WH- Questions</div>
+          <div class="formula-box">$$\text{WH-} + \text{was/were} + \text{S} + \text{V-ing}?$$</div>
+          <div class="example"><strong>What were</strong> you <strong>doing</strong> at 8 pm?<br><strong>Where was</strong> he <strong>going</strong>?</div>
+        </div>
+      </div>
+      <div class="ex">
+        ✅ I <strong>was playing</strong> video games. &nbsp;|&nbsp; ❌ She <strong>wasn't listening</strong> to music. &nbsp;|&nbsp; ❓ <strong>Were</strong> they <strong>swimming</strong>?
+      </div>
+      <div class="tip"><span class="icon">📌</span><div class="content">En preguntas, el auxiliar <strong>was/were</strong> va <strong>antes</strong> del sujeto. En negativas, se agrega <strong>not</strong> (wasn't / weren't).</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 5 – SPELLING -ING ═══ -->
+  <div class="slide" id="s5">
+    <div class="s-header">
+      <span class="badge">SPELLING</span>
+      <h2>Reglas de ortografía del -ING</h2>
+      <span class="s-num">05 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Antes de escribir el verbo en <strong>-ing</strong>, revisa estas reglas. Son clave para no perder puntos en la prueba.</p>
+      <div class="math-table">
+        <table class="math-table">
+          <thead>
+            <tr><th>Regla</th><th>Ejemplo</th><th>Excepción / Nota</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Verbo normal + <strong>-ing</strong></td><td>play → <strong>playing</strong></td><td>watch → watching</td></tr>
+            <tr><td>Termina en <strong>-e</strong> → se quita la <strong>e</strong></td><td>write → <strong>writing</strong></td><td>make → making</td></tr>
+            <tr><td>Termina en <strong>consonante-vocal-consonante</strong> (1 sílaba) → dobla consonante</td><td>run → <strong>running</strong></td><td>swim → swimming</td></tr>
+            <tr><td>Termina en <strong>-ie</strong> → se cambia por <strong>y</strong></td><td>lie → <strong>lying</strong></td><td>die → dying</td></tr>
+            <tr><td>Termina en <strong>-ee</strong> → solo agrega <strong>-ing</strong></td><td>see → <strong>seeing</strong></td><td>agree → agreeing</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="two-col">
+        <div class="rule-box green">
+          <div class="title">✅ Correcto</div>
+          <div class="ex" style="font-size:.85rem;">
+            run → <strong>running</strong><br>
+            swim → <strong>swimming</strong><br>
+            write → <strong>writing</strong><br>
+            read → <strong>reading</strong>
+          </div>
+        </div>
+        <div class="rule-box red">
+          <div class="title">❌ Incorrecto</div>
+          <div class="ex" style="font-size:.85rem;">
+            runing ❌<br>
+            swiming ❌<br>
+            writeing ❌<br>
+            readding ❌
+          </div>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">💡</span><div class="content"><strong>Truco:</strong> Si el verbo es corto y termina en CVC (consonante-vocal-consonante), <strong>dobla</strong> la última consonante: <em>run → running</em>, <em>sit → sitting</em>, <em>swim → swimming</em>.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 6 – USOS ═══ -->
+  <div class="slide" id="s6">
+    <div class="s-header">
+      <span class="badge">USES</span>
+      <h2>¿Cuándo se usa el Past Continuous?</h2>
+      <span class="s-num">06 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Se usa para acciones que estaban <strong>en progreso</strong> en un momento específico del pasado. No indica que la acción terminó, sino que <strong>estaba ocurriendo</strong>.</p>
+      <div class="two-col">
+        <div class="rule-box">
+          <div class="title">🕐 Acción en progreso</div>
+          <p>En un momento concreto del pasado.</p>
+          <div class="ex" style="margin-top:6px;">
+            At 7 pm yesterday, I <strong>was having</strong> dinner.<br>
+            <em>A las 7 de ayer, estaba cenando.</em>
+          </div>
+        </div>
+        <div class="rule-box gold">
+          <div class="title">⏸️ Acción interrumpida</div>
+          <p>Una acción larga es interrumpida por una corta (past simple).</p>
+          <div class="ex" style="margin-top:6px;">
+            I <strong>was watching</strong> TV when the phone <strong>rang</strong>.<br>
+            <em>Estaba viendo TV cuando sonó el teléfono.</em>
+          </div>
+        </div>
+        <div class="rule-box green">
+          <div class="title">🔄 Acciones simultáneas</div>
+          <p>Dos acciones ocurrían al mismo tiempo.</p>
+          <div class="ex" style="margin-top:6px;">
+            While I <strong>was studying</strong>, my brother <strong>was playing</strong> video games.<br>
+            <em>Mientras yo estudiaba, mi hermano jugaba videojuegos.</em>
+          </div>
+        </div>
+        <div class="rule-box purple">
+          <div class="title">📖 Descripción de escena</div>
+          <p>Para describir el ambiente o contexto en una narración.</p>
+          <div class="ex" style="margin-top:6px;">
+            The sun <strong>was shining</strong> and the birds <strong>were singing</strong>.<br>
+            <em>El sol brillaba y los pájaros cantaban.</em>
+          </div>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">📌</span><div class="content"><strong>Expresiones típicas:</strong> at 8 o'clock last night, yesterday at noon, while, when, at that moment.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 7 – PAST CONTINUOUS vs PAST SIMPLE ═══ -->
+  <div class="slide" id="s7">
+    <div class="s-header">
+      <span class="badge">CONTRAST</span>
+      <h2>Past Continuous vs Past Simple</h2>
+      <span class="s-num">07 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Este contraste es <strong>clave</strong> para la prueba. El past continuous describe la acción <strong>larga / en progreso</strong>; el past simple, la acción <strong>corta que interrumpe</strong>.</p>
+      <div class="math-table">
+        <table class="math-table">
+          <thead>
+            <tr><th>Past Continuous</th><th>Past Simple</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Acción larga / en progreso</td><td>Acción corta que interrumpe</td></tr>
+            <tr><td>was/were + verb-ing</td><td>verbo en pasado (played, went, saw)</td></tr>
+            <tr><td>I <strong>was sleeping</strong></td><td>The phone <strong>rang</strong></td></tr>
+            <tr><td>They <strong>were playing</strong></td><td>She <strong>arrived</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="two-col">
+        <div class="rule-box">
+          <div class="title">🔗 Con WHEN</div>
+          <div class="ex" style="font-size:.88rem;">
+            I <strong>was watching</strong> TV <strong>when</strong> the phone <strong>rang</strong>.<br>
+            <span class="es">(acción larga + acción corta)</span>
+          </div>
+        </div>
+        <div class="rule-box gold">
+          <div class="title">🔗 Con WHILE</div>
+          <div class="ex" style="font-size:.88rem;">
+            <strong>While</strong> I <strong>was studying</strong>, my brother <strong>was playing</strong> video games.<br>
+            <span class="es">(dos acciones simultáneas)</span>
+          </div>
+        </div>
+      </div>
+      <div class="ex">
+        ✅ I <strong>was walking</strong> when I <strong>saw</strong> my friend.<br>
+        ✅ <strong>When</strong> she <strong>arrived</strong>, we <strong>were cooking</strong>.<br>
+        ✅ <strong>While</strong> they <strong>were swimming</strong>, it <strong>started</strong> to rain.
+      </div>
+      <div class="tip"><span class="icon">💡</span><div class="content"><strong>Truco:</strong> <strong>While</strong> + past continuous (acción larga) &nbsp;|&nbsp; <strong>When</strong> + past simple (acción corta que interrumpe).</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 8 – EJEMPLOS MODELO ═══ -->
+  <div class="slide" id="s8">
+    <div class="s-header">
+      <span class="badge">EXAMPLES</span>
+      <h2>Ejemplos modelo</h2>
+      <span class="s-num">08 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Observa el patrón en cada tipo de oración. Fíjate en el auxiliar, el verbo en <strong>-ing</strong> y las expresiones de tiempo.</p>
+      <div class="rule-box">
+        <div class="title">✅ Afirmativas</div>
+        <div class="ex">
+          1. Yesterday at 6 pm, I <strong>was playing</strong> video games with my friends.<br>
+          2. She <strong>was reading</strong> a book in the park.<br>
+          3. They <strong>were swimming</strong> in the pool at that moment.
+        </div>
+      </div>
+      <div class="rule-box red">
+        <div class="title">❌ Negativas</div>
+        <div class="ex">
+          4. She <strong>wasn't listening</strong> to music; she <strong>was reading</strong> a book.<br>
+          5. They <strong>weren't playing</strong> football, they <strong>were playing</strong> basketball.<br>
+          6. I <strong>wasn't watching</strong> TV at 9 pm.
+        </div>
+      </div>
+      <div class="rule-box gold">
+        <div class="title">❓ Interrogativas</div>
+        <div class="ex">
+          7. <strong>Were</strong> you <strong>swimming</strong> at 5 pm? No, I <strong>wasn't</strong>. I <strong>was riding</strong> my bike.<br>
+          8. <strong>What was</strong> he <strong>doing</strong> when you saw him? He <strong>was hanging out</strong> with his friends.<br>
+          9. <strong>Was</strong> she <strong>dancing</strong> at the party?
+        </div>
+      </div>
+      <div class="rule-box green">
+        <div class="title">🔗 Combinadas (when / while)</div>
+        <div class="ex">
+          10. <strong>While</strong> we <strong>were watching</strong> a film, my mum <strong>was cooking</strong> dinner.<br>
+          11. I <strong>was riding</strong> my bike <strong>when</strong> I <strong>saw</strong> my friend.<br>
+          12. <strong>When</strong> the teacher <strong>arrived</strong>, we <strong>were chatting</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 9 – ERRORES COMUNES ═══ -->
+  <div class="slide" id="s9">
+    <div class="s-header">
+      <span class="badge">COMMON MISTAKES</span>
+      <h2>Errores comunes</h2>
+      <span class="s-num">09 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Evita estos errores en la prueba. La mayoría vienen de olvidar el <strong>-ing</strong> o confundir <strong>was</strong> con <strong>were</strong>.</p>
+      <div class="math-table">
+        <table class="math-table">
+          <thead>
+            <tr><th>❌ Error</th><th>✅ Correcto</th><th>¿Por qué?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>I was play football</td><td>I was <strong>playing</strong> football</td><td>Falta el -ing</td></tr>
+            <tr><td>He were watching TV</td><td>He <strong>was</strong> watching TV</td><td>He/She/It → was</td></tr>
+            <tr><td>They was running</td><td>They <strong>were</strong> running</td><td>They → were</td></tr>
+            <tr><td>I was watch TV</td><td>I was <strong>watching</strong> TV</td><td>Falta el -ing</td></tr>
+            <tr><td>She was runing</td><td>She was <strong>running</strong></td><td>Doble consonante</td></tr>
+            <tr><td>I was study</td><td>I was <strong>studying</strong></td><td>Falta el -ing</td></tr>
+            <tr><td>Were you swim?</td><td>Were you <strong>swimming</strong>?</td><td>Falta el -ing en pregunta</td></tr>
+            <tr><td>I wasn't play</td><td>I wasn't <strong>playing</strong></td><td>Falta el -ing en negativa</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip"><span class="icon">⚠️</span><div class="content"><strong>Revisa siempre:</strong> 1) ¿El sujeto pide was o were? 2) ¿El verbo tiene -ing? 3) ¿Apliqué bien la ortografía del -ing?</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 10 – EJERCICIOS TIPO ═══ -->
+  <div class="slide" id="s10">
+    <div class="s-header">
+      <span class="badge">PRACTICE</span>
+      <h2>Ejercicios tipo prueba</h2>
+      <span class="s-num">10 / 12</span>
+    </div>
+    <div class="s-body">
+      <div class="rule-box">
+        <div class="title">📝 Ejercicio 1 — Completa con was/were + verbo-ing</div>
+        <div class="ex">
+          1. At 9 pm, I ______ (watch) a series.<br>
+          2. They ______ (not / play) football, they ______ (swim).<br>
+          3. ______ she ______ (listen) to music?<br><br>
+          <span class="highlight">Respuestas:</span> 1) was watching · 2) weren't playing / were swimming · 3) Was / listening
+        </div>
+      </div>
+      <div class="rule-box gold">
+        <div class="title">📝 Ejercicio 2 — Elige past continuous o past simple</div>
+        <div class="ex">
+          1. While I ______ (read), my sister ______ (draw).<br>
+          2. I ______ (walk) when I ______ (see) my friend.<br>
+          3. When he ______ (arrive), we ______ (have) dinner.<br><br>
+          <span class="highlight">Respuestas:</span> 1) was reading / was drawing · 2) was walking / saw · 3) arrived / were having
+        </div>
+      </div>
+      <div class="rule-box green">
+        <div class="title">📝 Ejercicio 3 — Escribe la pregunta</div>
+        <div class="ex">
+          1. What / you / do / at 8 pm yesterday?<br>
+          2. Where / they / go / when you saw them?<br><br>
+          <span class="highlight">Respuestas:</span> 1) What were you doing at 8 pm yesterday? · 2) Where were they going when you saw them?
+        </div>
+      </div>
+      <div class="rule-box purple">
+        <div class="title">📝 Ejercicio 4 — Writing / Speaking</div>
+        <div class="ex">
+          Describe what you were doing yesterday at 3 pm, 7 pm, and 10 pm.<br>
+          <em>Example: At 3 pm, I was studying. At 7 pm, I was playing video games. At 10 pm, I was watching TV.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 11 – RESUMEN ═══ -->
+  <div class="slide" id="s11">
+    <div class="s-header">
+      <span class="badge">SUMMARY</span>
+      <h2>Resumen — Fórmulas clave</h2>
+      <span class="s-num">11 / 12</span>
+    </div>
+    <div class="s-body">
+      <div class="two-col">
+        <div>
+          <div class="sec-label">⏳ Past Continuous</div>
+          <div class="rule-box" style="font-size:.88rem;line-height:2.2;">
+            <strong>Afirmativa:</strong> S + was/were + V-ing<br>
+            <strong>Negativa:</strong> S + wasn't/weren't + V-ing<br>
+            <strong>Yes/No:</strong> Was/Were + S + V-ing?<br>
+            <strong>WH-:</strong> WH- + was/were + S + V-ing?<br><br>
+            <strong>I / He / She / It → was</strong><br>
+            <strong>You / We / They → were</strong>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">🔗 When / While</div>
+          <div class="rule-box gold" style="font-size:.88rem;line-height:2.2;">
+            <strong>While</strong> + past continuous → acción larga<br>
+            <strong>When</strong> + past simple → acción corta<br><br>
+            <em>I was watching TV <strong>when</strong> the phone rang.</em><br>
+            <em><strong>While</strong> I was studying, he was playing.</em><br><br>
+            <strong>Expresiones:</strong> at 8 pm, last night, at that moment, yesterday at noon.
+          </div>
+        </div>
+      </div>
+      <div class="sec-label">🎯 Free Time Activities — Verbos clave</div>
+      <div class="rule-box green" style="font-size:.85rem;line-height:2;">
+        playing football / basketball / tennis · swimming · riding a bike · skateboarding · running · dancing · watching TV / a film · reading a book · listening to music · playing video games · drawing · cooking · chatting online · hanging out with friends · going to the cinema / park · having a picnic · shopping
+      </div>
+      <div class="tip"><span class="icon">📌</span><div class="content"><strong>Consejo:</strong> Practica identificar rápidamente si la acción es <strong>larga</strong> (past continuous) o <strong>corta</strong> (past simple). La mayoría de los errores vienen de confundir was/were o de olvidar el -ing.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 12 – ESTRATEGIAS ═══ -->
+  <div class="slide" id="s12">
+    <div class="s-header">
+      <span class="badge">STRATEGIES</span>
+      <h2>Resumen & Estrategias para la Prueba</h2>
+      <span class="s-num">12 / 12</span>
+    </div>
+    <div class="s-body">
+      <div class="two-col">
+        <div>
+          <div class="sec-label">Contenidos cubiertos ✅</div>
+          <div class="rule-box green" style="font-size:.88rem;line-height:1.9;">
+            <ul>
+              <li>Vocabulario de free time activities</li>
+              <li>Estructura del past continuous (was/were + -ing)</li>
+              <li>Formas: afirmativa, negativa, interrogativa</li>
+              <li>Reglas de ortografía del -ing</li>
+              <li>Usos: acción en progreso, interrupción, simultaneidad</li>
+              <li>Past continuous vs past simple (when / while)</li>
+              <li>Errores comunes y cómo evitarlos</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">Estrategias 🎯</div>
+          <div class="rule-box gold" style="font-size:.88rem;line-height:1.9;">
+            <ul>
+              <li><strong>Lee con atención</strong> la oración completa antes de responder.</li>
+              <li><strong>Identifica el sujeto</strong> para elegir was o were.</li>
+              <li><strong>No olvides el -ing</strong> en el verbo principal.</li>
+              <li>Aplica bien la <strong>ortografía del -ing</strong> (running, writing…).</li>
+              <li>En preguntas, el auxiliar va <strong>antes</strong> del sujeto.</li>
+              <li><strong>While</strong> → past continuous · <strong>When</strong> → past simple.</li>
+              <li><strong>No dejes preguntas en blanco</strong> — revisa y contesta con calma.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">🎧</span><div class="content"><strong>Recuerda:</strong> El past continuous aparece en <strong>todos los temas</strong> de la prueba (reading, writing, listening). ¡Domínalo bien!</div></div>
+    </div>
+  </div>
+
+</div><!-- #app -->
+
+<!-- ─── NAV ─── -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" disabled onclick="navigate(-1)">← Anterior</button>
+  <div id="progress-wrap">
+    <div id="progress-bar"><div id="progress-fill" style="width:8.33%"></div></div>
+    <div id="slide-label">Slide 1 / 12</div>
+  </div>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Siguiente →</button>
+  <div class="nav-links">
+    <button class="nav-btn gold" onclick="window.location.href='index.html'">📖 Curso</button>
+    <button class="nav-btn green-btn" onclick="window.location.href='E1.html'">✏️ Ejercicios</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    }
+  });
+
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function navigate(dir) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total-1, current + dir));
+    slides[current].classList.add('active');
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total-1;
+    document.getElementById('progress-fill').style.width = ((current+1)/total*100)+'%';
+    document.getElementById('slide-label').textContent = `Slide ${current+1} / ${total}`;
+    slides[current].scrollTop = 0;
+
+    if (typeof renderMathInElement === 'function') {
+      renderMathInElement(slides[current], {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+  });
+
+  let tx = 0;
+  document.getElementById('app').addEventListener('touchstart', e => tx = e.touches[0].clientX, {passive:true});
+  document.getElementById('app').addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, {passive:true});
+</script>
+</body>
+</html>
