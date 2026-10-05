@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English – Listening Dictation: Weather Vocabulary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#1a2a4a;
+  --primary2:#1e3a6a;
+  --primary3:#1a4a7a;
+  --math-blue:#1a5a8a;
+  --math-blue2:#2a7aaa;
+  --sky:#4aa3d4;
+  --sky2:#7bc0e8;
+  --gold:#d4a84a;
+  --gold2:#e8c86a;
+  --white:#ffffff;
+  --light:#f0f4f8;
+  --lighter:#f7f9fc;
+  --green:#1a7a4a;
+  --green2:#e8f7ef;
+  --green3:#0f5c37;
+  --red:#b02a2a;
+  --red2:#fde8e8;
+  --gray:#5a6a7a;
+  --border:#d0dce8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:linear-gradient(160deg,var(--primary) 0%,var(--primary2) 40%,var(--primary3) 100%);
+  min-height:100vh;color:#1a2a3a;
+}
+
+/* ── TOP BAR ── */
+#topbar{
+  position:sticky;top:0;z-index:200;
+  background:var(--primary);border-bottom:3px solid var(--gold);
+  padding:12px 24px;display:flex;align-items:center;gap:14px;
+}
+#topbar .logo{font-size:1.6rem;}
+#topbar h1{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.25rem;font-weight:700;flex:1;
+}
+#topbar h1 span{color:var(--gold);}
+#score-pill{
+  background:rgba(212,168,74,.15);border:1px solid var(--gold);
+  color:var(--gold2);font-family:'JetBrains Mono',monospace;
+  font-size:.8rem;padding:5px 14px;border-radius:20px;white-space:nowrap;
+}
+
+/* ── PROGRESS BAR ── */
+#prog-wrap{background:rgba(255,255,255,.08);height:6px;}
+#prog-fill{height:100%;background:var(--gold);transition:width .4s;width:0%;}
+
+/* ── MAIN ── */
+#main{max-width:820px;margin:0 auto;padding:28px 20px 120px;}
+
+/* ── INTRO CARD ── */
+#intro-card{
+  background:var(--white);border-radius:20px;padding:36px 40px;
+  text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.25);
+  animation:fadeUp .5s ease forwards;
+}
+#intro-card .anchor{font-size:3rem;margin-bottom:12px;}
+#intro-card h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--primary);margin-bottom:10px;}
+#intro-card p{color:var(--gray);font-size:1rem;line-height:1.7;margin-bottom:24px;}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;}
+.tag{
+  background:var(--light);border:1px solid var(--border);border-radius:20px;
+  padding:4px 14px;font-size:.82rem;color:var(--primary);font-weight:600;
+}
+
+/* ── AUDIO CONTROL BAR ── */
+.audio-bar{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:14px;
+  color:var(--white);flex-wrap:wrap;margin-bottom:20px;
+}
+.audio-bar .label{font-size:.82rem;color:#a0c0e0;font-weight:600;}
+.audio-bar select{
+  background:var(--primary3);color:var(--white);border:1px solid var(--sky);
+  border-radius:6px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;
+}
+.audio-bar .rate-btns{display:flex;gap:4px;}
+.audio-bar .rate-btns button{
+  background:var(--primary3);color:#a0c0e0;border:1px solid transparent;
+  border-radius:6px;padding:5px 10px;cursor:pointer;font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;font-weight:600;transition:all .18s;
+}
+.audio-bar .rate-btns button.active{background:var(--gold);color:var(--primary);border-color:var(--gold);}
+.audio-bar .rate-btns button:hover:not(.active){background:var(--math-blue);color:var(--white);}
+.no-tts{
+  background:var(--red2);color:var(--red);padding:6px 12px;border-radius:8px;
+  font-size:.78rem;font-weight:600;
+}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  border:none;cursor:pointer;border-radius:10px;font-family:'Source Sans 3',sans-serif;
+  font-weight:700;font-size:.95rem;padding:11px 24px;transition:all .2s;
+}
+.btn-gold{background:var(--gold);color:var(--primary);}
+.btn-gold:hover{background:var(--gold2);transform:scale(1.03);}
+.btn-sky{background:var(--sky);color:var(--white);}
+.btn-sky:hover{background:var(--math-blue2);transform:scale(1.03);}
+.btn-green{background:var(--green);color:var(--white);}
+.btn-green:hover{background:var(--green3);transform:scale(1.03);}
+.btn-red{background:var(--red);color:var(--white);}
+.btn-red:hover{background:#8a1a1a;transform:scale(1.03);}
+.btn-outline{background:transparent;border:2px solid var(--gold);color:var(--gold);}
+.btn-outline:hover{background:rgba(212,168,74,.12);}
+
+/* ── QUESTION CARDS ── */
+#questions-wrap{display:none;flex-direction:column;gap:20px;}
+.q-card{
+  background:var(--white);border-radius:16px;padding:22px 26px;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  border-left:5px solid var(--border);
+  transition:border-color .2s;
+  animation:fadeUp .4s ease both;
+}
+.q-card.answered-correct{border-left-color:var(--green);}
+.q-card.answered-wrong{border-left-color:var(--red);}
+
+.q-num{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  color:var(--gray);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase;
+}
+.q-section{
+  display:none;background:var(--sky);color:var(--white);
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;
+  padding:2px 8px;border-radius:10px;letter-spacing:.06em;margin-bottom:10px;
+  text-transform:uppercase;
+}
+
+/* ── DICTATION LAYOUT ── */
+.dict-row{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.play-btn{
+  width:64px;height:64px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--sky),var(--math-blue));
+  color:var(--white);font-size:1.8rem;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(74,163,212,.35);
+  transition:transform .18s;
+}
+.play-btn:hover{transform:scale(1.06);}
+.play-btn:active{transform:scale(.96);}
+.play-btn.playing{animation:pulse 1s infinite;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--primary);}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
+.dict-input-wrap{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px;}
+.dict-input-wrap label{font-size:.78rem;color:var(--gray);font-weight:600;letter-spacing:.04em;}
+.dict-input{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:10px;
+  font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:var(--primary);
+  background:var(--lighter);transition:border-color .18s,background .18s;
+  outline:none;
+}
+.dict-input:focus{border-color:var(--sky);background:var(--white);}
+.dict-input:disabled{background:var(--light);color:var(--gray);cursor:not-allowed;}
+.dict-input.correct{border-color:var(--green);background:var(--green2);color:var(--green3);}
+.dict-input.wrong{border-color:var(--red);background:var(--red2);color:var(--red);}
+.dict-input.revealed{border-color:var(--green);background:var(--green2);color:var(--green3);}
+
+.replay-hint{
+  font-size:.75rem;color:var(--gray);font-style:italic;margin-top:4px;
+}
+
+/* ── FEEDBACK ── */
+.q-feedback{
+  display:none;margin-top:12px;font-size:.9rem;font-weight:600;
+  padding:10px 14px;border-radius:8px;line-height:1.5;
+}
+.q-feedback.correct{display:block;color:var(--green);background:var(--green2);}
+.q-feedback.wrong{display:block;color:var(--red);background:var(--red2);}
+.q-feedback .expl{
+  display:block;font-weight:400;font-size:.83rem;color:#2d3a4a;
+  margin-top:4px;font-style:italic;
+}
+.q-feedback .word-reveal{
+  font-family:'JetBrains Mono',monospace;font-weight:700;
+  background:var(--white);padding:2px 8px;border-radius:5px;
+  border:1px solid var(--border);margin:0 3px;
+}
+
+/* ── SUBMIT BAR ── */
+#submit-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--primary);border-top:2px solid var(--gold);
+  padding:10px 24px;display:flex;align-items:center;gap:14px;
+  justify-content:space-between;
+}
+#answered-count{color:#a0b8d0;font-family:'JetBrains Mono',monospace;font-size:.8rem;}
+
+/* ── RESULTS ── */
+#results-wrap{display:none;animation:fadeUp .5s ease forwards;}
+#results-card{
+  background:var(--white);border-radius:20px;padding:36px 40px;
+  box-shadow:0 12px 40px rgba(0,0,0,.25);margin-bottom:28px;text-align:center;
+}
+.score-ring{
+  width:140px;height:140px;border-radius:50%;margin:0 auto 20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  border:8px solid var(--gold);background:var(--light);
+  transition:border-color .4s;
+}
+.score-ring .score-num{font-size:2.8rem;font-weight:900;color:var(--primary);line-height:1;}
+.score-ring .score-of{font-size:.9rem;color:var(--gray);}
+.score-ring .grade-num{font-size:1.4rem;font-weight:700;color:var(--primary);margin-top:4px;}
+#result-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--primary);margin-bottom:8px;}
+#result-msg{color:var(--gray);font-size:1rem;line-height:1.6;margin-bottom:24px;}
+.result-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+.stat-box{background:var(--light);border-radius:12px;padding:12px 22px;text-align:center;border:1px solid var(--border);}
+.stat-box .sv{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
+.stat-box .sl{font-size:.78rem;color:var(--gray);margin-top:2px;}
+.stat-box.ok .sv{color:var(--green);}
+.stat-box.err .sv{color:var(--red);}
+.stat-box.skip .sv{color:var(--gold);}
+.stat-box.grade .sv{color:var(--math-blue);}
+
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+
+/* review section */
+#review-wrap{display:flex;flex-direction:column;gap:16px;}
+.review-title{
+  font-family:'Playfair Display',serif;color:var(--white);
+  font-size:1.3rem;font-weight:700;margin-bottom:6px;
+}
+.review-item{
+  background:var(--white);border-radius:12px;padding:14px 18px;
+  border-left:5px solid var(--border);
+}
+.review-item.correct{border-left-color:var(--green);}
+.review-item.wrong{border-left-color:var(--red);}
+.review-item .rv-head{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gray);
+  margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;
+}
+.review-item .rv-word{
+  font-size:1.05rem;font-weight:700;color:var(--primary);margin-bottom:4px;
+}
+.review-item .rv-answer{font-size:.9rem;color:#2d3a4a;line-height:1.6;}
+.review-item .rv-answer .yours{color:var(--red);font-weight:600;font-family:'JetBrains Mono',monospace;}
+.review-item .rv-answer .right{color:var(--green);font-weight:600;font-family:'JetBrains Mono',monospace;}
+.review-item .rv-answer .ok{color:var(--green);font-weight:600;font-family:'JetBrains Mono',monospace;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  #main{padding:16px 12px 100px;}
+  #intro-card,#results-card{padding:24px 18px;}
+  .result-actions{flex-direction:column;}
+  .btn{justify-content:center;}
+  #topbar h1{font-size:1rem;}
+  #score-pill{font-size:.65rem;padding:4px 10px;}
+  .play-btn{width:54px;height:54px;font-size:1.5rem;}
+  .dict-row{flex-direction:column;align-items:stretch;}
+  .play-btn{align-self:center;}
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="logo">🎧</span>
+  <h1>Listening Dictation — <span>Weather</span></h1>
+  <div id="score-pill">15 audios · Type what you hear</div>
+</div>
+<div id="prog-wrap"><div id="prog-fill"></div></div>
+
+<div id="main">
+
+  <!-- INTRO -->
+  <div id="intro-card">
+    <div class="anchor">🎧</div>
+    <h2>Weather Listening Dictation</h2>
+    <p>This test has <strong>15 random weather words</strong> from the class. For each one, click the <strong>▶</strong> button to hear the word and <strong>type it exactly</strong> in the box. <strong>Only correct spelling counts</strong> as correct. You can replay each audio as many times as you want. Your grade (1–7) uses the <strong>60% requirement</strong>.</p>
+    <div class="tag-row">
+      <span class="tag">🔊 15 audios</span>
+      <span class="tag">🌦️ Weather words</span>
+      <span class="tag">✍️ Spelling counts</span>
+      <span class="tag">📊 Grade 1–7</span>
+    </div>
+    <button class="btn btn-gold" onclick="startTest()">🚀 Start Test</button>
+  </div>
+
+  <!-- AUDIO CONTROLS (only visible when test active) -->
+  <div id="audio-bar-wrap" style="display:none">
+    <div class="audio-bar" id="audio-bar">
+      <span class="label">🎚️ Voice:</span>
+      <select id="voice-select"></select>
+      <span class="label">⚡ Speed:</span>
+      <div class="rate-btns">
+        <button data-rate="0.7">0.7x</button>
+        <button data-rate="0.9" class="active">0.9x</button>
+        <button data-rate="1.0">1.0x</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div id="questions-wrap"></div>
+
+  <!-- RESULTS -->
+  <div id="results-wrap">
+    <div id="results-card">
+      <div class="score-ring" id="score-ring">
+        <div class="score-num" id="r-score">0</div>
+        <div class="score-of" id="r-of">/ 15</div>
+        <div class="grade-num" id="r-grade">0.0</div>
+      </div>
+      <div id="result-title"></div>
+      <div id="result-msg"></div>
+      <div class="result-stats">
+        <div class="stat-box ok"><div class="sv" id="r-correct">0</div><div class="sl">✅ Correct</div></div>
+        <div class="stat-box err"><div class="sv" id="r-wrong">0</div><div class="sl">❌ Incorrect</div></div>
+        <div class="stat-box skip"><div class="sv" id="r-skip">0</div><div class="sl">⚪ Unanswered</div></div>
+        <div class="stat-box grade"><div class="sv" id="r-grade-display">0.0</div><div class="sl">📊 Grade (1–7)</div></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-gold" onclick="restartTest()">🔄 New Test</button>
+        <button class="btn btn-sky" onclick="window.location.href='C2.html'">🎓 Back to Class</button>
+        <button class="btn btn-green" onclick="window.location.href='index.html'">🏠 Home</button>
+      </div>
+    </div>
+    <div class="review-title">📋 Answer Review</div>
+    <div id="review-wrap"></div>
+  </div>
+
+</div>
+
+<!-- SUBMIT BAR -->
+<div id="submit-bar" style="display:none">
+  <div id="answered-count">Answered: 0 / 15</div>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-outline" onclick="window.location.href='C2.html'">← Class</button>
+    <button class="btn btn-gold" onclick="submitTest()">Finish Test ✓</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  TTS ENGINE
+// ═══════════════════════════════════════════════════════════════
+const TTS = {
+  supported: 'speechSynthesis' in window,
+  voices: [],
+  voice: null,
+  rate: 0.9,
+
+  init(){
+    if(!this.supported) return;
+    const load = () => {
+      const all = speechSynthesis.getVoices();
+      this.voices = all.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+      if(this.voices.length){
+        this.voice =
+          this.voices.find(v => v.lang === 'en-US' && /google|natural|samantha/i.test(v.name)) ||
+          this.voices.find(v => v.lang === 'en-US') ||
+          this.voices.find(v => v.lang === 'en-GB') ||
+          this.voices[0];
+      }
+      this.populateVoiceSelect();
+    };
+    load();
+    if(typeof speechSynthesis.onvoiceschanged !== 'undefined'){
+      speechSynthesis.onvoiceschanged = load;
+    }
+  },
+
+  populateVoiceSelect(){
+    const sel = document.getElementById('voice-select');
+    if(!sel) return;
+    sel.innerHTML = '';
+    if(!this.voices.length){
+      sel.innerHTML = '<option>Default voice</option>';
+      return;
+    }
+    this.voices.forEach((v,i) => {
+      const o = document.createElement('option');
+      o.value = i;
+      o.textContent = `${v.name} (${v.lang})`;
+      if(this.voice && v.name === this.voice.name) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.onchange = () => { this.voice = this.voices[parseInt(sel.value,10)]; };
+  },
+
+  setRate(r){
+    this.rate = r;
+    document.querySelectorAll('.rate-btns button').forEach(b=>{
+      b.classList.toggle('active', parseFloat(b.dataset.rate) === r);
+    });
+  },
+
+  speak(text, onEnd){
+    if(!this.supported) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = this.voice?.lang || 'en-US';
+    if(this.voice) u.voice = this.voice;
+    u.rate = this.rate;
+    u.pitch = 1;
+    u.volume = 1;
+    if(onEnd) u.onend = onEnd;
+    speechSynthesis.speak(u);
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════
+//  POOL — 36 weather words (same as C2.html class)
+// ═══════════════════════════════════════════════════════════════
+const POOL = [
+  // Sunny & Hot
+  { word:'sunny',       section:'Sunny & Hot',   hint:'soleado' },
+  { word:'clear',       section:'Sunny & Hot',   hint:'despejado' },
+  { word:'bright',      section:'Sunny & Hot',   hint:'brillante' },
+  { word:'warm',        section:'Sunny & Hot',   hint:'templado' },
+  { word:'hot',         section:'Sunny & Hot',   hint:'caluroso' },
+  { word:'boiling',     section:'Sunny & Hot',   hint:'muy caluroso' },
+
+  // Cloudy & Foggy
+  { word:'cloudy',      section:'Cloudy & Foggy', hint:'nublado' },
+  { word:'overcast',    section:'Cloudy & Foggy', hint:'cubierto' },
+  { word:'grey',        section:'Cloudy & Foggy', hint:'gris' },
+  { word:'foggy',       section:'Cloudy & Foggy', hint:'con niebla' },
+  { word:'misty',       section:'Cloudy & Foggy', hint:'con neblina' },
+
+  // Rainy & Stormy
+  { word:'rainy',       section:'Rainy & Stormy', hint:'lluvioso' },
+  { word:'raining',     section:'Rainy & Stormy', hint:'lloviendo' },
+  { word:'drizzle',     section:'Rainy & Stormy', hint:'llovizna' },
+  { word:'pouring',     section:'Rainy & Stormy', hint:'lloviendo a cántaros' },
+  { word:'shower',      section:'Rainy & Stormy', hint:'chubasco' },
+  { word:'stormy',      section:'Rainy & Stormy', hint:'tormentoso' },
+  { word:'thunder',     section:'Rainy & Stormy', hint:'trueno' },
+  { word:'lightning',   section:'Rainy & Stormy', hint:'relámpago' },
+
+  // Cold & Snowy
+  { word:'cold',        section:'Cold & Snowy',  hint:'frío' },
+  { word:'chilly',      section:'Cold & Snowy',  hint:'fresco / frío' },
+  { word:'freezing',    section:'Cold & Snowy',  hint:'helado' },
+  { word:'snowy',       section:'Cold & Snowy',  hint:'nevado' },
+  { word:'snowing',     section:'Cold & Snowy',  hint:'nevando' },
+  { word:'hail',        section:'Cold & Snowy',  hint:'granizo' },
+  { word:'frost',       section:'Cold & Snowy',  hint:'escarcha' },
+
+  // Windy & Others
+  { word:'windy',       section:'Windy & Others', hint:'ventoso' },
+  { word:'breezy',      section:'Windy & Others', hint:'con brisa' },
+  { word:'gale',        section:'Windy & Others', hint:'vendaval' },
+  { word:'hurricane',   section:'Windy & Others', hint:'huracán' },
+  { word:'tornado',     section:'Windy & Others', hint:'tornado' },
+  { word:'humid',       section:'Windy & Others', hint:'húmedo' },
+  { word:'dry',         section:'Windy & Others', hint:'seco' },
+  { word:'rainbow',     section:'Windy & Others', hint:'arcoíris' },
+  { word:'forecast',    section:'Windy & Others', hint:'pronóstico' },
+  { word:'temperature', section:'Windy & Others', hint:'temperatura' },
+  { word:'degrees',     section:'Windy & Others', hint:'grados' }
+];
+
+// Multi-word expressions that should be accepted as one word typed
+// (We keep the pool as single words per the requirement, but normalize spaces/hyphens)
+const NORMALIZE = (s) =>
+  s.toLowerCase()
+   .trim()
+   .replace(/\s+/g, ' ')
+   .replace(/[.,!?;:"']/g, '');
+
+// ═══════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════
+const N = 15;
+let shuffled = [];
+let userAns = [];
+let submitted = false;
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function sample(arr,n){ return shuffle(arr).slice(0,n); }
+
+// ─── GRADE (same as E1: 60% requirement, 1–7) ───
+function calculateGrade(correct, total){
+  const p = correct / total;
+  if(p <= 0.6) return 1 + (p / 0.6) * 3;
+  return 4 + ((p - 0.6) / 0.4) * 3;
+}
+
+// ─── BUILD TEST ───
+function buildTest(){
+  shuffled = sample(POOL, N).map(item => ({
+    word: item.word,
+    section: item.section,
+    hint: item.hint
+  }));
+  userAns = Array(N).fill('');
+}
+
+// ─── START ───
+function startTest(){
+  buildTest();
+  submitted = false;
+  document.getElementById('intro-card').style.display = 'none';
+  document.getElementById('results-wrap').style.display = 'none';
+  document.getElementById('audio-bar-wrap').style.display = 'block';
+  renderQuestions();
+  document.getElementById('questions-wrap').style.display = 'flex';
+  document.getElementById('submit-bar').style.display = 'flex';
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  if(!TTS.supported){
+    const bar = document.getElementById('audio-bar');
+    if(bar) bar.innerHTML = '<div class="no-tts">⚠️ Your browser does not support text-to-speech. Try Chrome, Edge or Safari.</div>';
+  }
+}
+
+// ─── RENDER QUESTIONS ───
+function renderQuestions(){
+  const wrap = document.getElementById('questions-wrap');
+  wrap.innerHTML = '';
+  shuffled.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `qcard-${qi}`;
+    card.style.animationDelay = (qi*0.03)+'s';
+
+    card.innerHTML = `
+      <div class="q-num">Audio ${qi+1} of ${N}</div>
+      <div class="q-section">${item.section}</div>
+      <div class="dict-row">
+        <button class="play-btn" id="play-${qi}" onclick="playAudio(${qi})" aria-label="Play audio">▶</button>
+        <div class="dict-input-wrap">
+          <label for="input-${qi}">Type the word you hear (in English):</label>
+          <input
+            type="text"
+            class="dict-input"
+            id="input-${qi}"
+            placeholder="tip your answer here"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            oninput="onInput(${qi}, this.value)"
+            onkeydown="if(event.key==='Enter'){event.preventDefault(); playAudio(${qi});}"
+          >
+          <div class="replay-hint">💡 Press <strong>Enter</strong> to replay the audio.</div>
+        </div>
+      </div>
+      <div class="q-feedback" id="qfb-${qi}"></div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+
+// ─── PLAY AUDIO ───
+function playAudio(qi){
+  if(submitted) return;
+  const item = shuffled[qi];
+  const btn = document.getElementById(`play-${qi}`);
+  if(!btn) return;
+  btn.classList.add('playing');
+  TTS.speak(item.word, () => btn.classList.remove('playing'));
+  // focus the input so the student can type right away
+  const input = document.getElementById(`input-${qi}`);
+  if(input && !submitted) setTimeout(() => input.focus(), 100);
+}
+
+// ─── INPUT HANDLER ───
+function onInput(qi, val){
+  if(submitted) return;
+  userAns[qi] = val;
+  updateProgress();
+}
+
+// ─── PROGRESS ───
+function updateProgress(){
+  const answered = userAns.filter(v => v.trim() !== '').length;
+  document.getElementById('answered-count').textContent = `Answered: ${answered} / ${N}`;
+  document.getElementById('prog-fill').style.width = (answered/N*100)+'%';
+}
+
+// ─── SUBMIT ───
+function submitTest(){
+  submitted = true;
+  const answered = userAns.filter(v => v.trim() !== '').length;
+  if(answered < N){
+    const rem = N - answered;
+    if(!confirm(`You have ${rem} unanswered audio(s). Do you want to finish anyway?`)) {
+      submitted = false;
+      return;
+    }
+  }
+
+  let correct = 0;
+  shuffled.forEach((item, qi) => {
+    const raw = userAns[qi] || '';
+    const typed = NORMALIZE(raw);
+    const target = NORMALIZE(item.word);
+    const isCorrect = typed !== '' && typed === target;
+
+    const input = document.getElementById(`input-${qi}`);
+    const fb = document.getElementById(`qfb-${qi}`);
+    const card = document.getElementById(`qcard-${qi}`);
+    input.disabled = true;
+
+    if(isCorrect){
+      correct++;
+      input.classList.add('correct');
+      card.classList.add('answered-correct');
+      fb.className = 'q-feedback correct';
+      fb.innerHTML = `✅ Correct! <span class="word-reveal">${item.word}</span> <span style="font-weight:400;color:#2d3a4a">(${item.hint})</span>`;
+    } else if(typed === ''){
+      input.classList.add('revealed');
+      input.value = item.word;
+      card.classList.add('answered-wrong');
+      fb.className = 'q-feedback wrong';
+      fb.innerHTML = `⚪ Unanswered. The word was: <span class="word-reveal">${item.word}</span> <span style="font-weight:400;color:#2d3a4a">(${item.hint})</span>`;
+    } else {
+      input.classList.add('wrong');
+      card.classList.add('answered-wrong');
+      fb.className = 'q-feedback wrong';
+      fb.innerHTML = `❌ Incorrect. You wrote "<strong>${raw}</strong>". The correct word is: <span class="word-reveal">${item.word}</span> <span style="font-weight:400;color:#2d3a4a">(${item.hint})</span>`;
+    }
+  });
+
+  const wrong = userAns.filter((v,i) => {
+    const t = NORMALIZE(v || '');
+    return t !== '' && t !== NORMALIZE(shuffled[i].word);
+  }).length;
+  const skipped = userAns.filter(v => (v || '').trim() === '').length;
+  const grade = calculateGrade(correct, N);
+
+  document.getElementById('r-score').textContent = correct;
+  document.getElementById('r-of').textContent = '/ ' + N;
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent = wrong;
+  document.getElementById('r-skip').textContent = skipped;
+  document.getElementById('r-grade').textContent = grade.toFixed(1);
+  document.getElementById('r-grade-display').textContent = grade.toFixed(1);
+
+  let title, msg;
+  if(grade >= 6.0){ title = '🏆 Excellent dictation!'; msg = 'Your listening and spelling are excellent. Keep it up!'; }
+  else if(grade >= 5.0){ title = '👍 Good job!'; msg = 'You have a good ear. Review the words you missed.'; }
+  else if(grade >= 4.0){ title = '📚 Passed'; msg = 'You are on the right track, but you need more practice.'; }
+  else { title = '💪 Don\'t give up'; msg = 'Review the class (Weather) and try again. You can improve!'; }
+
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-msg').textContent = msg;
+
+  const ring = document.getElementById('score-ring');
+  ring.style.borderColor = grade >= 5.0 ? 'var(--green)' : grade >= 4.0 ? 'var(--gold)' : 'var(--red)';
+
+  document.getElementById('submit-bar').style.display = 'none';
+  document.getElementById('audio-bar-wrap').style.display = 'none';
+  document.getElementById('prog-fill').style.width = '100%';
+  document.getElementById('results-wrap').style.display = 'block';
+
+  // build review
+  renderReview();
+
+  document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
+}
+
+// ─── REVIEW ───
+function renderReview(){
+  const wrap = document.getElementById('review-wrap');
+  wrap.innerHTML = '';
+  shuffled.forEach((item, qi) => {
+    const raw = userAns[qi] || '';
+    const typed = NORMALIZE(raw);
+    const target = NORMALIZE(item.word);
+    const isCorrect = typed !== '' && typed === target;
+    const isSkipped = typed === '';
+
+    const div = document.createElement('div');
+    div.className = 'review-item ' + (isCorrect ? 'correct' : 'wrong');
+
+    let answerHtml = '';
+    if(isCorrect){
+      answerHtml = `<span class="ok">✅ ${raw.trim()}</span>`;
+    } else if(isSkipped){
+      answerHtml = `⚪ No answer. Correct: <span class="right">${item.word}</span>`;
+    } else {
+      answerHtml = `You wrote: <span class="yours">${raw.trim()}</span> · Correct: <span class="right">${item.word}</span>`;
+    }
+
+    div.innerHTML = `
+      <div class="rv-head">Audio ${qi+1} · ${item.section}</div>
+      <div class="rv-word">🔊 ${item.word} <span style="font-weight:400;color:var(--gray);font-size:.85rem">(${item.hint})</span></div>
+      <div class="rv-answer">${answerHtml}</div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+// ─── RESTART ───
+function restartTest(){
+  document.getElementById('results-wrap').style.display = 'none';
+  document.getElementById('questions-wrap').style.display = 'none';
+  startTest();
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function(){
+  TTS.init();
+
+  if(!TTS.supported){
+    const bar = document.getElementById('audio-bar');
+    if(bar) bar.innerHTML = '<div class="no-tts">⚠️ Your browser does not support text-to-speech. Try Chrome, Edge or Safari.</div>';
+  }
+
+  document.querySelectorAll('.rate-btns button').forEach(b => {
+    b.addEventListener('click', () => TTS.setRate(parseFloat(b.dataset.rate)));
+  });
+});
+
+// ─── KEYBOARD: Enter submits when all done? No: Enter replays audio (handled inline) ───
+document.addEventListener('keydown', (e) => {
+  // Ctrl/Cmd + Enter finishes the test
+  if((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !submitted && document.getElementById('questions-wrap').style.display === 'flex'){
+    submitTest();
+  }
+});
+</script>
+</body>
+</html>

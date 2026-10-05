@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inglés – Weather Vocabulary (Listening)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+  :root{
+    --primary:#1a2a4a;
+    --primary2:#1e3a6a;
+    --primary3:#1a4a7a;
+    --accent:#2a7a8a;
+    --accent2:#3a9aaa;
+    --gold:#d4a84a;
+    --gold2:#e8c86a;
+    --math-blue:#1a5a8a;
+    --math-blue2:#2a7aaa;
+    --sky:#4aa3d4;
+    --sky2:#7bc0e8;
+    --cloud:#8a9aaa;
+    --white:#ffffff;
+    --light:#f0f4f8;
+    --lighter:#f7f9fc;
+    --green:#1a7a4a;
+    --green2:#e8f7ef;
+    --green3:#0f5c37;
+    --red:#b02a2a;
+    --red2:#fde8e8;
+    --gray:#5a6a7a;
+    --border:#d0dce8;
+    --purple:#6a3a9a;
+    --orange:#d47a2a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow:hidden;font-family:'Source Sans 3',sans-serif;background:var(--primary);}
+  body{display:flex;flex-direction:column;}
+  #app{position:relative;width:100%;height:calc(100vh - 62px);overflow:hidden;}
+
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;background:var(--light);overflow:hidden;}
+  .slide.active{display:flex;}
+
+  .s-header{
+    background:linear-gradient(135deg,var(--primary) 0%,var(--primary2) 55%,var(--sky) 100%);
+    padding:18px 40px 14px;display:flex;align-items:center;gap:16px;flex-shrink:0;
+    border-bottom:3px solid var(--gold);
+  }
+  .s-header .badge{
+    background:var(--gold);color:var(--primary);font-family:'Playfair Display',serif;
+    font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;
+    letter-spacing:.08em;white-space:nowrap;
+  }
+  .s-header h2{
+    font-family:'Playfair Display',serif;color:var(--white);font-size:1.5rem;
+    font-weight:700;letter-spacing:-.01em;flex:1;
+  }
+  .s-num{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.85rem;margin-left:auto;white-space:nowrap;}
+
+  .s-body{flex:1;overflow-y:auto;padding:24px 40px 20px;display:flex;flex-direction:column;gap:16px;}
+  .s-body::-webkit-scrollbar{width:5px;}
+  .s-body::-webkit-scrollbar-thumb{background:var(--sky);border-radius:4px;}
+
+  .intro-text{font-size:1.05rem;color:#2d3a4a;line-height:1.7;}
+  .intro-text strong{color:var(--math-blue);}
+
+  .sec-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+
+  .rule-box{
+    background:var(--white);border-radius:12px;padding:14px 18px;
+    border-left:4px solid var(--math-blue);box-shadow:0 2px 8px rgba(0,0,0,.06);
+  }
+  .rule-box.gold{border-left-color:var(--gold);}
+  .rule-box.green{border-left-color:var(--green);}
+  .rule-box.red{border-left-color:var(--red);}
+  .rule-box.purple{border-left-color:var(--purple);}
+  .rule-box.sky{border-left-color:var(--sky);}
+  .rule-box .title{font-weight:700;color:var(--primary);margin-bottom:6px;font-size:1rem;}
+  .rule-box p,.rule-box li{font-size:.95rem;color:#2d3a4a;line-height:1.6;}
+  .rule-box ul{padding-left:18px;}
+
+  .formula-box{
+    background:var(--primary);color:var(--gold2);border-radius:10px;
+    padding:14px 18px;text-align:center;overflow-x:auto;
+  }
+  .formula-box .katex-display{margin:0;}
+  .formula-box .comment{color:#8aa8c8;font-size:.8rem;display:block;margin-top:4px;}
+
+  .ex{
+    background:linear-gradient(135deg,#e8f0fc,#dce8f8);
+    border-radius:10px;padding:10px 16px;font-size:.9rem;color:#0a2040;
+    border-left:3px solid var(--math-blue2);line-height:1.8;
+  }
+  .ex .highlight{background:#fef3c7;padding:1px 4px;border-radius:3px;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+
+  .tip{
+    background:#fffbec;border:1px solid #f0d080;border-radius:10px;
+    padding:10px 16px;display:flex;gap:10px;align-items:flex-start;
+  }
+  .tip .icon{font-size:1.2rem;margin-top:1px;}
+  .tip .content{font-size:.88rem;color:#4a3800;line-height:1.5;}
+  .tip .content strong{color:#7a5500;}
+
+  .math-table{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;}
+  .math-table th{background:var(--primary);color:var(--gold);padding:8px 14px;text-align:left;font-size:.85rem;}
+  .math-table td{background:var(--white);padding:8px 14px;font-size:.88rem;border-bottom:1px solid #eef1f5;}
+  .math-table tr:nth-child(even) td{background:#f8fafc;}
+
+  /* ── VOCAB CARDS WITH AUDIO ── */
+  .vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .vocab-card{
+    background:var(--white);border-radius:12px;padding:12px 14px;
+    border:1px solid var(--border);border-top:3px solid var(--sky);
+    box-shadow:0 2px 6px rgba(0,0,0,.04);
+  }
+  .vocab-card .cat{
+    font-weight:700;color:var(--primary);font-size:.9rem;margin-bottom:8px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .vocab-card .cat .icon{font-size:1.15rem;}
+  .vocab-card .cat .speak-all{
+    margin-left:auto;background:var(--sky);color:var(--white);
+    border:none;cursor:pointer;border-radius:14px;
+    font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:.68rem;
+    padding:3px 9px;display:flex;align-items:center;gap:4px;transition:background .2s;
+  }
+  .vocab-card .cat .speak-all:hover{background:var(--math-blue2);}
+  .vocab-card ul{list-style:none;padding:0;}
+  .vocab-card li{
+    display:flex;align-items:center;gap:8px;
+    padding:5px 0;border-bottom:1px dashed #eef1f5;
+    font-size:.9rem;color:#2d3a4a;
+  }
+  .vocab-card li:last-child{border-bottom:none;}
+  .vocab-card .word-btn{
+    background:var(--lighter);border:1px solid var(--border);cursor:pointer;
+    width:26px;height:26px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.85rem;transition:all .18s;color:var(--math-blue);
+  }
+  .vocab-card .word-btn:hover{background:var(--sky);color:var(--white);border-color:var(--sky);transform:scale(1.08);}
+  .vocab-card .word-btn.playing{background:var(--gold);color:var(--primary);border-color:var(--gold);animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+  .vocab-card .en{font-weight:700;color:var(--primary);}
+  .vocab-card .es{color:var(--gray);font-size:.78rem;margin-left:auto;font-style:italic;}
+
+  /* ── AUDIO CONTROL BAR ── */
+  .audio-bar{
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:14px;
+    color:var(--white);flex-wrap:wrap;
+  }
+  .audio-bar .label{font-size:.82rem;color:#a0c0e0;font-weight:600;}
+  .audio-bar select{
+    background:var(--primary3);color:var(--white);border:1px solid var(--sky);
+    border-radius:6px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;
+  }
+  .audio-bar .rate-btns{display:flex;gap:4px;}
+  .audio-bar .rate-btns button{
+    background:var(--primary3);color:#a0c0e0;border:1px solid transparent;
+    border-radius:6px;padding:5px 10px;cursor:pointer;font-family:'JetBrains Mono',monospace;
+    font-size:.75rem;font-weight:600;transition:all .18s;
+  }
+  .audio-bar .rate-btns button.active{background:var(--gold);color:var(--primary);border-color:var(--gold);}
+  .audio-bar .rate-btns button:hover:not(.active){background:var(--math-blue);color:var(--white);}
+  .audio-bar .no-tts{
+    background:var(--red2);color:var(--red);padding:6px 12px;border-radius:8px;
+    font-size:.78rem;font-weight:600;
+  }
+
+  /* ── LISTENING CHALLENGE ── */
+  .challenge{
+    background:var(--white);border-radius:14px;padding:22px 26px;
+    border:2px solid var(--sky);box-shadow:0 4px 16px rgba(0,0,0,.08);
+    display:flex;flex-direction:column;gap:14px;align-items:center;
+  }
+  .challenge .play-big{
+    width:90px;height:90px;border-radius:50%;border:none;cursor:pointer;
+    background:linear-gradient(135deg,var(--sky),var(--math-blue));
+    color:var(--white);font-size:2.4rem;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 20px rgba(74,163,212,.4);transition:transform .18s;
+  }
+  .challenge .play-big:hover{transform:scale(1.06);}
+  .challenge .play-big.playing{animation:pulse 1s infinite;}
+  .challenge .hint{font-size:.85rem;color:var(--gray);font-style:italic;}
+  .challenge .options{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;}
+  .challenge .opt{
+    background:var(--lighter);border:2px solid var(--border);border-radius:10px;
+    padding:12px 14px;cursor:pointer;transition:all .18s;text-align:center;
+    font-size:.95rem;font-weight:600;color:var(--primary);
+  }
+  .challenge .opt:hover:not(.locked){border-color:var(--sky);background:#e8f4fc;}
+  .challenge .opt.correct{border-color:var(--green);background:var(--green2);color:var(--green3);}
+  .challenge .opt.wrong{border-color:var(--red);background:var(--red2);color:var(--red);}
+  .challenge .opt.locked{cursor:default;}
+  .challenge .fb{font-size:.9rem;font-weight:600;min-height:24px;}
+  .challenge .fb.correct{color:var(--green);}
+  .challenge .fb.wrong{color:var(--red);}
+  .challenge .progress-mini{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--gray);}
+
+  /* Cover */
+  .cover-slide{
+    background:linear-gradient(145deg,var(--primary) 0%,var(--primary2) 45%,var(--sky) 130%) !important;
+    justify-content:center;align-items:center;text-align:center;gap:0 !important;padding:0 !important;
+  }
+  .cover-slide .cover-inner{display:flex;flex-direction:column;align-items:center;gap:18px;padding:40px;}
+  .cover-logo{
+    width:90px;height:90px;background:var(--gold);border-radius:50%;display:flex;
+    align-items:center;justify-content:center;font-size:2.6rem;
+    box-shadow:0 8px 30px rgba(212,168,74,.4);
+  }
+  .cover-title{
+    font-family:'Playfair Display',serif;color:var(--white);font-size:2.8rem;
+    font-weight:900;line-height:1.1;max-width:720px;
+  }
+  .cover-title span{color:var(--gold);}
+  .cover-sub{color:#a8c8e0;font-size:1.05rem;max-width:600px;line-height:1.6;}
+  .cover-tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .cover-tag{
+    background:rgba(212,168,74,.15);border:1px solid var(--gold);
+    color:var(--gold2);padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:600;
+  }
+  .cover-level{
+    background:var(--gold);color:var(--primary);font-family:'Playfair Display',serif;
+    font-size:1.05rem;font-weight:700;padding:7px 22px;border-radius:30px;letter-spacing:.05em;
+  }
+
+  /* Nav */
+  #nav{
+    position:fixed;bottom:0;left:0;right:0;
+    background:var(--primary);border-top:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:8px 16px;z-index:100;gap:8px;height:62px;
+  }
+  .nav-btn{
+    background:var(--math-blue);color:var(--white);border:none;cursor:pointer;
+    border-radius:8px;padding:7px 14px;font-family:'Source Sans 3',sans-serif;
+    font-weight:700;font-size:.82rem;transition:background .2s,transform .1s;
+    display:flex;align-items:center;gap:5px;white-space:nowrap;
+  }
+  .nav-btn:hover{background:var(--math-blue2);transform:scale(1.03);}
+  .nav-btn:disabled{background:#2a3a50;color:#4a5a70;cursor:not-allowed;transform:none;}
+  .nav-btn.gold{background:var(--gold);color:var(--primary);}
+  .nav-btn.gold:hover{background:var(--gold2);}
+  .nav-btn.green-btn{background:var(--green);color:var(--white);}
+  .nav-btn.green-btn:hover{background:var(--green3);}
+  #progress-wrap{flex:1;max-width:300px;}
+  #progress-bar{height:5px;background:#1a2e4a;border-radius:4px;overflow:hidden;}
+  #progress-fill{height:100%;background:var(--gold);transition:width .4s;}
+  #slide-label{color:#a0b8d0;font-size:.72rem;text-align:center;margin-top:4px;font-family:'JetBrains Mono',monospace;}
+  .nav-links{display:flex;gap:6px;}
+
+  @keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+  .slide.active{animation:slideIn .3s ease forwards;}
+
+  @media(max-width:700px){
+    .s-header{padding:12px 16px;}
+    .s-header h2{font-size:1.05rem;}
+    .s-body{padding:14px 16px;}
+    .two-col,.three-col,.vocab-grid{grid-template-columns:1fr;}
+    .cover-title{font-size:1.9rem;}
+    .challenge .options{grid-template-columns:1fr;}
+  }
+
+  .formula-box .katex .mathnormal{color:var(--gold2);}
+  .formula-box .katex .mord{color:var(--gold2);}
+  .formula-box .katex .mbin{color:#8ab0d0;}
+  .formula-box .katex .mrel{color:#8ab0d0;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══ SLIDE 1 – COVER ═══ -->
+  <div class="slide cover-slide active" id="s1">
+    <div class="cover-inner">
+      <div class="cover-logo">🌤️</div>
+      <div class="cover-level">7° Básico · Listening</div>
+      <div class="cover-title">Weather Vocabulary<br><span>& Listening Practice</span></div>
+      <div class="cover-sub">Aprende a escuchar y reconocer el vocabulario del clima en inglés.<br>36 palabras con audio · Práctica interactiva · Integración con Past Continuous.</div>
+      <div class="cover-tags">
+        <span class="cover-tag">🔊 Listening</span>
+        <span class="cover-tag">🌦️ Weather</span>
+        <span class="cover-tag">🎧 Pronunciación</span>
+        <span class="cover-tag">⏳ Past Continuous</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 2 – HOW TO LISTEN ═══ -->
+  <div class="slide" id="s2">
+    <div class="s-header">
+      <span class="badge">GETTING STARTED</span>
+      <h2>Cómo usar el audio en esta clase</h2>
+      <span class="s-num">02 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Esta clase está diseñada para que <strong>escuchen, repitan y reconozcan</strong> el vocabulario del clima. Cada palabra tiene un botón <strong>🔊</strong> para escucharla cuantas veces quieras.</p>
+
+      <div id="audio-support-msg"></div>
+
+      <div class="audio-bar" id="audio-bar">
+        <span class="label">🎚️ Voz:</span>
+        <select id="voice-select"></select>
+        <span class="label">⚡ Velocidad:</span>
+        <div class="rate-btns">
+          <button data-rate="0.7">0.7x</button>
+          <button data-rate="0.9" class="active">0.9x</button>
+          <button data-rate="1.0">1.0x</button>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="rule-box sky">
+          <div class="title">🎧 Paso 1 — Escucha</div>
+          <p>Haz clic en <strong>🔊</strong> junto a cada palabra. Escúchala 2 o 3 veces sin mirar el español.</p>
+        </div>
+        <div class="rule-box gold">
+          <div class="title">🗣️ Paso 2 — Repite</div>
+          <p>Repite en voz alta copiando la pronunciación. Fíjate en las sílabas fuertes.</p>
+        </div>
+        <div class="rule-box green">
+          <div class="title">🧠 Paso 3 — Asocia</div>
+          <p>Relaciona el sonido con el significado y con una imagen mental (sol, lluvia, nieve).</p>
+        </div>
+        <div class="rule-box purple">
+          <div class="title">✅ Paso 4 — Comprueba</div>
+          <p>Avanza al <strong>Listening Challenge</strong> (slide 10) y pon a prueba tu oído.</p>
+        </div>
+      </div>
+
+      <div class="tip"><span class="icon">💡</span><div class="content"><strong>Consejo:</strong> Si al principio te cuesta, baja la velocidad a <strong>0.7x</strong>. Cuando te sientas seguro, vuelve a <strong>0.9x</strong> o <strong>1.0x</strong>.</div></div>
+      <div class="tip"><span class="icon">📌</span><div class="content"><strong>Importante:</strong> El audio usa la voz de tu navegador. Funciona mejor en <strong>Chrome</strong>, <strong>Edge</strong> y <strong>Safari</strong>.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 3 – SUNNY & HOT ═══ -->
+  <div class="slide" id="s3">
+    <div class="s-header">
+      <span class="badge">VOCABULARY · 1/5</span>
+      <h2>☀️ Sunny & Hot — Soleado y caluroso</h2>
+      <span class="s-num">03 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Palabras para describir días con <strong>sol y calor</strong>. Chile tiene muchos días así en verano y en el norte.</p>
+      <div class="vocab-grid" id="vocab-sunny"></div>
+      <div class="rule-box sky">
+        <div class="title">🔊 Ejemplo en contexto</div>
+        <div class="ex">
+          Yesterday it <strong>was sunny</strong> and <strong>hot</strong>. The temperature <strong>was 30 degrees</strong>.<br>
+          <em>Ayer estaba soleado y caluroso. La temperatura era de 30 grados.</em>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">🗣️</span><div class="content"><strong>Pronunciación:</strong> <em>sunny</em> suena /ˈsʌni/ — la "u" es corta, como en "san". <em>hot</em> suena /hɒt/ — la "o" es breve.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 4 – CLOUDY & FOGGY ═══ -->
+  <div class="slide" id="s4">
+    <div class="s-header">
+      <span class="badge">VOCABULARY · 2/5</span>
+      <h2>☁️ Cloudy & Foggy — Nublado y con niebla</h2>
+      <span class="s-num">04 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Palabras para días <strong>grises, nublados o con niebla</strong>. Muy comunes en el sur de Chile y en la costa.</p>
+      <div class="vocab-grid" id="vocab-cloudy"></div>
+      <div class="rule-box sky">
+        <div class="title">🔊 Ejemplo en contexto</div>
+        <div class="ex">
+          This morning it <strong>was cloudy</strong> and <strong>foggy</strong>. We couldn't see the mountains.<br>
+          <em>Esta mañana estaba nublado y con niebla. No podíamos ver las montañas.</em>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">🗣️</span><div class="content"><strong>Pronunciación:</strong> <em>cloudy</em> /ˈklaʊdi/ — "clau-di". <em>foggy</em> /ˈfɒɡi/ — la "g" suena fuerte, "fo-gui".</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 5 – RAINY & STORMY ═══ -->
+  <div class="slide" id="s5">
+    <div class="s-header">
+      <span class="badge">VOCABULARY · 3/5</span>
+      <h2>🌧️ Rainy & Stormy — Lluvioso y tormentoso</h2>
+      <span class="s-num">05 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Palabras para la <strong>lluvia, tormentas, truenos y relámpagos</strong>. Esenciales en invierno.</p>
+      <div class="vocab-grid" id="vocab-rainy"></div>
+      <div class="rule-box sky">
+        <div class="title">🔊 Ejemplo en contexto</div>
+        <div class="ex">
+          Last night it <strong>was raining</strong> heavily. There <strong>was thunder</strong> and <strong>lightning</strong>.<br>
+          <em>Anoche estaba lloviendo fuerte. Había truenos y relámpagos.</em>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">🗣️</span><div class="content"><strong>Pronunciación:</strong> <em>raining</em> /ˈreɪnɪŋ/ — "rei-ning". <em>thunder</em> /ˈθʌndər/ — la "th" se pronuncia con la lengua entre los dientes.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 6 – COLD & SNOWY ═══ -->
+  <div class="slide" id="s6">
+    <div class="s-header">
+      <span class="badge">VOCABULARY · 4/5</span>
+      <h2>❄️ Cold & Snowy — Frío y nevado</h2>
+      <span class="s-num">06 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Palabras para el <strong>frío, la nieve y las heladas</strong>. Útiles para describir el invierno y la cordillera.</p>
+      <div class="vocab-grid" id="vocab-cold"></div>
+      <div class="rule-box sky">
+        <div class="title">🔊 Ejemplo en contexto</div>
+        <div class="ex">
+          In July, it <strong>was freezing</strong> and it <strong>was snowing</strong> in the mountains.<br>
+          <em>En julio, estaba helado y estaba nevando en las montañas.</em>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">🗣️</span><div class="content"><strong>Pronunciación:</strong> <em>freezing</em> /ˈfriːzɪŋ/ — "fri-sing". <em>snowy</em> /ˈsnəʊi/ — "snou-i".</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 7 – WINDY & OTHERS ═══ -->
+  <div class="slide" id="s7">
+    <div class="s-header">
+      <span class="badge">VOCABULARY · 5/5</span>
+      <h2>💨 Windy & Others — Viento y otras palabras</h2>
+      <span class="s-num">07 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Palabras para el <strong>viento</strong> y otros conceptos del clima: <strong>humedad, temperatura, pronóstico</strong>.</p>
+      <div class="vocab-grid" id="vocab-windy"></div>
+      <div class="rule-box sky">
+        <div class="title">🔊 Ejemplo en contexto</div>
+        <div class="ex">
+          It <strong>was very windy</strong> yesterday. The <strong>forecast</strong> says it will rain tomorrow.<br>
+          <em>Ayer estaba muy ventoso. El pronóstico dice que lloverá mañana.</em>
+        </div>
+      </div>
+      <div class="tip"><span class="icon">🗣️</span><div class="content"><strong>Pronunciación:</strong> <em>windy</em> /ˈwɪndi/ — "uin-di". <em>forecast</em> /ˈfɔːrkæst/ — "for-cast".</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 8 – WEATHER + PAST CONTINUOUS ═══ -->
+  <div class="slide" id="s8">
+    <div class="s-header">
+      <span class="badge">GRAMMAR LINK</span>
+      <h2>Weather + Past Continuous</h2>
+      <span class="s-num">08 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Ahora une lo aprendido en C1 con el clima: describe <strong>qué estaba pasando</strong> cuando el clima cambió o acompañaba la escena.</p>
+
+      <div class="formula-box">
+        $$\text{It} + \text{was} + \underbrace{\text{weather-ing}}_{\text{raining, snowing...}} \quad / \quad \text{There} + \text{was} + \text{noun}$$
+        <span class="comment">It was raining. / There was thunder.</span>
+      </div>
+
+      <div class="two-col">
+        <div class="rule-box sky">
+          <div class="title">🌧️ Clima como acción (V-ing)</div>
+          <div class="ex" style="font-size:.88rem;">
+            It <strong>was raining</strong>.<br>
+            It <strong>was snowing</strong>.<br>
+            The wind <strong>was blowing</strong>.
+          </div>
+        </div>
+        <div class="rule-box gold">
+          <div class="title">🌩️ Clima como sustantivo</div>
+          <div class="ex" style="font-size:.88rem;">
+            There <strong>was thunder</strong>.<br>
+            There <strong>was lightning</strong>.<br>
+            There <strong>was fog</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-box green">
+        <div class="title">🔗 Con when / while</div>
+        <div class="ex">
+          I <strong>was walking</strong> home <strong>when</strong> it <strong>started</strong> to rain.<br>
+          <strong>While</strong> we <strong>were playing</strong>, it <strong>was snowing</strong>.<br>
+          <em>Caminaba a casa cuando empezó a llover. / Mientras jugábamos, estaba nevando.</em>
+        </div>
+      </div>
+
+      <div class="tip"><span class="icon">💡</span><div class="content"><strong>Truco:</strong> <em>When</em> + past simple (acción corta: <em>started to rain</em>) &nbsp;|&nbsp; <em>While</em> + past continuous (acción larga: <em>was snowing</em>).</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 9 – PRONUNCIATION TIPS ═══ -->
+  <div class="slide" id="s9">
+    <div class="s-header">
+      <span class="badge">PRONUNCIATION</span>
+      <h2>Tips de pronunciación para hispanohablantes</h2>
+      <span class="s-num">09 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Estos son los sonidos que más cuestan a estudiantes chilenos. Escúchalos con los botones 🔊.</p>
+
+      <div class="math-table">
+        <table class="math-table">
+          <thead>
+            <tr><th>Palabra</th><th>Sonido clave</th><th>🔊 Escuchar</th><th>Evita decir</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>sunny</strong></td><td>/ˈsʌni/ — "a" corta</td><td><button class="word-btn" onclick="speak('sunny')">🔊</button></td><td>"suni" con u larga</td></tr>
+            <tr><td><strong>cloudy</strong></td><td>/ˈklaʊdi/ — diptongo "au"</td><td><button class="word-btn" onclick="speak('cloudy')">🔊</button></td><td>"clodi"</td></tr>
+            <tr><td><strong>raining</strong></td><td>/ˈreɪnɪŋ/ — "ei" larga</td><td><button class="word-btn" onclick="speak('raining')">🔊</button></td><td>"renin"</td></tr>
+            <tr><td><strong>thunder</strong></td><td>/ˈθʌndər/ — "th" con lengua</td><td><button class="word-btn" onclick="speak('thunder')">🔊</button></td><td>"tunder" o "sunder"</td></tr>
+            <tr><td><strong>freezing</strong></td><td>/ˈfriːzɪŋ/ — "i" larga</td><td><button class="word-btn" onclick="speak('freezing')">🔊</button></td><td>"frisin"</td></tr>
+            <tr><td><strong>windy</strong></td><td>/ˈwɪndi/ — "w" con labios</td><td><button class="word-btn" onclick="speak('windy')">🔊</button></td><td>"güindi" fuerte</td></tr>
+            <tr><td><strong>snowy</strong></td><td>/ˈsnəʊi/ — "ou" deslizada</td><td><button class="word-btn" onclick="speak('snowy')">🔊</button></td><td>"snovi"</td></tr>
+            <tr><td><strong>foggy</strong></td><td>/ˈfɒɡi/ — "g" fuerte</td><td><button class="word-btn" onclick="speak('foggy')">🔊</button></td><td>"foji"</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip"><span class="icon">🎧</span><div class="content"><strong>Práctica:</strong> Escucha cada palabra 3 veces y repítela en voz alta. Grábate con tu celular y compara. ¡La constancia es clave!</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 10 – LISTENING CHALLENGE ═══ -->
+  <div class="slide" id="s10">
+    <div class="s-header">
+      <span class="badge">LISTENING CHALLENGE</span>
+      <h2>🎧 Escucha y elige la palabra correcta</h2>
+      <span class="s-num">10 / 12</span>
+    </div>
+    <div class="s-body">
+      <p class="intro-text">Haz clic en <strong>▶</strong> para escuchar una palabra. Luego elige la opción correcta. ¡Puedes repetir el audio cuantas veces quieras!</p>
+
+      <div class="challenge">
+        <div class="progress-mini" id="challenge-progress">Palabra 1 de 10 · ✅ 0 correctas</div>
+        <button class="play-big" id="play-big" onclick="playCurrentChallenge()">▶</button>
+        <div class="hint" id="challenge-hint">Haz clic para escuchar</div>
+        <div class="options" id="challenge-options"></div>
+        <div class="fb" id="challenge-fb"></div>
+        <button class="nav-btn gold" id="next-challenge" style="display:none" onclick="nextChallenge()">Siguiente palabra →</button>
+      </div>
+
+      <div class="tip"><span class="icon">💡</span><div class="content"><strong>Consejo:</strong> Escucha primero <strong>sin mirar</strong> las opciones. Luego mira y elige. Así entrenas el oído de verdad.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 11 – RESUMEN ═══ -->
+  <div class="slide" id="s11">
+    <div class="s-header">
+      <span class="badge">SUMMARY</span>
+      <h2>Resumen — Weather Vocabulary</h2>
+      <span class="s-num">11 / 12</span>
+    </div>
+    <div class="s-body">
+      <div class="sec-label">🌦️ Las 36 palabras clave</div>
+      <div class="rule-box sky" style="font-size:.85rem;line-height:2;">
+        <strong>☀️ Soleado/calor:</strong> sunny · clear · bright · warm · hot · boiling<br>
+        <strong>☁️ Nubes/niebla:</strong> cloudy · overcast · grey · partly cloudy · foggy · misty<br>
+        <strong>🌧️ Lluvia/tormenta:</strong> rainy · raining · drizzle · pouring · shower · stormy · thunder · lightning<br>
+        <strong>❄️ Frío/nieve:</strong> cold · chilly · freezing · snowy · snowing · hail · frost<br>
+        <strong>💨 Viento:</strong> windy · breezy · gale · hurricane · tornado<br>
+        <strong>📊 Otros:</strong> humid · dry · rainbow · forecast · temperature · degrees
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="sec-label">⏳ Gramática integrada</div>
+          <div class="rule-box" style="font-size:.88rem;line-height:1.9;">
+            <strong>It was + V-ing:</strong> It was raining.<br>
+            <strong>There was + noun:</strong> There was thunder.<br>
+            <strong>When + past simple:</strong> ...when it started to rain.<br>
+            <strong>While + past continuous:</strong> While it was snowing...
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">🎧 Listening strategy</div>
+          <div class="rule-box gold" style="font-size:.88rem;line-height:1.9;">
+            1. Escucha sin mirar las opciones.<br>
+            2. Identifica el sonido fuerte.<br>
+            3. Repite en voz alta.<br>
+            4. Recién después elige.<br>
+            5. Repite el audio si dudas.
+          </div>
+        </div>
+      </div>
+
+      <div class="tip"><span class="icon">📌</span><div class="content"><strong>Recuerda:</strong> La práctica de listening se mejora escuchando <strong>todos los días</strong>, aunque sean 5 minutos. Usa los botones 🔊 cada vez que repases la clase.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ SLIDE 12 – CIERRE ═══ -->
+  <div class="slide" id="s12">
+    <div class="s-header">
+      <span class="badge">NEXT STEPS</span>
+      <h2>¡A practicar! — Próximos pasos</h2>
+      <span class="s-num">12 / 12</span>
+    </div>
+    <div class="s-body">
+      <div class="two-col">
+        <div>
+          <div class="sec-label">✅ Lo que aprendiste</div>
+          <div class="rule-box green" style="font-size:.88rem;line-height:1.9;">
+            <ul>
+              <li>36 palabras de clima en inglés</li>
+              <li>Pronunciación de sonidos difíciles (th, w, diptongos)</li>
+              <li>Comprensión auditiva con botones 🔊</li>
+              <li>Integración con Past Continuous</li>
+              <li>Estructuras: <em>It was raining / There was thunder</em></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="sec-label">🎯 Estrategias para la prueba</div>
+          <div class="rule-box gold" style="font-size:.88rem;line-height:1.9;">
+            <ul>
+              <li><strong>Escucha la palabra completa</strong> antes de elegir.</li>
+              <li>Fíjate en el <strong>sonido inicial y final</strong>.</li>
+              <li>Si dudas, <strong>repite el audio</strong>.</li>
+              <li>Usa el <strong>contexto</strong> (¿lluvia, sol, frío?).</li>
+              <li>Practica <strong>en voz alta</strong> todos los días.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-box sky">
+        <div class="title">🎧 Tarea sugerida</div>
+        <div class="ex">
+          Describe en 5 oraciones lo que estabas haciendo ayer mientras el clima cambiaba. Usa <strong>past continuous</strong> + <strong>weather words</strong>.<br>
+          <em>Example: Yesterday at 5 pm, I was reading when it started to rain. While it was raining, I was listening to music...</em>
+        </div>
+      </div>
+
+      <div class="tip"><span class="icon">🚀</span><div class="content"><strong>¡Ahora practica!</strong> Ve a los ejercicios <strong>E2.html</strong> para poner a prueba todo lo aprendido con preguntas de listening y gramática.</div></div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px;">
+        <button class="nav-btn gold" onclick="window.location.href='E2.html'">✏️ Ir a Ejercicios E2</button>
+        <button class="nav-btn" onclick="window.location.href='C1.html'">📖 Repasar Past Continuous</button>
+        <button class="nav-btn green-btn" onclick="window.location.href='index.html'">🏠 Inicio</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- #app -->
+
+<!-- ─── NAV ─── -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" disabled onclick="navigate(-1)">← Anterior</button>
+  <div id="progress-wrap">
+    <div id="progress-bar"><div id="progress-fill" style="width:8.33%"></div></div>
+    <div id="slide-label">Slide 1 / 12</div>
+  </div>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Siguiente →</button>
+  <div class="nav-links">
+    <button class="nav-btn gold" onclick="window.location.href='index.html'">📖 Curso</button>
+    <button class="nav-btn green-btn" onclick="window.location.href='E2.html'">✏️ Ejercicios</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  TTS ENGINE — SpeechSynthesis
+// ═══════════════════════════════════════════════════════════════
+const TTS = {
+  supported: 'speechSynthesis' in window,
+  voices: [],
+  voice: null,
+  rate: 0.9,
+
+  init(){
+    if(!this.supported) return;
+    const load = () => {
+      const all = speechSynthesis.getVoices();
+      this.voices = all.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+      // prefer en-US, then en-GB, then any en
+      if(this.voices.length){
+        this.voice =
+          this.voices.find(v => v.lang === 'en-US' && /google|natural|samantha/i.test(v.name)) ||
+          this.voices.find(v => v.lang === 'en-US') ||
+          this.voices.find(v => v.lang === 'en-GB') ||
+          this.voices[0];
+      }
+      this.populateVoiceSelect();
+    };
+    load();
+    if(typeof speechSynthesis.onvoiceschanged !== 'undefined'){
+      speechSynthesis.onvoiceschanged = load;
+    }
+  },
+
+  populateVoiceSelect(){
+    const sel = document.getElementById('voice-select');
+    if(!sel) return;
+    sel.innerHTML = '';
+    if(!this.voices.length){
+      sel.innerHTML = '<option>Voz por defecto</option>';
+      return;
+    }
+    this.voices.forEach((v,i) => {
+      const o = document.createElement('option');
+      o.value = i;
+      o.textContent = `${v.name} (${v.lang})`;
+      if(this.voice && v.name === this.voice.name) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.onchange = () => {
+      this.voice = this.voices[parseInt(sel.value,10)];
+    };
+  },
+
+  setRate(r){
+    this.rate = r;
+    document.querySelectorAll('.rate-btns button').forEach(b=>{
+      b.classList.toggle('active', parseFloat(b.dataset.rate) === r);
+    });
+  },
+
+  speak(text, onEnd){
+    if(!this.supported) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = this.voice?.lang || 'en-US';
+    if(this.voice) u.voice = this.voice;
+    u.rate = this.rate;
+    u.pitch = 1;
+    u.volume = 1;
+    if(onEnd) u.onend = onEnd;
+    speechSynthesis.speak(u);
+  },
+
+  speakSequence(items, onItemStart, onItemEnd, onAllEnd){
+    // items: array of {text, btnEl}
+    if(!this.supported){ if(onAllEnd) onAllEnd(); return; }
+    speechSynthesis.cancel();
+    let i = 0;
+    const next = () => {
+      if(i >= items.length){ if(onAllEnd) onAllEnd(); return; }
+      const item = items[i];
+      if(onItemStart) onItemStart(item, i);
+      const u = new SpeechSynthesisUtterance(item.text);
+      u.lang = this.voice?.lang || 'en-US';
+      if(this.voice) u.voice = this.voice;
+      u.rate = this.rate;
+      u.pitch = 1;
+      u.onend = () => {
+        if(onItemEnd) onItemEnd(item, i);
+        i++;
+        setTimeout(next, 250);
+      };
+      speechSynthesis.speak(u);
+    };
+    next();
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════
+//  VOCABULARY DATA — 36 words
+// ═══════════════════════════════════════════════════════════════
+const VOCAB = {
+  sunny: [
+    { en:'sunny',        es:'soleado' },
+    { en:'clear',        es:'despejado' },
+    { en:'bright',       es:'brillante' },
+    { en:'warm',         es:'templado' },
+    { en:'hot',          es:'caluroso' },
+    { en:'boiling',      es:'muy caluroso / hirviendo' },
+    { en:'sunny spells', es:'períodos de sol' }
+  ],
+  cloudy: [
+    { en:'cloudy',         es:'nublado' },
+    { en:'overcast',       es:'cubierto' },
+    { en:'grey',           es:'gris' },
+    { en:'partly cloudy',  es:'parcialmente nublado' },
+    { en:'foggy',          es:'con niebla' },
+    { en:'misty',          es:'con neblina' }
+  ],
+  rainy: [
+    { en:'rainy',      es:'lluvioso' },
+    { en:'raining',    es:'lloviendo' },
+    { en:'drizzle',    es:'llovizna' },
+    { en:'pouring',    es:'lloviendo a cántaros' },
+    { en:'shower',     es:'chubasco / ducha' },
+    { en:'stormy',     es:'tormentoso' },
+    { en:'thunder',    es:'trueno' },
+    { en:'lightning',  es:'relámpago' }
+  ],
+  cold: [
+    { en:'cold',      es:'frío' },
+    { en:'chilly',    es:'fresco / frío' },
+    { en:'freezing',  es:'helado' },
+    { en:'snowy',     es:'nevado' },
+    { en:'snowing',   es:'nevando' },
+    { en:'hail',      es:'granizo' },
+    { en:'frost',     es:'escarcha' }
+  ],
+  windy: [
+    { en:'windy',        es:'ventoso' },
+    { en:'breezy',       es:'con brisa' },
+    { en:'gale',         es:'vendaval' },
+    { en:'hurricane',    es:'huracán' },
+    { en:'tornado',      es:'tornado' },
+    { en:'humid',        es:'húmedo' },
+    { en:'dry',          es:'seco' },
+    { en:'rainbow',      es:'arcoíris' },
+    { en:'forecast',     es:'pronóstico' },
+    { en:'temperature',  es:'temperatura' },
+    { en:'degrees',      es:'grados' }
+  ]
+};
+
+// ═══════════════════════════════════════════════════════════════
+//  RENDER VOCAB CARDS
+// ═══════════════════════════════════════════════════════════════
+function renderVocabCard(containerId, key, icon, label){
+  const container = document.getElementById(containerId);
+  if(!container) return;
+  const words = VOCAB[key];
+
+  // build list
+  const listId = 'list-' + key;
+  const card = document.createElement('div');
+  card.className = 'vocab-card';
+  card.innerHTML = `
+    <div class="cat">
+      <span class="icon">${icon}</span>
+      <span>${label}</span>
+      <button class="speak-all" data-key="${key}">🔊 Todas</button>
+    </div>
+    <ul id="${listId}"></ul>
+  `;
+  container.appendChild(card);
+
+  const ul = card.querySelector('ul');
+  words.forEach((w, i) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <button class="word-btn" data-word="${w.en}" aria-label="Escuchar ${w.en}">🔊</button>
+      <span class="en">${w.en}</span>
+      <span class="es">${w.es}</span>
+    `;
+    ul.appendChild(li);
+  });
+
+  // individual word buttons
+  ul.querySelectorAll('.word-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const word = btn.dataset.word;
+      btn.classList.add('playing');
+      TTS.speak(word, () => btn.classList.remove('playing'));
+    });
+  });
+
+  // "speak all" button
+  card.querySelector('.speak-all').addEventListener('click', () => {
+    const btns = ul.querySelectorAll('.word-btn');
+    const items = words.map((w, i) => ({ text: w.en, btnEl: btns[i] }));
+    const allBtn = card.querySelector('.speak-all');
+    allBtn.textContent = '⏸ Leyendo...';
+    allBtn.disabled = true;
+    TTS.speakSequence(
+      items,
+      (item) => item.btnEl.classList.add('playing'),
+      (item) => item.btnEl.classList.remove('playing'),
+      () => {
+        allBtn.textContent = '🔊 Todas';
+        allBtn.disabled = false;
+      }
+    );
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  LISTENING CHALLENGE
+// ═══════════════════════════════════════════════════════════════
+const CHALLENGE_POOL = [
+  { word:'sunny',       distractors:['snowy','cloudy','rainy'] },
+  { word:'cloudy',      distractors:['cold','windy','sunny'] },
+  { word:'raining',     distractors:['freezing','snowing','boiling'] },
+  { word:'freezing',    distractors:['breezy','foggy','sunny'] },
+  { word:'windy',       distractors:['warm','rainy','misty'] },
+  { word:'snowy',       distractors:['stormy','sunny','chilly'] },
+  { word:'foggy',       distractors:['freezing','cloudy','dry'] },
+  { word:'thunder',     distractors:['shower','tornado','rainbow'] },
+  { word:'humid',       distractors:['hot','dry','cold'] },
+  { word:'forecast',    distractors:['degrees','temperature','rainbow'] }
+];
+
+let challengeOrder = [];
+let challengeIndex = 0;
+let challengeCorrect = 0;
+let challengeAnswered = false;
+
+function shuffleArr(a){
+  const r=[...a];
+  for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}
+  return r;
+}
+
+function initChallenge(){
+  challengeOrder = shuffleArr(CHALLENGE_POOL);
+  challengeIndex = 0;
+  challengeCorrect = 0;
+  renderChallenge();
+}
+
+function renderChallenge(){
+  const item = challengeOrder[challengeIndex];
+  challengeAnswered = false;
+
+  document.getElementById('challenge-progress').textContent =
+    `Palabra ${challengeIndex+1} de ${challengeOrder.length} · ✅ ${challengeCorrect} correctas`;
+  document.getElementById('challenge-hint').textContent = 'Haz clic para escuchar';
+  document.getElementById('challenge-fb').textContent = '';
+  document.getElementById('challenge-fb').className = 'fb';
+  document.getElementById('next-challenge').style.display = 'none';
+
+  const opts = shuffleArr([item.word, ...item.distractors]);
+  const optsWrap = document.getElementById('challenge-options');
+  optsWrap.innerHTML = '';
+  opts.forEach(opt => {
+    const div = document.createElement('div');
+    div.className = 'opt';
+    div.textContent = opt;
+    div.onclick = () => selectChallenge(opt, item.word, div);
+    optsWrap.appendChild(div);
+  });
+}
+
+function playCurrentChallenge(){
+  const item = challengeOrder[challengeIndex];
+  const btn = document.getElementById('play-big');
+  btn.classList.add('playing');
+  document.getElementById('challenge-hint').textContent = '🔊 Escuchando...';
+  TTS.speak(item.word, () => {
+    btn.classList.remove('playing');
+    document.getElementById('challenge-hint').textContent = 'Haz clic para repetir';
+  });
+}
+
+function selectChallenge(chosen, correct, el){
+  if(challengeAnswered) return;
+  challengeAnswered = true;
+  const opts = document.querySelectorAll('#challenge-options .opt');
+  opts.forEach(o => o.classList.add('locked'));
+
+  const fb = document.getElementById('challenge-fb');
+  if(chosen === correct){
+    el.classList.add('correct');
+    challengeCorrect++;
+    fb.textContent = '✅ ¡Correcto! Muy bien escuchado.';
+    fb.className = 'fb correct';
+  } else {
+    el.classList.add('wrong');
+    opts.forEach(o => { if(o.textContent === correct) o.classList.add('correct'); });
+    fb.textContent = `❌ Casi. La palabra era: "${correct}"`;
+    fb.className = 'fb wrong';
+  }
+
+  document.getElementById('challenge-progress').textContent =
+    `Palabra ${challengeIndex+1} de ${challengeOrder.length} · ✅ ${challengeCorrect} correctas`;
+
+  const nextBtn = document.getElementById('next-challenge');
+  if(challengeIndex < challengeOrder.length - 1){
+    nextBtn.textContent = 'Siguiente palabra →';
+    nextBtn.style.display = 'inline-flex';
+  } else {
+    nextBtn.textContent = `🏁 Ver resultado (${challengeCorrect}/${challengeOrder.length})`;
+    nextBtn.style.display = 'inline-flex';
+  }
+}
+
+function nextChallenge(){
+  if(challengeIndex < challengeOrder.length - 1){
+    challengeIndex++;
+    renderChallenge();
+  } else {
+    const total = challengeOrder.length;
+    const pct = Math.round(challengeCorrect/total*100);
+    let msg;
+    if(pct >= 90) msg = '🏆 ¡Excelente oído!';
+    else if(pct >= 70) msg = '👍 ¡Muy bien!';
+    else if(pct >= 50) msg = '📚 Buen intento, sigue practicando.';
+    else msg = '💪 Repasa el vocabulario y vuelve a intentarlo.';
+    alert(`${msg}\n\nResultado: ${challengeCorrect}/${total} (${pct}%)`);
+    initChallenge();
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+
+function navigate(dir){
+  slides[current].classList.remove('active');
+  current = Math.max(0, Math.min(total-1, current + dir));
+  slides[current].classList.add('active');
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === total-1;
+  document.getElementById('progress-fill').style.width = ((current+1)/total*100)+'%';
+  document.getElementById('slide-label').textContent = `Slide ${current+1} / ${total}`;
+  slides[current].scrollTop = 0;
+  if(typeof speechSynthesis !== 'undefined') speechSynthesis.cancel();
+  if(typeof renderMathInElement === 'function'){
+    renderMathInElement(slides[current], {
+      delimiters: [
+        {left:'$$', right:'$$', display:true},
+        {left:'$', right:'$', display:false}
+      ]
+    });
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+});
+
+let tx = 0;
+document.getElementById('app').addEventListener('touchstart', e => tx = e.touches[0].clientX, {passive:true});
+document.getElementById('app').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  if(Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+}, {passive:true});
+
+// ═══════════════════════════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function(){
+  // KaTeX
+  if(typeof renderMathInElement === 'function'){
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left:'$$', right:'$$', display:true},
+        {left:'$', right:'$', display:false}
+      ]
+    });
+  }
+
+  // TTS
+  TTS.init();
+
+  // if TTS not supported, show warning and hide audio controls
+  if(!TTS.supported){
+    const bar = document.getElementById('audio-bar');
+    if(bar) bar.innerHTML = '<div class="no-tts">⚠️ Tu navegador no soporta audio TTS. Prueba con Chrome, Edge o Safari actualizado.</div>';
+    document.getElementById('audio-support-msg').innerHTML =
+      '<div class="tip"><span class="icon">⚠️</span><div class="content"><strong>Aviso:</strong> Tu navegador no soporta síntesis de voz. Los botones 🔊 no funcionarán, pero puedes seguir el vocabulario visualmente.</div></div>';
+  }
+
+  // rate buttons
+  document.querySelectorAll('.rate-btns button').forEach(b => {
+    b.addEventListener('click', () => TTS.setRate(parseFloat(b.dataset.rate)));
+  });
+
+  // render vocab cards
+  renderVocabCard('vocab-sunny',  'sunny',  '☀️', 'Sunny & Hot');
+  renderVocabCard('vocab-cloudy', 'cloudy', '☁️', 'Cloudy & Foggy');
+  renderVocabCard('vocab-rainy',  'rainy',  '🌧️', 'Rainy & Stormy');
+  renderVocabCard('vocab-cold',   'cold',   '❄️', 'Cold & Snowy');
+  renderVocabCard('vocab-windy',  'windy',  '💨', 'Windy & Others');
+
+  // init listening challenge
+  initChallenge();
+});
+</script>
+</body>
+</html>
