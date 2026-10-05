@@ -3,31 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>English – Listening Dictation: Weather Vocabulary</title>
+<title>English – Listening Dictation: Climate Change</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --primary:#1a2a4a;
-  --primary2:#1e3a6a;
-  --primary3:#1a4a7a;
+  --primary:#0f2a1a;
+  --primary2:#143a26;
+  --primary3:#1a5a3a;
   --math-blue:#1a5a8a;
   --math-blue2:#2a7aaa;
   --sky:#4aa3d4;
-  --sky2:#7bc0e8;
   --gold:#d4a84a;
   --gold2:#e8c86a;
+  --leaf:#3a8a4a;
+  --leaf2:#5aaa6a;
   --white:#ffffff;
-  --light:#f0f4f8;
-  --lighter:#f7f9fc;
+  --light:#f0f6f2;
+  --lighter:#f7fbf8;
   --green:#1a7a4a;
   --green2:#e8f7ef;
   --green3:#0f5c37;
   --red:#b02a2a;
   --red2:#fde8e8;
   --gray:#5a6a7a;
-  --border:#d0dce8;
+  --border:#c8d8cc;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -83,19 +84,19 @@ body{
   border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:14px;
   color:var(--white);flex-wrap:wrap;margin-bottom:20px;
 }
-.audio-bar .label{font-size:.82rem;color:#a0c0e0;font-weight:600;}
+.audio-bar .label{font-size:.82rem;color:#a0d0b0;font-weight:600;}
 .audio-bar select{
-  background:var(--primary3);color:var(--white);border:1px solid var(--sky);
+  background:var(--primary3);color:var(--white);border:1px solid var(--leaf2);
   border-radius:6px;padding:5px 8px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;
 }
 .audio-bar .rate-btns{display:flex;gap:4px;}
 .audio-bar .rate-btns button{
-  background:var(--primary3);color:#a0c0e0;border:1px solid transparent;
+  background:var(--primary3);color:#a0d0b0;border:1px solid transparent;
   border-radius:6px;padding:5px 10px;cursor:pointer;font-family:'JetBrains Mono',monospace;
   font-size:.75rem;font-weight:600;transition:all .18s;
 }
 .audio-bar .rate-btns button.active{background:var(--gold);color:var(--primary);border-color:var(--gold);}
-.audio-bar .rate-btns button:hover:not(.active){background:var(--math-blue);color:var(--white);}
+.audio-bar .rate-btns button:hover:not(.active){background:var(--leaf);color:var(--white);}
 .no-tts{
   background:var(--red2);color:var(--red);padding:6px 12px;border-radius:8px;
   font-size:.78rem;font-weight:600;
@@ -109,8 +110,8 @@ body{
 }
 .btn-gold{background:var(--gold);color:var(--primary);}
 .btn-gold:hover{background:var(--gold2);transform:scale(1.03);}
-.btn-sky{background:var(--sky);color:var(--white);}
-.btn-sky:hover{background:var(--math-blue2);transform:scale(1.03);}
+.btn-sky{background:var(--leaf);color:var(--white);}
+.btn-sky:hover{background:var(--green3);transform:scale(1.03);}
 .btn-green{background:var(--green);color:var(--white);}
 .btn-green:hover{background:var(--green3);transform:scale(1.03);}
 .btn-red{background:var(--red);color:var(--white);}
@@ -134,12 +135,8 @@ body{
   font-family:'JetBrains Mono',monospace;font-size:.7rem;
   color:var(--gray);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase;
 }
-.q-section{
-  display:none;background:var(--sky);color:var(--white);
-  font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;
-  padding:2px 8px;border-radius:10px;letter-spacing:.06em;margin-bottom:10px;
-  text-transform:uppercase;
-}
+/* Section label hidden (no categories shown) */
+.q-section{ display:none; }
 
 /* ── DICTATION LAYOUT ── */
 .dict-row{
@@ -147,10 +144,10 @@ body{
 }
 .play-btn{
   width:64px;height:64px;border-radius:50%;border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--sky),var(--math-blue));
+  background:linear-gradient(135deg,var(--leaf),var(--green3));
   color:var(--white);font-size:1.8rem;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 14px rgba(74,163,212,.35);
+  box-shadow:0 4px 14px rgba(58,138,74,.35);
   transition:transform .18s;
 }
 .play-btn:hover{transform:scale(1.06);}
@@ -166,7 +163,7 @@ body{
   background:var(--lighter);transition:border-color .18s,background .18s;
   outline:none;
 }
-.dict-input:focus{border-color:var(--sky);background:var(--white);}
+.dict-input:focus{border-color:var(--leaf);background:var(--white);}
 .dict-input:disabled{background:var(--light);color:var(--gray);cursor:not-allowed;}
 .dict-input.correct{border-color:var(--green);background:var(--green2);color:var(--green3);}
 .dict-input.wrong{border-color:var(--red);background:var(--red2);color:var(--red);}
@@ -183,10 +180,6 @@ body{
 }
 .q-feedback.correct{display:block;color:var(--green);background:var(--green2);}
 .q-feedback.wrong{display:block;color:var(--red);background:var(--red2);}
-.q-feedback .expl{
-  display:block;font-weight:400;font-size:.83rem;color:#2d3a4a;
-  margin-top:4px;font-style:italic;
-}
 .q-feedback .word-reveal{
   font-family:'JetBrains Mono',monospace;font-weight:700;
   background:var(--white);padding:2px 8px;border-radius:5px;
@@ -200,7 +193,7 @@ body{
   padding:10px 24px;display:flex;align-items:center;gap:14px;
   justify-content:space-between;
 }
-#answered-count{color:#a0b8d0;font-family:'JetBrains Mono',monospace;font-size:.8rem;}
+#answered-count{color:#a0d0b0;font-family:'JetBrains Mono',monospace;font-size:.8rem;}
 
 /* ── RESULTS ── */
 #results-wrap{display:none;animation:fadeUp .5s ease forwards;}
@@ -227,7 +220,7 @@ body{
 .stat-box.ok .sv{color:var(--green);}
 .stat-box.err .sv{color:var(--red);}
 .stat-box.skip .sv{color:var(--gold);}
-.stat-box.grade .sv{color:var(--math-blue);}
+.stat-box.grade .sv{color:var(--leaf);}
 
 .result-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
 
@@ -275,8 +268,8 @@ body{
 <body>
 
 <div id="topbar">
-  <span class="logo">🎧</span>
-  <h1>Listening Dictation — <span>Weather</span></h1>
+  <span class="logo">🌍</span>
+  <h1>Listening Dictation — <span>Climate Change</span></h1>
   <div id="score-pill">15 audios · Type what you hear</div>
 </div>
 <div id="prog-wrap"><div id="prog-fill"></div></div>
@@ -285,12 +278,12 @@ body{
 
   <!-- INTRO -->
   <div id="intro-card">
-    <div class="anchor">🎧</div>
-    <h2>Weather Listening Dictation</h2>
-    <p>This test has <strong>15 random weather words</strong> from the class. For each one, click the <strong>▶</strong> button to hear the word and <strong>type it exactly</strong> in the box. <strong>Only correct spelling counts</strong> as correct. You can replay each audio as many times as you want. Your grade (1–7) uses the <strong>60% requirement</strong>.</p>
+    <div class="anchor">🌍</div>
+    <h2>Climate Change Listening Dictation</h2>
+    <p>This test has <strong>15 random climate change words</strong> from the class. For each one, click the <strong>▶</strong> button to hear the word and <strong>type it exactly</strong> in the box. <strong>Only correct spelling counts</strong> as correct. You can replay each audio as many times as you want. Your grade (1–7) uses the <strong>60% requirement</strong>.</p>
     <div class="tag-row">
       <span class="tag">🔊 15 audios</span>
-      <span class="tag">🌦️ Weather words</span>
+      <span class="tag">🌍 Climate words</span>
       <span class="tag">✍️ Spelling counts</span>
       <span class="tag">📊 Grade 1–7</span>
     </div>
@@ -421,64 +414,61 @@ const TTS = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-//  POOL — 36 weather words (same as C2.html class)
+//  POOL — 34 climate change words (same as C2.html class)
 // ═══════════════════════════════════════════════════════════════
 const POOL = [
-  // Sunny & Hot
-  { word:'sunny',       section:'Sunny & Hot',   hint:'soleado' },
-  { word:'clear',       section:'Sunny & Hot',   hint:'despejado' },
-  { word:'bright',      section:'Sunny & Hot',   hint:'brillante' },
-  { word:'warm',        section:'Sunny & Hot',   hint:'templado' },
-  { word:'hot',         section:'Sunny & Hot',   hint:'caluroso' },
-  { word:'boiling',     section:'Sunny & Hot',   hint:'muy caluroso' },
+  // Causes
+  { word:'car fumes',           hint:'humos de auto' },
+  { word:'fossil fuels',        hint:'combustibles fósiles' },
+  { word:'pollution',           hint:'contaminación' },
+  { word:'air pollution',       hint:'contaminación del aire' },
+  { word:'plastic waste',       hint:'desechos plásticos' },
+  { word:'deforestation',       hint:'deforestación' },
+  { word:'greenhouse gases',    hint:'gases de efecto invernadero' },
+  { word:'carbon dioxide',      hint:'dióxido de carbono' },
+  { word:'emissions',           hint:'emisiones' },
 
-  // Cloudy & Foggy
-  { word:'cloudy',      section:'Cloudy & Foggy', hint:'nublado' },
-  { word:'overcast',    section:'Cloudy & Foggy', hint:'cubierto' },
-  { word:'grey',        section:'Cloudy & Foggy', hint:'gris' },
-  { word:'foggy',       section:'Cloudy & Foggy', hint:'con niebla' },
-  { word:'misty',       section:'Cloudy & Foggy', hint:'con neblina' },
+  // Effects
+  { word:'global warming',      hint:'calentamiento global' },
+  { word:'climate change',      hint:'cambio climático' },
+  { word:'melting ice',         hint:'deshielo' },
+  { word:'sea level rise',      hint:'aumento del nivel del mar' },
+  { word:'heat wave',           hint:'ola de calor' },
+  { word:'cold wave',           hint:'ola de frío' },
+  { word:'drought',             hint:'sequía' },
+  { word:'flood',               hint:'inundación' },
+  { word:'temperature rise',    hint:'aumento de temperatura' },
 
-  // Rainy & Stormy
-  { word:'rainy',       section:'Rainy & Stormy', hint:'lluvioso' },
-  { word:'raining',     section:'Rainy & Stormy', hint:'lloviendo' },
-  { word:'drizzle',     section:'Rainy & Stormy', hint:'llovizna' },
-  { word:'pouring',     section:'Rainy & Stormy', hint:'lloviendo a cántaros' },
-  { word:'shower',      section:'Rainy & Stormy', hint:'chubasco' },
-  { word:'stormy',      section:'Rainy & Stormy', hint:'tormentoso' },
-  { word:'thunder',     section:'Rainy & Stormy', hint:'trueno' },
-  { word:'lightning',   section:'Rainy & Stormy', hint:'relámpago' },
+  // Impact on life
+  { word:'overfishing',         hint:'sobrepesca' },
+  { word:'danger of extinction',hint:'peligro de extinción' },
+  { word:'endangered species',  hint:'especies en peligro' },
+  { word:'habitat loss',        hint:'pérdida de hábitat' },
+  { word:'extinction',          hint:'extinción' },
+  { word:'coral bleaching',     hint:'blanqueamiento de coral' },
 
-  // Cold & Snowy
-  { word:'cold',        section:'Cold & Snowy',  hint:'frío' },
-  { word:'chilly',      section:'Cold & Snowy',  hint:'fresco / frío' },
-  { word:'freezing',    section:'Cold & Snowy',  hint:'helado' },
-  { word:'snowy',       section:'Cold & Snowy',  hint:'nevado' },
-  { word:'snowing',     section:'Cold & Snowy',  hint:'nevando' },
-  { word:'hail',        section:'Cold & Snowy',  hint:'granizo' },
-  { word:'frost',       section:'Cold & Snowy',  hint:'escarcha' },
+  // Energy
+  { word:'nuclear power',       hint:'energía nuclear' },
+  { word:'solar energy',        hint:'energía solar' },
+  { word:'renewable energy',    hint:'energía renovable' },
+  { word:'wind power',          hint:'energía eólica' },
+  { word:'hydroelectric power', hint:'energía hidroeléctrica' },
 
-  // Windy & Others
-  { word:'windy',       section:'Windy & Others', hint:'ventoso' },
-  { word:'breezy',      section:'Windy & Others', hint:'con brisa' },
-  { word:'gale',        section:'Windy & Others', hint:'vendaval' },
-  { word:'hurricane',   section:'Windy & Others', hint:'huracán' },
-  { word:'tornado',     section:'Windy & Others', hint:'tornado' },
-  { word:'humid',       section:'Windy & Others', hint:'húmedo' },
-  { word:'dry',         section:'Windy & Others', hint:'seco' },
-  { word:'rainbow',     section:'Windy & Others', hint:'arcoíris' },
-  { word:'forecast',    section:'Windy & Others', hint:'pronóstico' },
-  { word:'temperature', section:'Windy & Others', hint:'temperatura' },
-  { word:'degrees',     section:'Windy & Others', hint:'grados' }
+  // Solutions & Others
+  { word:'recycling',           hint:'reciclaje' },
+  { word:'sustainable',         hint:'sostenible' },
+  { word:'water scarcity',      hint:'escasez de agua' },
+  { word:'carbon footprint',    hint:'huella de carbono' },
+  { word:'eco-friendly',        hint:'ecológico / amigable' }
 ];
 
-// Multi-word expressions that should be accepted as one word typed
-// (We keep the pool as single words per the requirement, but normalize spaces/hyphens)
+// Normalize: ignore case, extra spaces, punctuation.
+// NOTE: multi-word answers must match word by word.
 const NORMALIZE = (s) =>
   s.toLowerCase()
    .trim()
    .replace(/\s+/g, ' ')
-   .replace(/[.,!?;:"']/g, '');
+   .replace(/[.,!?;:"'`´]/g, '');
 
 // ═══════════════════════════════════════════════════════════════
 //  STATE
@@ -506,7 +496,6 @@ function calculateGrade(correct, total){
 function buildTest(){
   shuffled = sample(POOL, N).map(item => ({
     word: item.word,
-    section: item.section,
     hint: item.hint
   }));
   userAns = Array(N).fill('');
@@ -543,7 +532,6 @@ function renderQuestions(){
 
     card.innerHTML = `
       <div class="q-num">Audio ${qi+1} of ${N}</div>
-      <div class="q-section">${item.section}</div>
       <div class="dict-row">
         <button class="play-btn" id="play-${qi}" onclick="playAudio(${qi})" aria-label="Play audio">▶</button>
         <div class="dict-input-wrap">
@@ -552,7 +540,7 @@ function renderQuestions(){
             type="text"
             class="dict-input"
             id="input-${qi}"
-            placeholder="tip your answer here"
+            placeholder="Type here..."
             autocomplete="off"
             autocorrect="off"
             autocapitalize="off"
@@ -577,7 +565,6 @@ function playAudio(qi){
   if(!btn) return;
   btn.classList.add('playing');
   TTS.speak(item.word, () => btn.classList.remove('playing'));
-  // focus the input so the student can type right away
   const input = document.getElementById(`input-${qi}`);
   if(input && !submitted) setTimeout(() => input.focus(), 100);
 }
@@ -659,7 +646,7 @@ function submitTest(){
   if(grade >= 6.0){ title = '🏆 Excellent dictation!'; msg = 'Your listening and spelling are excellent. Keep it up!'; }
   else if(grade >= 5.0){ title = '👍 Good job!'; msg = 'You have a good ear. Review the words you missed.'; }
   else if(grade >= 4.0){ title = '📚 Passed'; msg = 'You are on the right track, but you need more practice.'; }
-  else { title = '💪 Don\'t give up'; msg = 'Review the class (Weather) and try again. You can improve!'; }
+  else { title = '💪 Don\'t give up'; msg = 'Review the C2 class (Climate Change) and try again. You can improve!'; }
 
   document.getElementById('result-title').textContent = title;
   document.getElementById('result-msg').textContent = msg;
@@ -672,9 +659,7 @@ function submitTest(){
   document.getElementById('prog-fill').style.width = '100%';
   document.getElementById('results-wrap').style.display = 'block';
 
-  // build review
   renderReview();
-
   document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
 }
 
@@ -702,7 +687,7 @@ function renderReview(){
     }
 
     div.innerHTML = `
-      <div class="rv-head">Audio ${qi+1} · ${item.section}</div>
+      <div class="rv-head">Audio ${qi+1}</div>
       <div class="rv-word">🔊 ${item.word} <span style="font-weight:400;color:var(--gray);font-size:.85rem">(${item.hint})</span></div>
       <div class="rv-answer">${answerHtml}</div>
     `;
@@ -733,10 +718,10 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-// ─── KEYBOARD: Enter submits when all done? No: Enter replays audio (handled inline) ───
+// Ctrl/Cmd + Enter → finish test
 document.addEventListener('keydown', (e) => {
-  // Ctrl/Cmd + Enter finishes the test
-  if((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !submitted && document.getElementById('questions-wrap').style.display === 'flex'){
+  if((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !submitted
+     && document.getElementById('questions-wrap').style.display === 'flex'){
     submitTest();
   }
 });
